@@ -4,8 +4,8 @@ import { Inter } from 'next/font/google';
 
 import '@/common/styles/globals.scss';
 
+import Layout from '@/common/components/layouts';
 import StyledComponentsRegistry from '@/common/libs/registry';
-
 import GlobalStyles from '@/common/styles/GlobalStyles';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -26,7 +26,7 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <GlobalStyles />
           <ThemeProvider attribute="class" defaultTheme="light">
-            {children}
+            <Layout>{children}</Layout>
           </ThemeProvider>
         </StyledComponentsRegistry>
       </body>
