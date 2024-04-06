@@ -19,7 +19,7 @@ const NavItem: React.FC<NavItemProps> = ({ href, imgSrc, imgAlt, ...rest }) => {
           alt={imgAlt}
           width={57}
           height={23}
-          className="relative top-0.5 h-[4vh] w-[110%] select-none"
+          className="relative top-0.5 h-[3vh] w-full select-none"
         />
       </Link>
     </motion.li>
