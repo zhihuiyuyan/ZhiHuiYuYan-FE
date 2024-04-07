@@ -1,4 +1,9 @@
-import { Fira_Code, Plus_Jakarta_Sans, Sora } from 'next/font/google';
+import {
+  Fira_Code,
+  Ma_Shan_Zheng,
+  Plus_Jakarta_Sans,
+  Sora,
+} from 'next/font/google';
 
 export const jakartaSans = Plus_Jakarta_Sans({
   variable: '--jakartaSans-font',
@@ -18,4 +23,11 @@ export const soraSans = Sora({
   subsets: ['latin'],
   display: 'fallback',
   weight: ['300', '400', '500', '600', '700', '800'],
+});
+
+export const maShanZheng = Ma_Shan_Zheng({
+  variable: '--maShanZheng-font',
+  subsets: ['latin'],
+  display: 'fallback',
+  weight: '400'
 });

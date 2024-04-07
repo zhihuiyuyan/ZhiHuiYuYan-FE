@@ -1,42 +1,36 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-
-import { motion } from 'framer-motion';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 
 import Breakline from '../../elements/Breakline';
 
 const NAV_ITEMS = [
-  { href: '/', imgSrc: '/images/header/实时语情.png', imgAlt: '实时语情' },
-  { href: '/', imgSrc: '/images/header/语言资源.png', imgAlt: '语言资源' },
-  { href: '/', imgSrc: '/images/header/字典查询.png', imgAlt: '字典查询' },
-  { href: '/', imgSrc: '/images/header/科研助手.png', imgAlt: '科研助手' },
+  { href: '/', value: '实时语情' },
+  { href: '/', value: '语言资源' },
+  { href: '/', value: '字典查询' },
+  { href: '/', value: '科研助手' },
 ];
 
 const HEADER_BG_WIDTH = 960;
 const HEADER_BG_HEIGHT = 67;
-const NAV_ITEM_WIDTH = 57;
-const NAV_ITEM_HEIGHT = 23;
 
 interface NavItemProps {
   href: string;
-  imgSrc: string;
-  imgAlt: string;
+  value: string;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ href, imgSrc, imgAlt }) => (
+const NavItem: React.FC<NavItemProps> = ({ href, value }) => (
   <motion.li whileTap={{ scale: 0.9 }}>
-    <Link href={href} passHref>
-      <Image
-        src={imgSrc}
-        alt={imgAlt}
-        width={NAV_ITEM_WIDTH}
-        height={NAV_ITEM_HEIGHT}
-        className="relative top-0.5 h-[3vh] w-full select-none"
-      />
+    <Link
+      href={href}
+      passHref
+      className="font-zheng relative top-0.5 h-[3vh] w-full select-none text-white"
+    >
+      {value}
     </Link>
   </motion.li>
 );
@@ -69,24 +63,15 @@ const HeaderTop: React.FC = () => {
               height={25}
               className="h-[3vh] w-[3vh] select-none"
             />
-            <Image
-              src="/images/header/民族语研.png"
-              alt="logo"
-              width={89}
-              height={30}
-              className="relative top-1 h-[4vh] w-[110%] select-none"
-            />
+            <p className="font-zheng relative top-0.5 h-[4vh] w-[110%] select-none text-2xl text-white">
+              民族语研
+            </p>
           </Link>
         </motion.div>
         <nav className="absolute left-[25%] top-0 flex h-[7vh] items-center">
           <ul className="flex gap-24">
             {NAV_ITEMS.map((item, index) => (
-              <NavItem
-                key={index}
-                href={item.href}
-                imgSrc={item.imgSrc}
-                imgAlt={item.imgAlt}
-              />
+              <NavItem key={index} href={item.href} value={item.value} />
             ))}
           </ul>
         </nav>
