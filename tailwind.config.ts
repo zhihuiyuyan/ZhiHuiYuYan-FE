@@ -9,6 +9,7 @@ const config: Config = {
         sans: ['var(--jakartaSans-font)'],
         sora: ['var(--soraSans-font)'],
         code: ['var(--firaCode-font)'],
+        zheng: ['var(--maShanZheng-font)'],
         emoji: ['Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'],
       },
       colors: {

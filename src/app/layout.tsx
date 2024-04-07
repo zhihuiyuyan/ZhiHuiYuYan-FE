@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { ThemeProvider } from 'next-themes';
 import { Inter } from 'next/font/google';
+import { ThemeProvider } from 'next-themes';
 
 import '@/common/styles/globals.scss';
 
@@ -22,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body className={inter.className}>
+      <body
+        className={inter.className}
+      >
         <StyledComponentsRegistry>
           <GlobalStyles />
           <ThemeProvider attribute="class" defaultTheme="light">
