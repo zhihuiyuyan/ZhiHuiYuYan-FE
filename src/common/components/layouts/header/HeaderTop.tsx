@@ -82,7 +82,7 @@ const HeaderTop: React.FC = () => {
         >
           <IoPersonCircleOutline className="h-[4vh] w-[4vh] text-white" />
           {isClickAuth && (
-            <div className="absolute -right-[3.3vh] top-[6vh] flex w-[25vh] flex-col items-center">
+            <div className="absolute -right-[3.3vh] top-[6vh] flex w-[25vh] flex-col items-center z-10">
               <div>
                 <Image
                   src="/images/header/auth.png"
