@@ -65,7 +65,7 @@ const TabFocus: React.FC<TabFocusProps> = ({ isFocusded, children }) => {
     <motion.div
       whileTap={{ scale: 0.9 }}
       whileHover={{ scale: 1.1 }}
-      className="flex w-[25%] cursor-pointer items-center justify-center gap-2"
+      className="flex w-[25%] cursor-pointer items-center justify-center gap-2 -mr-10"
     >
       {isFocusded && (
         <Image
@@ -101,7 +101,8 @@ const ArticleItem: React.FC<ArticleItemProps> = ({ item }) => {
 
   return (
     <>
-      <div
+      <motion.div
+        whileTap={{ scale: 0.9 }}
         className="flex h-[18vh] w-full cursor-pointer px-[7%] pt-[2vh]"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -126,7 +127,7 @@ const ArticleItem: React.FC<ArticleItemProps> = ({ item }) => {
             className={`h-full w-full select-none ${isHovered && 'blur-lg' && 'scale-110'}`}
           />
         </div>
-      </div>
+      </motion.div>
       <Breakline className="w-[90%]" />
     </>
   );
