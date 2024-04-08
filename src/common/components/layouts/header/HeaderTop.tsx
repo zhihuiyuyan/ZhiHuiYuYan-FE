@@ -15,6 +15,8 @@ const NAV_ITEMS = [
   { href: '/', value: '科研助手' },
 ];
 
+const DROP_ITEMS = ['个人信息', '浏览历史', '我的关注'];
+
 const HEADER_BG_WIDTH = 960;
 const HEADER_BG_HEIGHT = 67;
 
@@ -23,8 +25,12 @@ interface NavItemProps {
   value: string;
 }
 
+interface DropItemProps {
+  value: string;
+}
+
 const NavItem: React.FC<NavItemProps> = ({ href, value }) => (
-  <motion.li whileTap={{ scale: 0.9 }}>
+  <motion.li whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>
     <Link
       href={href}
       passHref
@@ -35,8 +41,22 @@ const NavItem: React.FC<NavItemProps> = ({ href, value }) => (
   </motion.li>
 );
 
+const DropItem: React.FC<DropItemProps> = ({ value }) => (
+  <motion.p
+    whileTap={{ scale: 0.9 }}
+    whileHover={{ scale: 1.1 }}
+    className="text-[#0B489B]"
+  >
+    {value}
+  </motion.p>
+);
+
 const HeaderTop: React.FC = () => {
   const [isClickAuth, setIsClickAuth] = useState(false);
+
+  const handleAuthClick = () => {
+    setIsClickAuth(!isClickAuth);
+  };
 
   return (
     <header className="relative h-[8vh] w-full">
@@ -78,11 +98,13 @@ const HeaderTop: React.FC = () => {
         <motion.div
           whileTap={{ scale: 0.9 }}
           className="absolute right-[5%] top-0 flex h-[7vh] cursor-pointer items-center"
-          onClick={() => setIsClickAuth(!isClickAuth)}
+          onClick={handleAuthClick}
         >
-          <IoPersonCircleOutline className="h-[4vh] w-[4vh] text-white" />
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <IoPersonCircleOutline className="h-[4vh] w-[4vh] text-white" />
+          </motion.div>
           {isClickAuth && (
-            <div className="absolute -right-[3.3vh] top-[6vh] flex w-[25vh] flex-col items-center z-10">
+            <div className="absolute -right-[3.3vh] top-[6vh] z-10 flex w-[25vh] flex-col items-center">
               <div>
                 <Image
                   src="/images/header/auth.png"
@@ -93,31 +115,19 @@ const HeaderTop: React.FC = () => {
                 />
                 <div className="absolute left-[3vh] top-[3vh] h-[7vh] w-[7vh] select-none rounded-full bg-[#E7E7E7]"></div>
                 <motion.p
-                  whileTap={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  whileHover={{ scale: 1.1 }}
                   className="absolute right-[5vh] top-[5.5vh] font-bold text-[#841710]"
                 >
                   立即登录
                 </motion.p>
               </div>
               <Breakline className="absolute top-[10vh] w-[80%]" />
-              <motion.p
-                whileTap={{ scale: 1.1 }}
-                className="absolute top-[14vh] text-[#0B489B]"
-              >
-                个人信息
-              </motion.p>
-              <motion.p
-                whileTap={{ scale: 1.1 }}
-                className="absolute top-[18vh] text-[#0B489B]"
-              >
-                浏览历史
-              </motion.p>
-              <motion.p
-                whileTap={{ scale: 1.1 }}
-                className="absolute top-[22vh] text-[#0B489B]"
-              >
-                我的关注
-              </motion.p>
+              <div className="absolute top-[14vh] flex flex-col gap-4">
+                {DROP_ITEMS.map((item, index) => (
+                  <DropItem key={index} value={item} />
+                ))}
+              </div>
             </div>
           )}
         </motion.div>
