@@ -22,9 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body
-        className={inter.className}
-      >
+      <body className={inter.className}>
         <StyledComponentsRegistry>
           <GlobalStyles />
           <ThemeProvider attribute="class" defaultTheme="light">

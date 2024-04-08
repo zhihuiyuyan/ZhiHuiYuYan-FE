@@ -28,7 +28,7 @@ const NavItem: React.FC<NavItemProps> = ({ href, value }) => (
     <Link
       href={href}
       passHref
-      className="font-zheng relative top-0.5 h-[3vh] w-full select-none text-white"
+      className="relative top-0.5 h-[3vh] w-full select-none font-zheng text-white"
     >
       {value}
     </Link>
@@ -63,7 +63,7 @@ const HeaderTop: React.FC = () => {
               height={25}
               className="h-[3vh] w-[3vh] select-none"
             />
-            <p className="font-zheng relative top-0.5 h-[4vh] w-[110%] select-none text-2xl text-white">
+            <p className="relative top-0.5 h-[4vh] w-[110%] select-none font-zheng text-2xl text-white">
               民族语研
             </p>
           </Link>
