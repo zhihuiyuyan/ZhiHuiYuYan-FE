@@ -10,7 +10,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { resolvedTheme, setTheme } = useTheme();
-  setTheme('light');
+  setTheme(resolvedTheme!);
 
   return (
     <>
