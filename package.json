@@ -1,7 +1,19 @@
 {
   "name": "zhihuiyuyan-fe",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "智汇语研网站前端",
   "private": true,
+  "author": "ZhiHuiYuYan",
+  "contributors": [
+    "BlackishGreen33 <s5460703@gmail.com> (https://www.blackishgreen.link/)"
+  ],
+  "homepage": "https://github.com/zhihuiyuyan/ZhiHuiYuYan-FE",
+  "repository": "https://github.com/zhihuiyuyan/ZhiHuiYuYan-FE",
+  "bugs": {
+    "url": "https://github.com/zhihuiyuyan/ZhiHuiYuYan-FE/issues",
+    "email": "s5460703@gmail.com"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
