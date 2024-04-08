@@ -29,5 +29,5 @@ export const maShanZheng = Ma_Shan_Zheng({
   variable: '--maShanZheng-font',
   subsets: ['latin'],
   display: 'fallback',
-  weight: '400'
+  weight: '400',
 });
