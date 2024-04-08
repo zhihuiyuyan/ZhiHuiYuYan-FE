@@ -6,7 +6,7 @@ type BreaklineProps = {
 const Breakline: React.FC<BreaklineProps> = ({ className = '', ...others }) => {
   return (
     <div
-      className={`my-4 border-t border- border-gray-300 dark:border-neutral-700 ${className}`}
+      className={`my-4 border-t-2 border-dashed border-gray-300 dark:border-neutral-700 ${className}`}
       data-testid="breakline"
       {...others}
     ></div>
