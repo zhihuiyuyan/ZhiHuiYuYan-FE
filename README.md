@@ -1,5 +1,6 @@
-<h1 align="center">ZhiHuiYuYan-FE</h1>
 <div align="center">
+  <img width="130" src="https://github.com/zhihuiyuyan/ZhiHuiYuYan-FE/blob/main/public/images/header/logo.png?raw=true" alt="ZhiHuiYuYan logo">
+  <h1 align="center">ZhiHuiYuYan-FE</h1>
   <h3>智汇语研网站前端</h3>
   <a href="https://github.com/zhihuiyuyan/ZhiHuiYuYan-FE"><strong>探索项目文档 »</strong></a>
   <br />
