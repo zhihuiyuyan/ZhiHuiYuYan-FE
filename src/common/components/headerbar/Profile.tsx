@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 
-import Breakline from '@/common/components/elements/Breakline';
+import Breakline from '@/common/components/elements/BreaklineDashed';
 
 import Drop from './Drop';
 
