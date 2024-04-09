@@ -5,6 +5,7 @@ import { ThemeProvider } from 'next-themes';
 import '@/common/styles/globals.scss';
 
 import Layout from '@/common/components/layouts';
+import { ModalProvider } from '@/common/components/providers/modal-provider';
 import StyledComponentsRegistry from '@/common/libs/registry';
 import GlobalStyles from '@/common/styles/GlobalStyles';
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <GlobalStyles />
           <ThemeProvider attribute="class" defaultTheme="light">
+            <ModalProvider />
             <Layout>{children}</Layout>
           </ThemeProvider>
         </StyledComponentsRegistry>
