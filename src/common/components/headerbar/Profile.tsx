@@ -32,7 +32,7 @@ const Profile: React.FC = () => {
               height={160}
               className="h-[27vh] w-full"
             />
-            <div className="absolute left-[3vh] top-[3vh] h-[7vh] w-[7vh] select-none rounded-full bg-[#E7E7E7]"></div>
+            <div className="absolute left-[3vh] top-[3vh] h-[7vh] w-[7vh] rounded-full bg-[#E7E7E7]"></div>
             <motion.p
               whileTap={{ scale: 0.9 }}
               whileHover={{ scale: 1.1 }}
