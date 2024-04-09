@@ -4,11 +4,14 @@ import { useState } from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 
 import Breakline from '@/common/components/elements/BreaklineDashed';
+import { useModal } from '@/common/hooks/useModalStore';
 
 import Drop from './Drop';
 
 const Profile: React.FC = () => {
   const [isClickAuth, setIsClickAuth] = useState(false);
+
+  const { onOpen } = useModal();
 
   const handleAuthClick = () => {
     setIsClickAuth(!isClickAuth);
@@ -37,6 +40,7 @@ const Profile: React.FC = () => {
               whileTap={{ scale: 0.9 }}
               whileHover={{ scale: 1.1 }}
               className="absolute right-[5vh] top-[5.5vh] font-bold text-[#841710]"
+              onClick={() => onOpen('auth')}
             >
               立即登录
             </motion.p>
