@@ -20,8 +20,8 @@ const RecordItem: React.FC<RecordItemProps> = ({ item }) => {
   return (
     <>
       <div className="flex flex-1 flex-col items-center gap-4">
-        <p className="text-[#AC6461]">{item.value}</p>
-        <p className="font-bold text-[#0B489B]">{item.type}</p>
+        <p className="text-[1.8vh] text-[#AC6461]">{item.value}</p>
+        <p className="text-[1.8vh] font-bold text-[#0B489B]">{item.type}</p>
       </div>
       {item.id !== 3 && (
         <BreaklineDashed className="relative -bottom-5 border-r-2" />
@@ -32,21 +32,23 @@ const RecordItem: React.FC<RecordItemProps> = ({ item }) => {
 
 const RecordColumn: React.FC = () => {
   return (
-    <div className="flex flex-1 flex-col">
+    <div className="flex-1  hidden lg:block">
       <div className="relative flex h-[17vh] w-full items-center gap-4">
-        <div className="absolute left-[10%] flex gap-7">
+        <div className="absolute left-[15%] flex gap-7">
           <div className="h-[9vh] w-[9vh] rounded-full bg-[#E7E7E7]"></div>
-          <p className="relative text-xl font-bold text-[#474747]">用户名</p>
+          <p className="relative text-[2.2vh] font-bold text-[#474747]">
+            用户名
+          </p>
         </div>
       </div>
       <div className="relative flex h-[50vh] w-full flex-col items-center">
-        <div className="relative -mt-3 flex w-full">
+        <div className="relative -mt-3 flex w-[90%]">
           {RECORD_ITEMS.map((item) => (
             <RecordItem key={item.id} item={item} />
           ))}
         </div>
         <BreaklineDashed className="w-[90%] border-t-2" />
-        <p className="absolute left-[10%] top-[8.5vh] text-lg text-[#6F6F6F]">
+        <p className="relative w-full left-[10%] top-0 text-[2vh] text-[#6F6F6F]">
           最近浏览
         </p>
       </div>
