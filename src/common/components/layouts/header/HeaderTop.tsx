@@ -16,7 +16,7 @@ const HeaderTop: React.FC = () => {
           alt="header-bg"
           width={HEADER_BG_WIDTH}
           height={HEADER_BG_HEIGHT}
-          className="h-[8vh] w-full select-none"
+          className="h-[8vh] w-full select-none "
         />
       </div>
       <Navigation />

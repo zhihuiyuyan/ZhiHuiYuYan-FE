@@ -64,7 +64,7 @@ const TabFocus: React.FC<TabFocusProps> = ({ isFocusded, children }) => {
     <motion.div
       whileTap={{ scale: 0.9 }}
       whileHover={{ scale: 1.1 }}
-      className="-mr-10 flex min-w-[30vh] cursor-pointer items-center justify-center gap-2"
+      className="flex w-[40%] cursor-pointer items-center justify-center gap-2 text-[2vh] lg:w-[25%]"
     >
       {isFocusded && (
         <Image
@@ -72,7 +72,7 @@ const TabFocus: React.FC<TabFocusProps> = ({ isFocusded, children }) => {
           alt="main-bg"
           width={45}
           height={21}
-          className="h-[2.5vh] w-[5vh]"
+          className="h-[2.5vh] w-[15%]"
         />
       )}
       {children}
@@ -82,7 +82,7 @@ const TabFocus: React.FC<TabFocusProps> = ({ isFocusded, children }) => {
           alt="main-bg"
           width={45}
           height={21}
-          className="h-[2.5vh] w-[5vh]"
+          className="h-[2.5vh] w-[15%]"
         />
       )}
     </motion.div>
@@ -138,8 +138,8 @@ const ArticleColumn: React.FC = () => {
   const [focusedItem, setFocusedItem] = useState(1);
 
   return (
-    <div className="flex flex-[2.5] flex-col">
-      <div className="flex h-[8vh] items-center gap-3">
+    <div className="flex w-full flex-[2.5] flex-col">
+      <div className="flex h-[8vh] w-full  items-center">
         {TAB_ITEMS.map((item) => (
           <TabFocus key={item.id} isFocusded={focusedItem === item.id}>
             <p
@@ -153,7 +153,7 @@ const ArticleColumn: React.FC = () => {
           </TabFocus>
         ))}
       </div>
-      <div className="flex h-full min-w-[768px] flex-col items-center rounded-xl border border-[#BBBBBB]">
+      <div className="flex h-full flex-col items-center rounded-xl border border-[#BBBBBB]">
         {ARTICLE_ITEMS.map((item) => (
           <ArticleItem key={item.id} item={item} />
         ))}
