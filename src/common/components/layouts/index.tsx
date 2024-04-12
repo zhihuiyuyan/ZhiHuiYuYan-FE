@@ -14,7 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <>
-      <div className="flex flex-col xl:pb-8">
+      <div className="flex flex-col">
         <HeaderTop />
         <main className="transition-all duration-300">{children}</main>
       </div>

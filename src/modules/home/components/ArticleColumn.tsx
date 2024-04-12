@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 import Breakline from '@/common/components/elements/Breakline';
-import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 
 type ArticleItem = {
   id: number;
@@ -15,12 +14,6 @@ type ArticleItem = {
   readings: number;
 };
 
-type RecordItem = {
-  id: number;
-  type: string;
-  value: number;
-};
-
 interface TabFocusProps {
   isFocusded: boolean;
   children: React.ReactNode;
@@ -28,10 +21,6 @@ interface TabFocusProps {
 
 interface ArticleItemProps {
   item: ArticleItem;
-}
-
-interface RecordItemProps {
-  item: RecordItem;
 }
 
 const TAB_ITEMS = [
@@ -75,7 +64,7 @@ const TabFocus: React.FC<TabFocusProps> = ({ isFocusded, children }) => {
     <motion.div
       whileTap={{ scale: 0.9 }}
       whileHover={{ scale: 1.1 }}
-      className="-mr-10 flex min-w-[30vh] cursor-pointer items-center justify-center gap-2"
+      className="flex w-[40%] cursor-pointer items-center justify-center gap-2 text-[2vh] lg:w-[25%]"
     >
       {isFocusded && (
         <Image
@@ -83,7 +72,7 @@ const TabFocus: React.FC<TabFocusProps> = ({ isFocusded, children }) => {
           alt="main-bg"
           width={45}
           height={21}
-          className="h-[2.5vh] w-[5vh]"
+          className="h-[2.5vh] w-[15%]"
         />
       )}
       {children}
@@ -93,7 +82,7 @@ const TabFocus: React.FC<TabFocusProps> = ({ isFocusded, children }) => {
           alt="main-bg"
           width={45}
           height={21}
-          className="h-[2.5vh] w-[5vh]"
+          className="h-[2.5vh] w-[15%]"
         />
       )}
     </motion.div>
@@ -120,11 +109,11 @@ const ArticleItem: React.FC<ArticleItemProps> = ({ item }) => {
         onMouseLeave={handleMouseLeave}
       >
         <div className="relative flex flex-[4] flex-col">
-          <h3 className={`text-xl ${isHovered && 'underline'}`}>
+          <h3 className={`text-[2.3vh] ${isHovered && 'underline'}`}>
             {item.title}
           </h3>
-          <p className="pt-1 text-[#939393]">{item.content}</p>
-          <span className="absolute bottom-0 flex text-sm text-[#9F9F9F]">
+          <p className="pt-1 text-[1.9vh] text-[#939393]">{item.content}</p>
+          <span className="absolute bottom-0 flex text-[1.5vh] text-[#9F9F9F]">
             <p>发布时间：{item.timestamp}</p>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <p>阅读量：{item.readings}</p>
@@ -145,26 +134,12 @@ const ArticleItem: React.FC<ArticleItemProps> = ({ item }) => {
   );
 };
 
-const RecordItem: React.FC<RecordItemProps> = ({ item }) => {
-  return (
-    <>
-      <div className="flex flex-1 flex-col items-center gap-4">
-        <p className="text-[#AC6461]">{item.value}</p>
-        <p className="font-bold text-[#0B489B]">{item.type}</p>
-      </div>
-      {item.id !== 3 && (
-        <BreaklineDashed className="relative -bottom-5 border-r-2" />
-      )}
-    </>
-  );
-};
-
 const ArticleColumn: React.FC = () => {
   const [focusedItem, setFocusedItem] = useState(1);
 
   return (
-    <div className="flex flex-[2.5] flex-col">
-      <div className="flex h-[8vh] items-center gap-3">
+    <div className="flex w-full flex-[2.5] flex-col">
+      <div className="flex h-[8vh] w-full  items-center">
         {TAB_ITEMS.map((item) => (
           <TabFocus key={item.id} isFocusded={focusedItem === item.id}>
             <p

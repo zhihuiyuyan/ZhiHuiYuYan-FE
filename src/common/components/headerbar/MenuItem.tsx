@@ -11,7 +11,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ href, value }) => (
     <Link
       href={href}
       passHref
-      className="relative top-0.5 h-[3vh] w-full select-none font-zheng text-white"
+      className="h-[3vh] w-full select-none font-zheng text-white text-[1.8vh]"
     >
       {value}
     </Link>

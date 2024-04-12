@@ -18,7 +18,7 @@ const Home = () => {
           height={12}
           className="w-full select-none"
         />
-        <div className="flex h-auto w-full pb-10 px-[2%] xl:px-[10%]">
+        <div className="flex h-auto w-full px-[2%] pb-10 xl:px-[10%]">
           <ArticleColumn />
           <RecordColumn />
         </div>
