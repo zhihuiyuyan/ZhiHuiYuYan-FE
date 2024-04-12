@@ -32,7 +32,7 @@ const RecordItem: React.FC<RecordItemProps> = ({ item }) => {
 
 const RecordColumn: React.FC = () => {
   return (
-    <div className="flex-1  hidden lg:block">
+    <div className="flex-1 hidden lg:block">
       <div className="relative flex h-[17vh] w-full items-center gap-4">
         <div className="absolute left-[15%] flex gap-7">
           <div className="h-[9vh] w-[9vh] rounded-full bg-[#E7E7E7]"></div>
