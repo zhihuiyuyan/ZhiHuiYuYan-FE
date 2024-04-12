@@ -17,7 +17,7 @@ const Logo: React.FC = () => {
           height={25}
           className="h-[3vh] w-[3vh] select-none"
         />
-        <p className="relative top-0.5 h-[4vh] w-[110%] select-none font-zheng text-2xl text-white">
+        <p className="h-[4vh] w-[110%] select-none font-zheng text-[2.5vh] text-white">
           民族语研
         </p>
       </Link>

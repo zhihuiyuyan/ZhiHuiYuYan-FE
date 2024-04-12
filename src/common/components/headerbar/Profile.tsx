@@ -33,13 +33,13 @@ const Profile: React.FC = () => {
               alt="logo"
               width={153}
               height={160}
-              className="h-[27vh] w-full"
+              className="h-[28vh] w-full"
             />
             <div className="absolute left-[3vh] top-[3vh] h-[7vh] w-[7vh] rounded-full bg-[#E7E7E7]"></div>
             <motion.p
               whileTap={{ scale: 0.9 }}
               whileHover={{ scale: 1.1 }}
-              className="absolute right-[5vh] top-[5.5vh] font-bold text-[#841710]"
+              className="absolute right-[5vh] top-[5.5vh] font-bold text-[#841710] text-[1.8vh]"
               onClick={() => onOpen('auth')}
             >
               立即登录
