@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
+import create from 'zustand';
 
 import Breakline from '@/common/components/elements/Breakline';
 
@@ -23,9 +24,14 @@ interface ArticleItemProps {
   item: ArticleItem;
 }
 
+interface TabFocusedStoreProps {
+  tabFocused: number;
+  setTabFocused: (newTabFocused: number) => void;
+}
+
 const TAB_ITEMS = [
-  { id: 1, value: '研究热点' },
-  { id: 2, value: '时事新闻' },
+  { id: 1, value: '学术动态' },
+  { id: 2, value: '前沿成果' },
 ];
 
 const ARTICLE_ITEMS: ArticleItem[] = [
@@ -59,6 +65,11 @@ const ARTICLE_ITEMS: ArticleItem[] = [
   },
 ];
 
+const useTabFocusedStore = create<TabFocusedStoreProps>((set) => ({
+  tabFocused: 1,
+  setTabFocused: (newTabFocused) => set({ tabFocused: newTabFocused }),
+}));
+
 const TabFocus: React.FC<TabFocusProps> = ({ isFocusded, children }) => {
   return (
     <motion.div
@@ -91,6 +102,7 @@ const TabFocus: React.FC<TabFocusProps> = ({ isFocusded, children }) => {
 
 const ArticleItem: React.FC<ArticleItemProps> = ({ item }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { tabFocused } = useTabFocusedStore();
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -119,15 +131,17 @@ const ArticleItem: React.FC<ArticleItemProps> = ({ item }) => {
             <p>阅读量：{item.readings}</p>
           </span>
         </div>
-        <div className="flex-1 overflow-hidden">
-          <Image
-            src="/images/main/article-image.png"
-            alt="main-bg"
-            width={124}
-            height={83}
-            className={`h-full w-full select-none ${isHovered && 'blur-lg' && 'scale-110'}`}
-          />
-        </div>
+        {tabFocused === 2 && (
+          <div className="flex-1 overflow-hidden">
+            <Image
+              src="/images/main/article-image.png"
+              alt="main-bg"
+              width={124}
+              height={83}
+              className={`h-full w-full select-none ${isHovered && 'blur-lg' && 'scale-110'}`}
+            />
+          </div>
+        )}
       </motion.div>
       <Breakline className="w-[90%]" />
     </>
@@ -135,17 +149,17 @@ const ArticleItem: React.FC<ArticleItemProps> = ({ item }) => {
 };
 
 const ArticleColumn: React.FC = () => {
-  const [focusedItem, setFocusedItem] = useState(1);
+  const { tabFocused, setTabFocused } = useTabFocusedStore();
 
   return (
     <div className="flex w-full flex-[2.5] flex-col">
       <div className="flex h-[8vh] w-full  items-center">
         {TAB_ITEMS.map((item) => (
-          <TabFocus key={item.id} isFocusded={focusedItem === item.id}>
+          <TabFocus key={item.id} isFocusded={tabFocused === item.id}>
             <p
               className="text-[2.5vh] font-bold text-[#9B361C]"
               onClick={() => {
-                setFocusedItem(item.id);
+                setTabFocused(item.id);
               }}
             >
               {item.value}
