@@ -1,7 +1,13 @@
 import { NextPage } from 'next';
 
+import Profile from '@/modules/profile';
+
 const Page: NextPage = () => {
-  return <>123</>;
+  return (
+    <>
+      <Profile />
+    </>
+  );
 };
 
 export default Page;
