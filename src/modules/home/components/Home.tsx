@@ -9,7 +9,7 @@ import Search from './Search';
 const Home = () => {
   return (
     <>
-      <div className="relative h-[25vh] w-full">
+      <div className="relative h-[25vh] w-full ">
         <Search />
         <Image
           src="/images/main/breakline.png"
@@ -18,7 +18,7 @@ const Home = () => {
           height={12}
           className="w-full select-none"
         />
-        <div className="flex h-auto w-full px-[2%] pb-10 xl:px-[10%]">
+        <div className="flex h-auto w-full px-[2%] pb-10 xl:px-[10%] bg-[#F9FAFC]">
           <ArticleColumn />
           <RecordColumn />
         </div>
