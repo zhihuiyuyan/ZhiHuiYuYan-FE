@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
-import create from 'zustand';
+import { create } from 'zustand';
 
 import Breakline from '@/common/components/elements/Breakline';
 
