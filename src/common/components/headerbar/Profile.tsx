@@ -45,7 +45,7 @@ const Profile: React.FC = () => {
               立即登录
             </motion.p>
           </div>
-          <Breakline className="absolute top-[10vh] w-[80%]" />
+          <Breakline className="absolute top-[10vh] w-[80%] border-t-2" />
           <Drop />
         </div>
       )}
