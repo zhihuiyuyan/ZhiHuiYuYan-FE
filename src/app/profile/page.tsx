@@ -5,7 +5,7 @@ import Profile from '@/modules/profile';
 const Page: NextPage = () => {
   return (
     <>
-      <Profile />
+      <Profile route="profile" />
     </>
   );
 };

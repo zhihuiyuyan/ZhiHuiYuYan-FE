@@ -1,9 +1,11 @@
 import { NextPage } from 'next';
 
+import Profile from '@/modules/profile';
+
 const Page: NextPage = () => {
   return (
     <>
-      follow page
+      <Profile route="follow" />
     </>
   );
 };
