@@ -1,3 +1,6 @@
+'use client';
+import { motion } from 'framer-motion';
+
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 
 const Profile = () => {
@@ -16,16 +19,27 @@ const Profile = () => {
               <p>机构：</p>
             </div>
             <div className="absolute right-[10%] flex gap-[3vh]">
-              <button className="h-[5vh] w-[12vh] rounded-[1vh] bg-[#841710] text-white text-[1.7vh]">
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                className="h-[5vh] w-[12vh] rounded-[1vh] bg-[#841710] text-[1.7vh] text-white"
+              >
                 我的关注
-              </button>
-              <button className="h-[5vh] w-[12vh] rounded-[1vh] bg-[#841710] text-white text-[1.7vh]">
+              </motion.button>
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                className="h-[5vh] w-[12vh] rounded-[1vh] bg-[#841710] text-[1.7vh] text-white"
+              >
                 浏览历史
-              </button>
+              </motion.button>
             </div>
           </div>
           <BreaklineDashed className="relative w-[85%] border-t-2 border-[#B9B9B9]" />
-          <div></div>
+          <div className="relative flex w-full flex-col items-center gap-[1vh]">
+            <p className="relative left-[7.5%] w-full text-[2vh] font-semibold text-[#0B489B]">
+              科研经历
+            </p>
+            <div className="h-[65vh] w-[85%] rounded-[2vh] bg-[#F3F3F3]"></div>
+          </div>
         </div>
       </div>
     </>
