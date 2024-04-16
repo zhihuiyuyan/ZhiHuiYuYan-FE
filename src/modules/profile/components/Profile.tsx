@@ -1,9 +1,17 @@
 'use client';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 
+const BUTTON_ITEMS = [
+  { herf: '/profile/follow', content: '我的关注' },
+  { herf: '/profile/history', content: '浏览历史' },
+];
+
 const Profile = () => {
+  const router = useRouter();
+
   return (
     <>
       <div className="flex h-[92vh] w-full items-center justify-center bg-[#F9FAFC]">
@@ -19,18 +27,18 @@ const Profile = () => {
               <p>机构：</p>
             </div>
             <div className="absolute right-[10%] flex flex-col gap-[1vh] md:flex-row lg:gap-[3vh]">
-              <motion.button
-                whileTap={{ scale: 0.9 }}
-                className="h-[4vh] w-[10vh] rounded-[1vh] bg-[#841710] text-[1.7vh] text-white lg:h-[5vh] lg:w-[12vh]"
-              >
-                我的关注
-              </motion.button>
-              <motion.button
-                whileTap={{ scale: 0.9 }}
-                className="h-[4vh] w-[10vh] rounded-[1vh] bg-[#841710] text-[1.7vh] text-white lg:h-[5vh] lg:w-[12vh]"
-              >
-                浏览历史
-              </motion.button>
+              {BUTTON_ITEMS.map((item, index) => (
+                <motion.button
+                  key={index}
+                  whileTap={{ scale: 0.9 }}
+                  className="h-[4vh] w-[10vh] rounded-[1vh] bg-[#841710] text-[1.7vh] text-white lg:h-[5vh] lg:w-[12vh]"
+                  onClick={() => {
+                    router.push(item.herf);
+                  }}
+                >
+                  {item.content}
+                </motion.button>
+              ))}
             </div>
           </div>
           <BreaklineDashed className="relative w-[85%] border-t-2 border-[#B9B9B9]" />
