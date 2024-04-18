@@ -4,7 +4,7 @@ const Menu_ITEMS = [
   { href: '/', value: '实时语情' },
   { href: '/', value: '文脉修缮' },
   { href: '/', value: '文脉趋探' },
-  { href: '/', value: '文脉智析' },
+  { href: '/conversation', value: '文脉智析' },
 ];
 
 const Menu: React.FC = () => {

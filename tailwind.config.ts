@@ -16,6 +16,10 @@ const config: Config = {
         darkText: '#E4E6EB',
         dark: '#121212',
         light: '#fafafa',
+        lightGray: '#f3f3f3',
+        bgDefault: '#F9FAFC',
+        darkGray: '#C7C7C7',
+        darkRed: '#841710 ',
       },
       keyframes: {
         wave: {
