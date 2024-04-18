@@ -1,3 +1,8 @@
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@/common/components/elements/Avatar';
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 
 type RecordItem = {
@@ -32,10 +37,13 @@ const RecordItem: React.FC<RecordItemProps> = ({ item }) => {
 
 const RecordColumn: React.FC = () => {
   return (
-    <div className="flex-1 hidden lg:block">
+    <div className="hidden flex-1 lg:block">
       <div className="relative flex h-[17vh] w-full items-center gap-4">
         <div className="absolute left-[15%] flex gap-7">
-          <div className="h-[9vh] w-[9vh] rounded-full bg-[#E7E7E7]"></div>
+          <Avatar className="h-[9vh] w-[9vh] rounded-full bg-[#E7E7E7]">
+            <AvatarImage src="https://www.github.com/Wishforpeace.png" />
+            <AvatarFallback></AvatarFallback>
+          </Avatar>
           <p className="relative text-[2.2vh] font-bold text-[#474747]">
             用户名
           </p>
@@ -48,7 +56,7 @@ const RecordColumn: React.FC = () => {
           ))}
         </div>
         <BreaklineDashed className="w-[90%] border-t-2" />
-        <p className="relative w-full left-[10%] top-0 text-[2vh] text-[#6F6F6F]">
+        <p className="relative left-[10%] top-0 w-full text-[2vh] text-[#6F6F6F]">
           最近浏览
         </p>
       </div>
