@@ -3,6 +3,11 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@/common/components/elements/Avatar';
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 
 const BUTTON_ITEMS = [
@@ -15,7 +20,10 @@ const Information = () => {
 
   return (
     <div className="relative flex h-[14vh] w-full items-center">
-      <div className="relative left-[7.5%] top-[1vh] h-[9vh] w-[9vh] rounded-full bg-[#E7E7E7]"></div>
+      <Avatar className="relative left-[7.5%] top-[1vh] h-[9vh] w-[9vh] rounded-full bg-[#E7E7E7]">
+        <AvatarImage src="https://www.github.com/Wishforpeace.png" />
+        <AvatarFallback></AvatarFallback>
+      </Avatar>
       <p className="absolute left-[30%] top-[4vh] text-[2vh] font-semibold md:left-[25%] lg:left-[22%] xl:left-[18.5%]">
         姓名
       </p>
