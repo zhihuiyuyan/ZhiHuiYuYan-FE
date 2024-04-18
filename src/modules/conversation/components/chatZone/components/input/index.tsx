@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 
 import UploadFile from '@/modules/conversation/components/chatZone/components/input/plugins/uploadFile';
 import { genKey } from '@/common/utils/keyGen';
-const ChatInput: React.FC<InputProps> = () => {
-  const [pluginOutputs, setPluginOutputs] = useState<string[]>([]);
-  const [plugins, setPlugins] = useState<React.ReactNode>([UploadFile()]);
+import { PluginProps } from '@/modules/conversation/components/chatZone/components/input/plugins/pluginTemplate';
+const ChatInput: React.FC = () => {
+  // const [pluginOutputs, setPluginOutputs] = useState<string[]>([]);
+  const [plugins, setPlugins] = useState<React.FC<PluginProps<unknown>>[]>([UploadFile]);
   const handleSubmit = () => {
-    console.log(pluginOutputs);
+
   }
   return (
     <div className='w-4/5 flex mb-6'>
@@ -21,7 +22,7 @@ const ChatInput: React.FC<InputProps> = () => {
         </button>
       </div>
     {/*  plugins */}
-      {plugins.map((plugin) => React.cloneElement(plugin, {onSuccess: (res)=>setPluginOutputs(res), key: genKey.next().value}))}
+      {plugins && plugins.map((Plugin) => <Plugin key = {genKey.next().value as number} onSuccess={handleSubmit}> </Plugin>)}
     </div>
   )
 }

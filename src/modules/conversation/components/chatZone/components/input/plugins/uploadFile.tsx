@@ -2,9 +2,7 @@ import React from 'react';
 import PluginTemplate from '@/modules/conversation/components/chatZone/components/input/plugins/pluginTemplate';
 
 const UploadFilePlugin: React.FC = () => {
-  const handleTrigger = () => {
-
-  }
+  const handleTrigger = () => Promise.resolve('123')
   const handleFail = () => {
 
   }

@@ -1,18 +1,18 @@
 import React from 'react';
 
-interface PluginProps<T> {
-  onTrigger: () => Promise<T>;
-  onSuccess: (res: T) => void;
-  onFail: (err: Error) => void;
+export interface PluginProps<T> {
+  onTrigger?: () => Promise<T>;
+  onSuccess?: (res: unknown) => void;
+  onFail?: (err: unknown) => void;
   children?: React.ReactNode
 }
-const PluginTemplate: React.FC<PluginProps> = (props) => {
+const PluginTemplate: React.FC<PluginProps<string>> = (props) => {
   const {onTrigger, onSuccess, onFail, children} = props
   const handleClick = () => {
-    onTrigger().then(res => {
-      onSuccess(res)
+    onTrigger && onTrigger().then(res => {
+      onSuccess && onSuccess(res)
     }).catch(err => {
-      onFail(err)
+      onFail && onFail(err)
     })
   }
   return (

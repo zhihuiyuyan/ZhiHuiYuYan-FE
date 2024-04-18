@@ -4,6 +4,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  images: {
+    domains: ['s2.loli.net'],
+  },
   swcMinify: true,
 };
 
