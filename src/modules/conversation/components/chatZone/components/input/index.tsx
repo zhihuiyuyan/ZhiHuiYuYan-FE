@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
 import { genKey } from '@/common/utils/keyGen';
-import UploadFile from '@/modules/conversation/components/chatZone/components/input/plugins/uploadFile';
-const ChatInput: React.FC<InputProps> = () => {
-  const [pluginOutputs, setPluginOutputs] = useState<string[]>([]);
-  const [plugins, setPlugins] = useState<React.ReactNode>([UploadFile()]);
+import { PluginProps } from '@/modules/conversation/components/chatZone/components/input/plugins/pluginTemplate';
+const ChatInput: React.FC = () => {
+  // const [pluginOutputs, setPluginOutputs] = useState<string[]>([]);
+  const [plugins, setPlugins] = useState<React.FC<PluginProps<unknown>>[]>([UploadFile]);
   const handleSubmit = () => {
-    console.log(pluginOutputs);
-  };
+
+  }
   return (
     <div className="mb-6 flex w-4/5">
       {/* input */}
@@ -24,13 +24,8 @@ const ChatInput: React.FC<InputProps> = () => {
           发送
         </button>
       </div>
-      {/*  plugins */}
-      {plugins.map((plugin) =>
-        React.cloneElement(plugin, {
-          onSuccess: (res) => setPluginOutputs(res),
-          key: genKey.next().value,
-        })
-      )}
+    {/*  plugins */}
+      {plugins && plugins.map((Plugin) => <Plugin key = {genKey.next().value as number} onSuccess={handleSubmit}> </Plugin>)}
     </div>
   );
 };
