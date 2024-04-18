@@ -75,7 +75,7 @@ const Follow = () => {
                     <AvatarFallback>{item.name}</AvatarFallback>
                   </Avatar>
                   <p className="absolute left-[30%] top-0 text-[2vh] font-semibold md:left-[25%] lg:left-[22%] xl:left-[15%]">
-                    姓名
+                    {item.name}
                   </p>
                   <p className="absolute left-[30%] top-[4vh] flex items-center gap-[2vh] text-[1.5vh] text-[#0B489B] md:left-[25%] lg:left-[22%] xl:left-[15%]">
                     研究领域：{item.field}
