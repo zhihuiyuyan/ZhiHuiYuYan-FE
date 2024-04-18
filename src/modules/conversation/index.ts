@@ -1,3 +1,3 @@
-import Conversation from './components'
+import Conversation from './components';
 
-export default Conversation
+export default Conversation;
