@@ -8,7 +8,7 @@ const Conversation: React.FC = () => {
         <ConversationBubble></ConversationBubble>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Conversation
+export default Conversation;

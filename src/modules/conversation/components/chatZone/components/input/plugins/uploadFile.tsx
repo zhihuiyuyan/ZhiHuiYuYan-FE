@@ -1,4 +1,5 @@
 import React from 'react';
+
 import PluginTemplate from '@/modules/conversation/components/chatZone/components/input/plugins/pluginTemplate';
 
 const UploadFilePlugin: React.FC = () => {
@@ -11,9 +12,15 @@ const UploadFilePlugin: React.FC = () => {
   }
   return (
     <>
-      <PluginTemplate onTrigger={handleTrigger} onFail={handleFail} onSuccess={handleSuccess}>上传文件</PluginTemplate>
+      <PluginTemplate
+        onTrigger={handleTrigger}
+        onFail={handleFail}
+        onSuccess={handleSuccess}
+      >
+        上传文件
+      </PluginTemplate>
     </>
-  )
-}
+  );
+};
 
-export default UploadFilePlugin
+export default UploadFilePlugin;

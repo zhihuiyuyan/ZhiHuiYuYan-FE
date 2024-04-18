@@ -1,5 +1,5 @@
-import React from 'react';
 import Image from 'next/image';
+import React from 'react';
 
 interface ChatRecordProps {
   role?: 'robot' | 'user';
@@ -15,7 +15,7 @@ const ConversationBubble: React.FC<ChatRecordProps> = (props) => {
         {children}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ConversationBubble
+export default ConversationBubble;
