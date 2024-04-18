@@ -1,7 +1,7 @@
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 
 import Experience from './Experience';
-import Information from './information';
+import Information from './Information';
 
 interface ProfileProps {
   route: 'profile' | 'follow';
