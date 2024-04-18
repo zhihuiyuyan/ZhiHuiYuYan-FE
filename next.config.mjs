@@ -8,6 +8,16 @@ const nextConfig = {
     domains: ['s2.loli.net'],
   },
   swcMinify: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.github.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

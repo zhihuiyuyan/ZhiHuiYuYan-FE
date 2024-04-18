@@ -3,6 +3,11 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@/common/components/elements/Avatar';
 import Breakline from '@/common/components/elements/BreaklineDashed';
 import { useModal } from '@/common/hooks/useModalStore';
 
@@ -35,11 +40,14 @@ const Profile: React.FC = () => {
               height={160}
               className="h-[28vh] w-full"
             />
-            <div className="absolute left-[3vh] top-[3vh] h-[7vh] w-[7vh] rounded-full bg-[#E7E7E7]"></div>
+            <Avatar className="absolute left-[3vh] top-[3vh] h-[7vh] w-[7vh] rounded-full bg-[#E7E7E7]">
+              <AvatarImage src="https://www.github.com/Wishforpeace.png" />
+              <AvatarFallback></AvatarFallback>
+            </Avatar>
             <motion.p
               whileTap={{ scale: 0.9 }}
               whileHover={{ scale: 1.1 }}
-              className="absolute right-[5vh] top-[5.5vh] font-bold text-[#841710] text-[1.8vh]"
+              className="absolute right-[5vh] top-[5.5vh] text-[1.8vh] font-bold text-[#841710]"
               onClick={() => onOpen('auth')}
             >
               立即登录
