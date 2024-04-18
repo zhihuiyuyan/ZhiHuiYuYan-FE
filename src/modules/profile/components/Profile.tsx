@@ -1,7 +1,6 @@
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 
 import Experience from './Experience';
-
 import Information from './Information';
 
 interface ProfileProps {

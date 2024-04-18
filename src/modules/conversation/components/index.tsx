@@ -7,11 +7,11 @@ import ChatZone from '@/modules/conversation/components/chatZone';
 
 const ChatPage: React.FC = () => {
   return (
-    <div className='h-full flex'>
+    <div className="flex h-full">
       <ChatHistory></ChatHistory>
       <ChatZone></ChatZone>
     </div>
-  )
-}
+  );
+};
 
-export default ChatPage
+export default ChatPage;
