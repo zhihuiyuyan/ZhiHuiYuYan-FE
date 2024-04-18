@@ -66,7 +66,9 @@ const Scholar = () => {
               关注人数：{item.followers}
             </p>
           </div>
-          <Breakline className="w-[90%] border-t-2" />
+          {item.id !== SCHOLAR_ITEMS.length && (
+            <Breakline className="w-[90%] border-t-2" />
+          )}
         </div>
       ))}
     </>
