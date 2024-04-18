@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { genKey } from '@/common/utils/keyGen';
+import UploadFile from '@/modules/conversation/components/chatZone/components/input/plugins/uploadFile';
 import { PluginProps } from '@/modules/conversation/components/chatZone/components/input/plugins/pluginTemplate';
 const ChatInput: React.FC = () => {
   // const [pluginOutputs, setPluginOutputs] = useState<string[]>([]);
