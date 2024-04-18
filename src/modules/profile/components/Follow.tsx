@@ -1,10 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { useState } from 'react';
 import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@/common/components/elements/Avatar';
 import Breakline from '@/common/components/elements/BreaklineDashed';
 
 const TAB_ITEMS = [
@@ -15,7 +19,7 @@ const TAB_ITEMS = [
 const SCHOLAR_ITEMS = [
   {
     id: 1,
-    avatar: '',
+    avatar: 'https://www.github.com/BlackishGreen33.png',
     name: '张三',
     field: '计算机科学与技术',
     institution: '清华大学',
@@ -27,7 +31,7 @@ const SCHOLAR_ITEMS = [
   },
   {
     id: 2,
-    avatar: '',
+    avatar: 'https://www.github.com/konodioda727.png',
     name: '李四',
     field: '计算机科学与技术',
     institution: '华中师范大学',
@@ -66,13 +70,10 @@ const Follow = () => {
                 className="relative flex w-full flex-col items-center"
               >
                 <div className="relative flex h-[14vh] w-full items-center">
-                  <Image
-                    src={item.avatar}
-                    alt={item.name}
-                    width={100}
-                    height={100}
-                    className="absolute left-0 top-0 h-[9vh] w-[9vh] rounded-full bg-[#E7E7E7]"
-                  />
+                  <Avatar className="absolute left-0 top-0 h-[9vh] w-[9vh] rounded-full bg-[#E7E7E7]">
+                    <AvatarImage src={item.avatar} />
+                    <AvatarFallback>{item.name}</AvatarFallback>
+                  </Avatar>
                   <p className="absolute left-[30%] top-0 text-[2vh] font-semibold md:left-[25%] lg:left-[22%] xl:left-[15%]">
                     姓名
                   </p>
