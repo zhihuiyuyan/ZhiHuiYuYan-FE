@@ -33,7 +33,7 @@ const Profile: React.FC = () => {
         <IoPersonCircleOutline className="h-[4vh] w-[4vh] text-white" />
       </motion.div>
       {isClickAuth && (
-        <div className="absolute -right-[3.3vh] top-[6vh] z-20 flex w-[25vh] flex-col items-center">
+        <div className="absolute -right-[3.3vh] top-[6vh] z-10 flex w-[25vh] flex-col items-center">
           <div>
             <Image
               src="/images/header/auth.png"
