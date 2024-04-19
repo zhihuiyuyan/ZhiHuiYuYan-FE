@@ -10,7 +10,7 @@ const Conversation: React.FC = () => {
         <BotBubble>{'# Hello \n## Hello, *World*! \n 21 e1dhuiewfhhiewuuuuuiiiiiiiiiiicccccccuiiiiiiddihuwdiuqhiuwehnocwenvowemjdowieddddddddddddddmccccccccccc'}</BotBubble>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Conversation
+export default Conversation;

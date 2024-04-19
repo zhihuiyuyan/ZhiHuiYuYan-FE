@@ -15,7 +15,7 @@ const ChatPage: React.FC = () => {
       }]}></ChatHistory>
       <ChatZone></ChatZone>
     </div>
-  )
-}
+  );
+};
 
-export default ChatPage
+export default ChatPage;

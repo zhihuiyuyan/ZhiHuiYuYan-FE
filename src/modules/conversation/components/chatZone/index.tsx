@@ -15,7 +15,7 @@ const ChatZone: React.FC = () => {
         <Input onSubmit={handleSubmit}></Input>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default ChatZone
+export default ChatZone;

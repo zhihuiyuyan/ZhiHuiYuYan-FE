@@ -21,7 +21,7 @@ const ChatHistory: React.FC<ChatHistoryItemProps> = ({histories}) => {
         {Object.keys(data).map((item) => <HistoryByDate date={item} itemList={data[item]} key={genKey.next().value as number}></HistoryByDate>)}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default ChatHistory
+export default ChatHistory;

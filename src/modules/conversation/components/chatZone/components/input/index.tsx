@@ -34,14 +34,15 @@ const ChatInput: React.FC<ChatInputProps> = ({onSubmit}) => {
                placeholder="输入您的问题" onChange={debounce(handleInput, 500)} />
         <button
           onClick={handleSubmit}
-          className="absolute flex items-center w-20 justify-center right-0 h-full bg-darkRed text-white p-4 rounded-r-lg focus:outline-none hover:bg-red-700">
+          className="absolute right-0 flex h-full w-20 items-center justify-center rounded-r-lg bg-darkRed p-4 text-white hover:bg-red-700 focus:outline-none"
+        >
           发送
         </button>
       </div>
     {/*  plugins */}
       {plugins && plugins.map((Plugin) => <Plugin key = {genKey.next().value as number} onSuccess={handleSetPluginInputs}> </Plugin>)}
     </div>
-  )
-}
+  );
+};
 
-export default ChatInput
+export default ChatInput;

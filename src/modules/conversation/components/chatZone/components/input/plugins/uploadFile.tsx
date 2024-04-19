@@ -13,7 +13,7 @@ const UploadFilePlugin: React.FC<Partial<PluginProps<string>>> = (props) => {
     <>
       <PluginTemplate<string> {...props} name='file' onTrigger={handleTrigger} onFail={handleFail}>上传文件</PluginTemplate>
     </>
-  )
-}
+  );
+};
 
-export default UploadFilePlugin
+export default UploadFilePlugin;
