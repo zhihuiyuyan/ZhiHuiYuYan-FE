@@ -1,20 +1,37 @@
 import React, { useState } from 'react';
 
-import UploadFile from '@/modules/conversation/components/chatZone/components/input/plugins/uploadFile';
 import { genKey } from '@/common/utils/keyGen';
+import { debounce } from '@/common/utils/throttle';
 import { PluginProps } from '@/modules/conversation/components/chatZone/components/input/plugins/pluginTemplate';
-const ChatInput: React.FC = () => {
-  // const [pluginOutputs, setPluginOutputs] = useState<string[]>([]);
-  const [plugins, setPlugins] = useState<React.FC<PluginProps<unknown>>[]>([UploadFile]);
-  const handleSubmit = () => {
+import UploadFile from '@/modules/conversation/components/chatZone/components/input/plugins/uploadFile';
 
+interface ChatInputProps {
+  onSubmit?: (context: string) => void
+}
+type inputMap = {
+  textInput: string,
+  [key: string]: unknown
+}
+const ChatInput: React.FC<ChatInputProps> = ({onSubmit}) => {
+  const [inputs, setInputs] = useState<inputMap>({textInput:''});
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [plugins, setPlugins] = useState<React.FC<PluginProps<any>>[]>([UploadFile, UploadFile]);
+  const handleSubmit = () => {
+    onSubmit && onSubmit(inputs['textInput'])
+  }
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setInputs({...inputs, textInput: e.target.value})
+  }
+  const handleSetPluginInputs = (name: string, res: unknown) => {
+    setInputs({...inputs, [name]: res})
   }
   return (
-    <div className='w-4/5 flex mb-6'>
+    <div className='w-11/12 flex p-4 mb-6'>
       {/* input */}
-      <div className='w-2/3 h-12 relative flex flex-1'>
-        <input type="text" className="border border-gray-300 p-4 rounded-lg flex-grow pr-10"
-               placeholder="Enter your message" />
+      <div className='ml-24 w-full h-12 relative flex flex-1'>
+        <input type="text" className="border border-gray-300 focus:outline-darkRed p-4 rounded-lg flex-grow pr-10"
+               placeholder="输入您的问题" onChange={debounce(handleInput, 500)} />
         <button
           onClick={handleSubmit}
           className="absolute flex items-center w-20 justify-center right-0 h-full bg-darkRed text-white p-4 rounded-r-lg focus:outline-none hover:bg-red-700">
@@ -22,7 +39,7 @@ const ChatInput: React.FC = () => {
         </button>
       </div>
     {/*  plugins */}
-      {plugins && plugins.map((Plugin) => <Plugin key = {genKey.next().value as number} onSuccess={handleSubmit}> </Plugin>)}
+      {plugins && plugins.map((Plugin) => <Plugin key = {genKey.next().value as number} onSuccess={handleSetPluginInputs}> </Plugin>)}
     </div>
   )
 }

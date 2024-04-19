@@ -1,11 +1,13 @@
 import React from 'react';
-import ConversationBubble from '@/modules/conversation/components/chatZone/components/conversation/conversationBubble';
 
+import BotBubble from './bubbles/botBubble'
+import UserBubble from '@/modules/conversation/components/chatZone/components/conversation/bubbles/userBubble';
 const Conversation: React.FC = () => {
   return (
     <>
-      <div className='flex flex-col w-4/5 p-4 flex-1'>
-        <ConversationBubble></ConversationBubble>
+      <div className='flex flex-col w-2/3 p-4 flex-1'>
+        <UserBubble>{'banana'}</UserBubble>
+        <BotBubble>{'# Hello \n## Hello, *World*! \n 21 e1dhuiewfhhiewuuuuuiiiiiiiiiiicccccccuiiiiiiddihuwdiuqhiuwehnocwenvowemjdowieddddddddddddddmccccccccccc'}</BotBubble>
       </div>
     </>
   )

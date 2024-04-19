@@ -15,11 +15,20 @@ const config: Config = {
       colors: {
         darkText: '#E4E6EB',
         dark: '#121212',
+        blackText: '#4A4A4A',
         light: '#fafafa',
         lightGray: '#f3f3f3',
+        mdGray: '#ececec',
         bgDefault: '#F9FAFC',
+        mdDarkGrayText: '#8D8D8D',
         darkGray: '#C7C7C7',
-        darkRed: '#841710 ',
+        darkRed: '#841710',
+      },
+      maxWidth: {
+        '1/2': '50%',
+        '3/4': '75%',
+        '4/5': '80%',
+        '9/10': '90%',
       },
       keyframes: {
         wave: {
