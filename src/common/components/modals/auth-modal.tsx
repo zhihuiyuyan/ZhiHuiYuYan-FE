@@ -10,10 +10,12 @@ import {
   IoShieldCheckmarkOutline,
 } from 'react-icons/io5';
 
+import { useIsLogined } from '@/common/hooks/useIsLogined';
 import { useModal } from '@/common/hooks/useModalStore';
 
 const AuthModal: React.FC = () => {
   const { isOpen, onClose, type } = useModal();
+  const { setIsLogined } = useIsLogined();
 
   const isModalOpen = isOpen && type === 'auth';
 
@@ -34,6 +36,7 @@ const AuthModal: React.FC = () => {
       if (response.status === 200) {
         // eslint-disable-next-line no-console
         console.log('登录成功:', response.data);
+        setIsLogined(true);
         onClose();
       }
 
