@@ -32,19 +32,14 @@ const AuthModal: React.FC = () => {
       });
 
       if (response.status === 200) {
+        // eslint-disable-next-line no-console
         console.log('登录成功:', response.data);
         onClose();
-      } else {
-        console.log(
-          '登录失败，状态码:',
-          response.status,
-          '响应数据:',
-          response.data
-        );
       }
 
       return response;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('请求出错:', error);
     }
   };

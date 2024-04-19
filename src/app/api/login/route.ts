@@ -21,6 +21,7 @@ export async function POST(req: Request) {
       return new NextResponse(JSON.stringify(userData), { status: 401 });
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('LOGIN_POST', error);
     return new NextResponse('Internal Error', { status: 500 });
   }
