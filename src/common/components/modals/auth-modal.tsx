@@ -1,5 +1,6 @@
 'use client';
 
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -9,16 +10,42 @@ import {
   IoShieldCheckmarkOutline,
 } from 'react-icons/io5';
 
+import { useIsLogined } from '@/common/hooks/useIsLogined';
 import { useModal } from '@/common/hooks/useModalStore';
 
 const AuthModal: React.FC = () => {
   const { isOpen, onClose, type } = useModal();
+  const { setIsLogined } = useIsLogined();
 
   const isModalOpen = isOpen && type === 'auth';
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const [isLogin, setIsLogin] = useState(true);
   const [isSending, setIsSending] = useState(false);
   const [countdown, setCountdown] = useState(0);
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('/api/login', {
+        email,
+        password,
+      });
+
+      if (response.status === 200) {
+        // eslint-disable-next-line no-console
+        console.log('登录成功:', response.data);
+        setIsLogined(true);
+        onClose();
+      }
+
+      return response;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('请求出错:', error);
+    }
+  };
 
   const handleButtonClick = () => {
     setIsSending(true);
@@ -86,15 +113,25 @@ const AuthModal: React.FC = () => {
             <div className="relative flex h-[5vh] w-[70%] items-center rounded-lg border border-[#84280E] bg-[#F9FAFC]">
               <IoPersonCircleOutline className="relative left-3 text-[3.5vh] text-[#9A4F3B]" />
               <input
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
                 className="h-full w-full bg-transparent px-5 text-[1.5vh] outline-none"
                 placeholder="请输入邮箱"
+                required
               />
             </div>
             <div className="relative flex h-[5vh] w-[70%] items-center rounded-lg border border-[#84280E] bg-[#F9FAFC]">
               <IoMdLock className="relative left-3 text-[3.5vh] text-[#9A4F3B]" />
               <input
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
                 className="h-full w-full bg-transparent px-5 text-[1.5vh] outline-none"
                 placeholder="请输入密码"
+                required
               />
             </div>
             {!isLogin && (
@@ -129,6 +166,7 @@ const AuthModal: React.FC = () => {
           <motion.button
             whileTap={{ scale: 0.9 }}
             className={`relative ${isLogin ? 'top-[13vh]' : 'top-[17vh]'} h-[5vh] w-[20vh] rounded-3xl bg-[#A43E21] text-[1.7vh] font-semibold text-white`}
+            onClick={handleLogin}
           >
             {isLogin ? '登录' : '注册'}
           </motion.button>
