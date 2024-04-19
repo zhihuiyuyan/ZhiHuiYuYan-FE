@@ -1,17 +1,16 @@
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 const Search: React.FC = () => {
   return (
     <>
-      <Image
-        src="/images/main/main-bg.png"
-        alt="main-bg"
-        width={7864}
-        height={1549}
-        className="relative top-1 -z-10 h-full w-full select-none"
-      />
-      <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center">
+      <div
+        style={{
+          backgroundImage: `url(${'/images/main/main-bg.png'})`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+        }}
+        className="relative left-0 top-0 flex h-full w-full items-center justify-center"
+      >
         <motion.div
           whileTap={{ scale: 0.9 }}
           className="flex h-[5vh] w-[43%] min-w-[220px]"
