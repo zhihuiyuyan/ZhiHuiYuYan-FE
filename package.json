@@ -13,15 +13,6 @@
     "url": "https://github.com/zhihuiyuyan/ZhiHuiYuYan-FE/issues",
     "email": "s5460703@gmail.com"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["eslint --fix"],
-    "**/*.{js,jsx,tsx,ts,less,md,json}": ["prettier --write"]
-  },
   "license": "MIT",
   "scripts": {
     "dev": "next dev",

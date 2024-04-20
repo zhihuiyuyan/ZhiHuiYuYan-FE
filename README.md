@@ -6,15 +6,16 @@
   <br />
   <br />
 
-  ![license](https://img.shields.io/github/license/zhihuiyuyan/ZhiHuiYuYan-FE)
-  ![language](https://img.shields.io/github/languages/top/zhihuiyuyan/ZhiHuiYuYan-FE)
-  ![last](https://img.shields.io/github/last-commit/zhihuiyuyan/ZhiHuiYuYan-FE)
+![license](https://img.shields.io/github/license/zhihuiyuyan/ZhiHuiYuYan-FE)
+![language](https://img.shields.io/github/languages/top/zhihuiyuyan/ZhiHuiYuYan-FE)
+![last](https://img.shields.io/github/last-commit/zhihuiyuyan/ZhiHuiYuYan-FE)
 
-  <a href="https://zhihuiyuyan.vercel.app/" target="_blank">在线体验</a>
-  ·
-  <a href="https://github.com/zhihuiyuyan/ZhiHuiYuYan-FE/issues">报告Bug</a>
-  ·
-  <a href="https://github.com/zhihuiyuyan/ZhiHuiYuYan-FE/issues">提出新特性</a>
+<a href="https://zhihuiyuyan.vercel.app/" target="_blank">在线体验</a>
+·
+<a href="https://github.com/zhihuiyuyan/ZhiHuiYuYan-FE/issues">报告Bug</a>
+·
+<a href="https://github.com/zhihuiyuyan/ZhiHuiYuYan-FE/issues">提出新特性</a>
+
 </div>
 
 ## 🔖 项目导览

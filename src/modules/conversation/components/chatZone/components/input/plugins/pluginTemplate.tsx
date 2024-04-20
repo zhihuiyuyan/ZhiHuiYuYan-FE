@@ -22,7 +22,7 @@ const PluginTemplate = <T,>(props: PluginProps<T>) => {
   return (
     <>
       <div
-        className="text-mdDarkGrayText border-1 ml-6 flex h-12 w-20 cursor-pointer items-center justify-center rounded-lg border-darkGray bg-white text-sm hover:bg-lightGray"
+        className="border-1 ml-6 flex h-12 w-20 cursor-pointer items-center justify-center rounded-lg border-darkGray bg-white text-sm text-mdDarkGrayText transition-all hover:bg-lightGray"
         onClick={handleClick}
       >
         {children}
