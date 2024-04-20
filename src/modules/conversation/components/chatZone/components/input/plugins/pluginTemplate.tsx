@@ -18,16 +18,7 @@ const PluginTemplate= <T,>(props: PluginProps<T>) => {
   }
   return (
     <>
-<<<<<<< HEAD
-      <div className='w-20 cursor-pointer hover:bg-lightGray text-sm text-mdDarkGrayText rounded-lg bg-white ml-6 flex justify-center items-center border-1 border-darkGray' onClick={handleClick}>{children}</div>
-=======
-      <div
-        className="border-1 mx-8 flex w-20 cursor-pointer items-center justify-center rounded-lg border-darkGray bg-white hover:bg-lightGray"
-        onClick={handleClick}
-      >
-        {children}
-      </div>
->>>>>>> ca5206f5062e425dab883871230483575503e543
+      <div className='w-20 cursor-pointer h-12 hover:bg-lightGray text-sm text-mdDarkGrayText rounded-lg bg-white ml-6 flex justify-center items-center border-1 border-darkGray' onClick={handleClick}>{children}</div>
     </>
   );
 };
