@@ -7,8 +7,8 @@ import DropItem from './DropItem';
 
 const DROP_ITEMS = [
   { href: '/profile', value: '个人信息' },
-  { href: '/', value: '浏览历史' },
-  { href: '/', value: '我的关注' },
+  { href: '/profile/history', value: '浏览历史' },
+  { href: '/profile/follow', value: '我的关注' },
 ];
 
 const Drop: React.FC = () => {
