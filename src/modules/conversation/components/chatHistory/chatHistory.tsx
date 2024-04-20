@@ -1,24 +1,33 @@
-import React, { useMemo } from 'react';
-import { ChatHistoryItemType, HistoryByDate } from '@/modules/conversation/components/chatHistory/chatHistoryItem';
+import { useMemo } from 'react';
+
 import { genKey } from '@/common/utils/keyGen';
 
+import { ChatHistoryItemType, HistoryByDate } from './chatHistoryItem';
 
 interface ChatHistoryItemProps {
-  histories: ChatHistoryItemType[]
+  histories: ChatHistoryItemType[];
 }
-const ChatHistory: React.FC<ChatHistoryItemProps> = ({histories}) => {
+
+const ChatHistory: React.FC<ChatHistoryItemProps> = ({ histories }) => {
   const data = useMemo(() => {
-    const ret: HistoryByDate = {}
+    const ret: HistoryByDate = {};
     histories.forEach((history) => {
-      if(ret[history.date]) ret[history.date].push(history)
-      else ret[history.date] = [history]
-    })
-    return ret
+      if (ret[history.date]) ret[history.date].push(history);
+      else ret[history.date] = [history];
+    });
+    return ret;
   }, [histories]);
+
   return (
     <>
-      <div className='w-1/5 h-full bg-lightGray p-4 shadow'>
-        {Object.keys(data).map((item) => <HistoryByDate date={item} itemList={data[item]} key={genKey.next().value as number}></HistoryByDate>)}
+      <div className="h-full w-1/5 bg-lightGray p-4 shadow">
+        {Object.keys(data).map((item) => (
+          <HistoryByDate
+            date={item}
+            itemList={data[item]}
+            key={genKey.next().value as number}
+          />
+        ))}
       </div>
     </>
   );
