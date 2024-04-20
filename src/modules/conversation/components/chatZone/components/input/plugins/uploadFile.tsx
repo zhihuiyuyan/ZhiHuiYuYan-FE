@@ -1,24 +1,17 @@
 import React from 'react';
 
-import PluginTemplate from '@/modules/conversation/components/chatZone/components/input/plugins/pluginTemplate';
+import PluginTemplate, {
+  PluginProps,
+} from '@/modules/conversation/components/chatZone/components/input/plugins/pluginTemplate';
 
-const UploadFilePlugin: React.FC = () => {
+const UploadFilePlugin: React.FC<Partial<PluginProps<string>>> = (props) => {
   const handleTrigger = () => Promise.resolve('123')
   const handleFail = () => {
 
   }
-  const handleSuccess = () => {
-
-  }
   return (
     <>
-      <PluginTemplate
-        onTrigger={handleTrigger}
-        onFail={handleFail}
-        onSuccess={handleSuccess}
-      >
-        上传文件
-      </PluginTemplate>
+      <PluginTemplate<string> {...props} name='file' onTrigger={handleTrigger} onFail={handleFail}>上传文件</PluginTemplate>
     </>
   );
 };

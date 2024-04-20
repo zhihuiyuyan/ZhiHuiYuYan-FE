@@ -4,9 +4,6 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  images: {
-    domains: ['s2.loli.net'],
-  },
   swcMinify: true,
   images: {
     remotePatterns: [
@@ -15,7 +12,12 @@ const nextConfig = {
         hostname: 'www.github.com',
         port: '',
         pathname: '/**',
-      },
+      },{
+        protocol: 'https',
+        hostname: 's2.loli.net',
+        port: '',
+        pathname: '/**'
+      }
     ],
   },
 };

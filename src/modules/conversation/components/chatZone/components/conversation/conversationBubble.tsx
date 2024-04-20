@@ -1,21 +1,24 @@
-import Image from 'next/image';
 import React from 'react';
 
-interface ChatRecordProps {
-  role?: 'robot' | 'user';
-  children?: React.ReactNode;
-  avatar?: string;
-}
+import { Avatar, AvatarFallback, AvatarImage } from '@/common/components/elements/Avatar';
+import {
+  ChatRecordProps
+} from '@/modules/conversation/components/chatZone/components/conversation/bubble.config';
+
+
 const ConversationBubble: React.FC<ChatRecordProps> = (props) => {
-  const { role, children, avatar} = props
+  const { role, children, avatar, renderFunction} = props
   return (
     <div className={`flex w-full ${role === 'user' && 'flex-row-reverse'}`}>
-      <Image src={avatar ? avatar : 'https://s2.loli.net/2024/04/18/eo6hWcET7H5BGA1.webp'} alt='avatar' width={40} height={40} className='flex-shrink-0 h-12 w-12 rounded-full' />
-      <div className='max-w-lg ml-4 mt-4 break-words p-4 rounded-md shadow bg-white'>
-        {children}
+      <Avatar>
+        <AvatarImage src={avatar || 'https://s2.loli.net/2024/04/18/eo6hWcET7H5BGA1.webp'}></AvatarImage>
+        <AvatarFallback>avatar</AvatarFallback>
+      </Avatar>
+      <div className='max-w-4/5 text-blackText m-4 mt-4 break-words px-4 py-2 rounded-md shadow bg-white'>
+        {renderFunction ? renderFunction(children) : children}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ConversationBubble;
+export default ConversationBubble
