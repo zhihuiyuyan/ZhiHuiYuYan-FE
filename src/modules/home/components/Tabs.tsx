@@ -63,7 +63,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs }) => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 50 }}
             transition={{ duration: 0.5 }}
-            className="h-full w-full flex flex-col items-center"
+            className="flex h-full w-full flex-col items-center overflow-scroll"
           >
             {tabs[activeTab].children}
           </motion.div>
