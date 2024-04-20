@@ -18,7 +18,7 @@ type inputMap = {
 const ChatInput: React.FC<ChatInputProps> = ({ onSubmit }) => {
   const [inputs, setInputs] = useState<inputMap>({ textInput: '' });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [plugins, setPlugins] = useState<React.FC<PluginProps<any>>[]>([
+  const [plugins] = useState<React.FC<PluginProps<any>>[]>([
     UploadFile,
     UploadFile,
   ]);
@@ -29,6 +29,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSubmit }) => {
   };
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputs({ ...inputs, textInput: e.target.value });
+    // eslint-disable-next-line no-console
     debounce(() => console.log(e.target.value), 500);
   };
   const handleSetPluginInputs = (name: string, res: unknown) => {
