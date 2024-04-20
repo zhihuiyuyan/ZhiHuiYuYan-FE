@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { genKey } from '@/common/utils/keyGen';
 import { debounce } from '@/common/utils/throttle';
@@ -23,9 +23,13 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSubmit }) => {
     UploadFile,
   ]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => {
+    adjustHeight();
+  }, [inputs.textInput]);
   const handleSubmit = () => {
     onSubmit && onSubmit(inputs['textInput']);
     setInputs({ ...inputs, textInput: '' });
+    adjustHeight();
   };
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputs({ ...inputs, textInput: e.target.value });
@@ -37,9 +41,10 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSubmit }) => {
   };
   const adjustHeight = () => {
     const textarea = textareaRef.current;
-    if (textarea) {
-      textarea.style.height = 'auto';
+    if (textarea && textarea.scrollHeight > 50) {
+      textarea.style.height = '3rem';
       textarea.style.height = `${textarea.scrollHeight}px`;
+      textarea.scrollTop = textarea.scrollHeight;
     }
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -50,7 +55,6 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSubmit }) => {
           ...inputs,
           textInput: prevState.textInput + '\n',
         }));
-        adjustHeight();
       } else {
         handleSubmit();
       }
@@ -59,20 +63,20 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSubmit }) => {
   };
 
   return (
-    <div className="absolute bottom-0 mx-auto mb-6 flex w-4/5 items-end p-4">
+    <div className="absolute bottom-0 mx-auto mb-6 flex h-auto w-4/5 items-end p-4">
       {/* input */}
       <div className="relative ml-24 flex h-12 w-full flex-1 items-end">
         <textarea
           ref={textareaRef}
           value={inputs['textInput']}
           onKeyDown={handleKeyDown}
-          className="h-full flex-grow resize-none rounded-lg border border-gray-300 p-4 pr-10 focus:outline-darkRed"
-          placeholder="输入您的问题"
+          className=" flex h-full max-h-40 flex-grow resize-none rounded-lg border border-gray-300 py-3 pl-4 pr-10 outline-transparent transition-all focus:outline-darkRed"
+          placeholder={`输入您的问题 shift + enter 换行`}
           onChange={handleInput}
         />
         <button
           onClick={handleSubmit}
-          className="absolute right-0 flex h-12 w-20 items-center justify-center self-center rounded-lg bg-darkRed p-4 text-white hover:bg-red-700 focus:outline-none"
+          className="absolute right-0 top-1/2 flex h-12 w-20 -translate-y-1/2 items-center justify-center self-center rounded-lg bg-darkRed p-4 text-white transition-all hover:bg-red-700 focus:outline-none"
         >
           发送
         </button>

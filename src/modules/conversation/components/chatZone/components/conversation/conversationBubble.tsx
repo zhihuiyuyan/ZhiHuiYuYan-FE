@@ -16,7 +16,7 @@ const ConversationBubble: React.FC<ChatRecordProps> = (props) => {
         ></AvatarImage>
         <AvatarFallback>avatar</AvatarFallback>
       </Avatar>
-      <div className="max-w-4/5 text-blackText m-4 mt-4 break-words rounded-md bg-white px-4 py-2 shadow">
+      <div className="m-4 mt-4 max-w-4/5 whitespace-pre-wrap break-words rounded-md bg-white px-4 py-2 text-blackText shadow">
         {renderFunction ? renderFunction(children) : children}
       </div>
     </div>

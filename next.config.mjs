@@ -12,12 +12,13 @@ const nextConfig = {
         hostname: 'www.github.com',
         port: '',
         pathname: '/**',
-      },{
+      },
+      {
         protocol: 'https',
         hostname: 's2.loli.net',
         port: '',
-        pathname: '/**'
-      }
+        pathname: '/**',
+      },
     ],
   },
 };

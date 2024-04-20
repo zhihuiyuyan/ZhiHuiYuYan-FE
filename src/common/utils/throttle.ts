@@ -1,19 +1,19 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 export const throttle = (fn: (...args) => unknown, timeout: number) => {
-  let defaultTime = new Date().getTime()
+  let defaultTime = new Date().getTime();
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
-  return function(...args) {
-    const currentTime = new Date().getTime()
-    if(currentTime - defaultTime > timeout) {
-      defaultTime = currentTime
+  return function (...args) {
+    const currentTime = new Date().getTime();
+    if (currentTime - defaultTime > timeout) {
+      defaultTime = currentTime;
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
-      fn.call(this, ...args)
+      fn.call(this, ...args);
     }
-  }
-}
+  };
+};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const debounce = (fn: (...defaultArgs: any[]) => any, ms = 300) => {
