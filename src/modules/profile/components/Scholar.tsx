@@ -74,4 +74,5 @@ const Scholar = () => {
     </>
   );
 };
+
 export default Scholar;
