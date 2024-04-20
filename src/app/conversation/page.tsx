@@ -5,7 +5,7 @@ import ConversationPage from '@/modules/conversation';
 const Conversation: NextPage = () => {
   return (
     <>
-      <ConversationPage></ConversationPage>
+      <ConversationPage />
     </>
   );
 };
