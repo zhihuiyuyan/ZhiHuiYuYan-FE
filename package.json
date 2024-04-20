@@ -13,6 +13,12 @@
     "url": "https://github.com/zhihuiyuyan/ZhiHuiYuYan-FE/issues",
     "email": "s5460703@gmail.com"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pnpm run lint",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
