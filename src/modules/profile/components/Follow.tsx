@@ -2,6 +2,7 @@
 
 import { Tabs } from '@/modules/profile/components/Tabs';
 
+import Collection from './Collection';
 import Scholar from './Scholar';
 
 const Follow = () => {
@@ -12,7 +13,7 @@ const Follow = () => {
     },
     {
       label: '论文收藏',
-      children: <></>,
+      children: <Collection />,
     },
   ];
 
