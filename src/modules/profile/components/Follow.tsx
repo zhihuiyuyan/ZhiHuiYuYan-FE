@@ -1,7 +1,6 @@
 'use client';
 
-import { Tabs } from '@/modules/profile/components/Tabs';
-
+import { Tabs } from './Tabs';
 import Collection from './Collection';
 import Scholar from './Scholar';
 
