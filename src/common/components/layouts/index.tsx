@@ -3,7 +3,6 @@
 import { useTheme } from 'next-themes';
 
 import HeaderTop from './header/HeaderTop';
-import { HTMLAttributes } from 'react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -15,9 +14,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <>
-      <div className='flex flex-col h-dvh bg-bgDefault' >
+      <div className="flex h-dvh flex-col bg-bgDefault">
         <HeaderTop />
-        <main className="transition-all duration-300 flex-1">{children}</main>
+        <main className="flex-1 transition-all duration-300">{children}</main>
       </div>
     </>
   );
