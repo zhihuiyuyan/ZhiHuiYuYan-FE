@@ -33,7 +33,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSubmit }) => {
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputs({ ...inputs, textInput: e.target.value });
     // eslint-disable-next-line no-console
-    debounce(() => console.log(e.target.value), 500);
+    // debounce(() => console.log(e.target.value), 500);
   };
   const handleSetPluginInputs = (name: string, res: unknown) => {
     setInputs({ ...inputs, [name]: res });

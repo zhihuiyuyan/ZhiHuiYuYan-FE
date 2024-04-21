@@ -1,8 +1,8 @@
 'use client';
 
-import { Tabs } from './Tabs';
 import Collection from './Collection';
 import Scholar from './Scholar';
+import { Tabs } from './Tabs';
 
 const Follow = () => {
   const TABS = [
