@@ -11,7 +11,7 @@ const ChatZone: React.FC = () => {
   >([]);
   const handleSubmit = (context: string): void => {
     setConversationDetail(
-      conversationDetail.concat({ role: 'user', children: context })
+      conversationDetail.concat({ role: 'user', children: context, avatar:'https://s2.loli.net/2024/04/21/HLpBgK87yZQDW5O.jpg' })
     );
   };
 
