@@ -29,7 +29,6 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSubmit }) => {
   const handleSubmit = () => {
     onSubmit && onSubmit(inputs['textInput']);
     setInputs({ ...inputs, textInput: '' });
-    adjustHeight();
   };
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputs({ ...inputs, textInput: e.target.value });
@@ -39,13 +38,11 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSubmit }) => {
   const handleSetPluginInputs = (name: string, res: unknown) => {
     setInputs({ ...inputs, [name]: res });
   };
-  const adjustHeight = () => {
-    const textarea = textareaRef.current;
-    if (textarea && textarea.scrollHeight > 50) {
-      textarea.style.height = '3rem';
-      textarea.style.height = `${textarea.scrollHeight}px`;
-      textarea.scrollTop = textarea.scrollHeight;
-    }
+  const adjustHeight = (height?: string) => {
+    const textarea = textareaRef.current as HTMLTextAreaElement;
+    textarea.style.height = '3rem';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+    textarea.scrollTop = textarea.scrollHeight;
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Enter') {
@@ -70,7 +67,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSubmit }) => {
           ref={textareaRef}
           value={inputs['textInput']}
           onKeyDown={handleKeyDown}
-          className=" flex h-full max-h-40 flex-grow resize-none rounded-lg border border-gray-300 py-3 pl-4 pr-10 outline-transparent transition-all focus:outline-darkRed"
+          className=" flex h-full max-h-40 flex-grow resize-none rounded-lg border border-gray-300 py-3 pl-4 pr-10 outline-transparent focus:outline-darkRed"
           placeholder={`输入您的问题 shift + enter 换行`}
           onChange={handleInput}
         />
