@@ -1,6 +1,6 @@
-import { Tabs } from './Tabs';
-import Article from './Article';
 import Achievement from './Achievement';
+import Article from './Article';
+import { Tabs } from './Tabs';
 
 const ArticleColumn: React.FC = () => {
   const TABS = [

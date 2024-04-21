@@ -2,9 +2,9 @@ import MenuItem from './MenuItem';
 
 const Menu_ITEMS = [
   { href: '/', value: '实时语情' },
-  { href: '/', value: '文脉修缮' },
-  { href: '/', value: '文脉趋探' },
-  { href: '/conversation', value: '文脉智析' },
+  { href: '/', value: '语言资源' },
+  { href: '/', value: '字典查询' },
+  { href: '/conversation', value: '科研助手' },
 ];
 
 const Menu: React.FC = () => {
