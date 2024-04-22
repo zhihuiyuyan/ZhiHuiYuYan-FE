@@ -5,8 +5,6 @@ import {
 } from '@/common/components/elements/Avatar';
 import { ChatRecordProps } from '@/common/hooks/useChatStore';
 
-
-
 const ConversationBubble: React.FC<ChatRecordProps> = (props) => {
   const { role, children, renderFunction } = props;
   return (
