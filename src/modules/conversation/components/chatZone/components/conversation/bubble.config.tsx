@@ -1,14 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-
-export interface ChatRecordProps {
-  role?: bubbleType;
-  children?: React.ReactNode;
-  renderFunction?: (children: React.ReactNode) => React.ReactNode;
-  avatar?: string;
-}
-
-export type bubbleType = 'robot' | 'user';
+import { bubbleType, ChatRecordProps } from '@/common/hooks/useChatStore';
 
 export const bubbleConfig: { [key in bubbleType]: ChatRecordProps } = {
   user: {

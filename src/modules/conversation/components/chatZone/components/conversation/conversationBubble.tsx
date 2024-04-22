@@ -3,16 +3,17 @@ import {
   AvatarFallback,
   AvatarImage,
 } from '@/common/components/elements/Avatar';
+import { ChatRecordProps } from '@/common/hooks/useChatStore';
 
-import { ChatRecordProps } from './bubble.config';
+
 
 const ConversationBubble: React.FC<ChatRecordProps> = (props) => {
-  const { role, children, avatar, renderFunction } = props;
+  const { role, children, renderFunction } = props;
   return (
     <div className={`flex w-full ${role === 'user' && 'flex-row-reverse'}`}>
       <Avatar>
         <AvatarImage
-          src={avatar || 'https://s2.loli.net/2024/04/18/eo6hWcET7H5BGA1.webp'}
+          src={role || 'https://s2.loli.net/2024/04/18/eo6hWcET7H5BGA1.webp'}
         ></AvatarImage>
         <AvatarFallback>avatar</AvatarFallback>
       </Avatar>
