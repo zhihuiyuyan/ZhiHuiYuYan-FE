@@ -1,30 +1,28 @@
-import React, { HTMLAttributes, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { genKey } from '@/common/utils/keyGen';
 
+import { useChat } from '@/common/hooks/useChatStore';
 import { PluginProps } from './plugins/pluginTemplate';
 import UploadFile, { ChatFiles } from './plugins/uploadFile';
-import { useChat } from '@/common/hooks/useChatStore';
 
 interface ChatInputProps {
   onSubmit?: (context: string) => void;
 }
 
 const ChatInput: React.FC<ChatInputProps> = () => {
-  const {inputs, userSendMessage, setText, setPlugins} = useChat()
- const [plugins] = useState<React.FC<PluginProps<any>>[]>([
-    UploadFile,
-  ]);
+  const { inputs, userSendMessage, setText, setPlugins } = useChat();
+  const [plugins] = useState<React.FC<PluginProps<any>>[]>([UploadFile]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
     adjustHeight();
   }, [inputs.text]);
   const handleSubmit = () => {
-    userSendMessage()
-    setText('')
-  }
+    userSendMessage();
+    setText('');
+  };
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-   setText(e.target.value)
+    setText(e.target.value);
   };
   const handleSetPluginInputs = (name: string, res: string) => {
     setPlugins(name, res);
@@ -50,17 +48,19 @@ const ChatInput: React.FC<ChatInputProps> = () => {
   return (
     <div className="absolute bottom-0 mx-auto mb-6 flex h-auto w-4/5 items-end p-4">
       {/* input */}
-      <div className="rounded-lg border border-gray-300 outline-transparent focus:outline-darkRed relative ml-24 h-auto flex-grow flex w-full flex-1 self-baseline items-end">
+      <div className="relative ml-24 flex h-auto w-full flex-1 flex-grow items-end self-baseline rounded-lg border border-gray-300 outline-transparent focus:outline-darkRed">
         <textarea
           ref={textareaRef}
           value={inputs['text']}
           onKeyDown={handleKeyDown}
-          className="h-12 z-20 bg-transparent outline-0 max-h-40 overflow-scroll resize-none  flex-1 mx-3"
+          className="z-20 mx-3 h-12 max-h-40 flex-1 resize-none overflow-scroll  bg-transparent outline-0"
           onChange={handleInput}
         />
-        {!inputs.text &&
-          <div className="z-10 text-gray-400 absolute top-1/2 -translate-y-1/2 left-3">输入您的问题 shift + enter
-            换行</div>}
+        {!inputs.text && (
+          <div className="absolute left-3 top-1/2 z-10 -translate-y-1/2 text-gray-400">
+            输入您的问题 shift + enter 换行
+          </div>
+        )}
         <button
           onClick={handleSubmit}
           className="flex h-12 w-20 items-center justify-center rounded-lg bg-darkRed px-4 text-white transition-all hover:bg-red-700 focus:outline-none"
@@ -68,8 +68,14 @@ const ChatInput: React.FC<ChatInputProps> = () => {
           发送
         </button>
         {inputs.files && (
-          <div className='absolute -top-12 rounded-t-4 flex'>
-            {inputs.files.map((file, index) => <ChatFiles index={index} key={genKey.next().value as number} fileInfo={file}></ChatFiles>)}
+          <div className="rounded-t-4 absolute -top-12 flex">
+            {inputs.files.map((file, index) => (
+              <ChatFiles
+                index={index}
+                key={genKey.next().value as number}
+                fileInfo={file}
+              ></ChatFiles>
+            ))}
           </div>
         )}
       </div>

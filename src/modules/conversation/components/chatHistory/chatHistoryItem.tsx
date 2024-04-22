@@ -1,10 +1,8 @@
 import React from 'react';
 
+import { ChatHistoryItemType, useChat } from '@/common/hooks/useChatStore';
 import { genKey } from '@/common/utils/keyGen';
 import Image from 'next/image';
-import { ChatHistoryItemType, useChat } from '@/common/hooks/useChatStore';
-
-
 
 interface HistoryHeaderProps {
   onClick?: () => void;
@@ -14,18 +12,16 @@ interface HistoryByDateProps {
   itemList: ChatHistoryItemType[];
 }
 
-export const ChatHistoryItem: React.FC<ChatHistoryItemType> = (
-  props
-) => {
-  const {  title, id,  } = props;
-  const {currentSelect, setCurrentSelect} = useChat()
-  const active = id === currentSelect
-  const handleClick = () => setCurrentSelect(id)
+export const ChatHistoryItem: React.FC<ChatHistoryItemType> = (props) => {
+  const { title, id } = props;
+  const { currentSelect, setCurrentSelect } = useChat();
+  const active = id === currentSelect;
+  const handleClick = () => setCurrentSelect(id);
   return (
     <>
       <div
         onClick={handleClick}
-        className={`my-1 relative flex h-8 w-full cursor-pointer items-center rounded-lg px-2 text-sm text-blackText transition-all hover:scale-102 hover:bg-mdGray hover:shadow ${active &&'bg-mdGray'}`}
+        className={`relative my-1 flex h-8 w-full cursor-pointer items-center rounded-lg px-2 text-sm text-blackText transition-all hover:scale-102 hover:bg-mdGray hover:shadow ${active && 'bg-mdGray'}`}
       >
         {title}
         {active && (
@@ -52,7 +48,7 @@ export const HistoryByDate: React.FC<HistoryByDateProps> = (props) => {
 };
 
 export const HistoryHeader: React.FC = () => {
-  const {addNewHistory} = useChat()
+  const { addNewHistory } = useChat();
   return (
     <>
       <div
