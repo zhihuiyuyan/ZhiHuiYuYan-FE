@@ -18,7 +18,7 @@ const Logo: React.FC = () => {
           className="h-[3vh] w-[3vh] select-none"
         />
         <p className="h-[4vh] w-[110%] select-none font-zheng text-[2.5vh] text-white">
-          民族语研
+          智汇语研
         </p>
       </Link>
     </motion.div>
