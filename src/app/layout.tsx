@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 
 import '@/common/styles/globals.scss';
 
+import ProgressBar from '@/common/components/elements/ProgressBar';
 import Layout from '@/common/components/layouts';
 import { ModalProvider } from '@/common/components/providers/modal-provider';
 import StyledComponentsRegistry from '@/common/libs/registry';
@@ -28,7 +29,10 @@ export default function RootLayout({
           <GlobalStyles />
           <ThemeProvider attribute="class" defaultTheme="light">
             <ModalProvider />
-            <Layout>{children}</Layout>
+            <Layout>
+              {children}
+              <ProgressBar />
+            </Layout>
           </ThemeProvider>
         </StyledComponentsRegistry>
       </body>
