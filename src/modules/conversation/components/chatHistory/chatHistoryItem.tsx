@@ -2,35 +2,30 @@ import React from 'react';
 
 import { genKey } from '@/common/utils/keyGen';
 import Image from 'next/image';
+import { ChatHistoryItemType, useChat } from '@/common/hooks/useChatStore';
 
-export type ChatHistoryItemType = {
-  active?: boolean;
-  date: string;
-  title: string;
-};
 
-export type HistoryByDate = {
-  [key: string]: ChatHistoryItemType[];
-};
 
+interface HistoryHeaderProps {
+  onClick?: () => void;
+}
 interface HistoryByDateProps {
   date: string;
   itemList: ChatHistoryItemType[];
 }
 
-interface HistoryHeaderProps {
-  onClick?: () => void;
-}
-
-export const ChatHistoryItem: React.FC<Partial<ChatHistoryItemType>> = (
+export const ChatHistoryItem: React.FC<ChatHistoryItemType> = (
   props
 ) => {
-  const { active, title } = props;
-
+  const {  title, id,  } = props;
+  const {currentSelect, setCurrentSelect} = useChat()
+  const active = id === currentSelect
+  const handleClick = () => setCurrentSelect(id)
   return (
     <>
       <div
-        className={` relative flex h-8 w-full cursor-pointer items-center rounded-lg px-2 text-sm text-blackText shadow transition-all hover:scale-105 hover:bg-mdGray hover:shadow ${active && 'bg-mdGray'}`}
+        onClick={handleClick}
+        className={`my-1 relative flex h-8 w-full cursor-pointer items-center rounded-lg px-2 text-sm text-blackText transition-all hover:scale-102 hover:bg-mdGray hover:shadow ${active &&'bg-mdGray'}`}
       >
         {title}
         {active && (
@@ -56,11 +51,12 @@ export const HistoryByDate: React.FC<HistoryByDateProps> = (props) => {
   );
 };
 
-export const HistoryHeader: React.FC<HistoryHeaderProps> = ({ onClick }) => {
+export const HistoryHeader: React.FC = () => {
+  const {addNewHistory} = useChat()
   return (
     <>
       <div
-        onClick={() => onClick && onClick()}
+        onClick={() => addNewHistory(`mock-${genKey.next().value}`)}
         className="mb-4 flex cursor-pointer justify-between rounded py-2 text-sm transition-all hover:scale-105 hover:bg-mdGray hover:shadow"
       >
         <span className="ml-1">建立新对话</span>

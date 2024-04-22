@@ -63,6 +63,9 @@ const config: Config = {
         'badge-pulse': 'badge 1.5s ease-out infinite',
         'looping-tag': 'loop 100s linear infinite',
       },
+      scale: {
+        '102': '1.02',
+      },
     },
   },
   plugins: [require('tailwind-scrollbar-hide')],
