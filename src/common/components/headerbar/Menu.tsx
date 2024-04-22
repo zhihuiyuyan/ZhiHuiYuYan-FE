@@ -3,7 +3,7 @@ import MenuItem from './MenuItem';
 const Menu_ITEMS = [
   { href: '/', value: '实时语情' },
   { href: '/', value: '语言资源' },
-  { href: '/', value: '字典查询' },
+  { href: '/query', value: '字典查询' },
   { href: '/conversation', value: '科研助手' },
 ];
 
