@@ -2,7 +2,6 @@ import MenuItem from './MenuItem';
 
 const Menu_ITEMS = [
   { href: '/', value: '实时语情' },
-  { href: '/', value: '文脉修缮' },
   { href: '/query', value: '文脉趋探' },
   { href: '/conversation', value: '文脉智析' },
 ];
