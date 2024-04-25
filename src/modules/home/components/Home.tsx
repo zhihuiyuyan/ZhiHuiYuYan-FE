@@ -1,5 +1,3 @@
-'use client';
-
 import ArticleColumn from './ArticleColumn';
 import RecordColumn from './RecordColumn';
 import Search from './Search';
