@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import { NextResponse } from 'next/server';
 
 import { db } from '@/common/libs/firebase';
+import firebase from 'firebase/compat/app';
 
 const JWT_SECRET_KEY = 'secretKey';
 
@@ -22,8 +23,10 @@ export async function POST(req: Request) {
       const newToken = jwt.sign({ userId: email }, JWT_SECRET_KEY, {
         expiresIn: '1h',
       });
-      const userToken = userData?.token;
-      userDoc.update({ token: [...userToken, newToken] });
+
+      userDoc.update({
+        tokens: firebase.firestore.FieldValue.arrayUnion(newToken),
+      });
 
       const res = {
         msg: 'Login Success',

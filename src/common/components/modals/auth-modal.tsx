@@ -34,8 +34,6 @@ const AuthModal: React.FC = () => {
       });
 
       if (response.status === 200) {
-        // eslint-disable-next-line no-console
-        console.log('登录成功:', response.data);
         localStorage.setItem('token', response.data.token);
         setIsLogined(true);
         onClose();
