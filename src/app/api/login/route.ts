@@ -1,6 +1,9 @@
+import jwt from 'jsonwebtoken';
 import { NextResponse } from 'next/server';
 
 import { db } from '@/common/libs/firebase';
+
+const JWT_SECRET_KEY = 'secretKey';
 
 export async function POST(req: Request) {
   try {
@@ -12,11 +15,22 @@ export async function POST(req: Request) {
       });
     }
 
-    const userDoc = await db.collection('users').doc(email).get();
-    const userData = userDoc.data();
+    const userDoc = db.collection('users').doc(email);
+    const userData = (await userDoc.get()).data();
 
     if (userData?.password === password) {
-      return new NextResponse('Login Success', { status: 200 });
+      const newToken = jwt.sign({ userId: email }, JWT_SECRET_KEY, {
+        expiresIn: '1h',
+      });
+      const userToken = userData?.token;
+      userDoc.update({ token: [...userToken, newToken] });
+
+      const res = {
+        msg: 'Login Success',
+        token: newToken,
+      }
+
+      return new NextResponse(JSON.stringify(res), { status: 200 });
     } else {
       return new NextResponse(JSON.stringify(userData), { status: 401 });
     }

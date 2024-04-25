@@ -4,120 +4,122 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  '@emotion/styled':
-    specifier: ^11.11.5
-    version: 11.11.5(@emotion/react@11.11.4)(@types/react@18.2.79)(react@18.2.0)
-  '@radix-ui/react-avatar':
-    specifier: ^1.0.4
-    version: 1.0.4(@types/react-dom@18.2.25)(@types/react@18.2.79)(react-dom@18.2.0)(react@18.2.0)
-  axios:
-    specifier: ^1.6.8
-    version: 1.6.8
-  clsx:
-    specifier: ^2.1.0
-    version: 2.1.0
-  firebase:
-    specifier: ^10.11.0
-    version: 10.11.0
-  firebase-admin:
-    specifier: ^12.1.0
-    version: 12.1.0
-  framer-motion:
-    specifier: ^11.1.7
-    version: 11.1.7(react-dom@18.2.0)(react@18.2.0)
-  next:
-    specifier: 14.2.2
-    version: 14.2.2(react-dom@18.2.0)(react@18.2.0)(sass@1.75.0)
-  next-nprogress-bar:
-    specifier: ^2.3.11
-    version: 2.3.11
-  next-themes:
-    specifier: ^0.3.0
-    version: 0.3.0(react-dom@18.2.0)(react@18.2.0)
-  react:
-    specifier: ^18.2.0
-    version: 18.2.0
-  react-dom:
-    specifier: ^18.2.0
-    version: 18.2.0(react@18.2.0)
-  react-icons:
-    specifier: ^5.1.0
-    version: 5.1.0(react@18.2.0)
-  react-markdown:
-    specifier: ^9.0.1
-    version: 9.0.1(@types/react@18.2.79)(react@18.2.0)
-  sass:
-    specifier: ^1.75.0
-    version: 1.75.0
-  styled-components:
-    specifier: ^6.1.8
-    version: 6.1.8(react-dom@18.2.0)(react@18.2.0)
-  tailwind-merge:
-    specifier: ^2.3.0
-    version: 2.3.0
-  tailwind-scrollbar-hide:
-    specifier: ^1.1.7
-    version: 1.1.7
-  zustand:
-    specifier: ^4.5.2
-    version: 4.5.2(@types/react@18.2.79)(react@18.2.0)
+importers:
 
-devDependencies:
-  '@types/node':
-    specifier: ^20.12.7
-    version: 20.12.7
-  '@types/react':
-    specifier: ^18.2.79
-    version: 18.2.79
-  '@types/react-dom':
-    specifier: ^18.2.25
-    version: 18.2.25
-  '@typescript-eslint/eslint-plugin':
-    specifier: ^7.7.0
-    version: 7.7.0(@typescript-eslint/parser@7.5.0)(eslint@9.1.0)(typescript@5.4.5)
-  autoprefixer:
-    specifier: ^10.4.19
-    version: 10.4.19(postcss@8.4.38)
-  eslint:
-    specifier: ^9.1.0
-    version: 9.1.0
-  eslint-config-next:
-    specifier: 14.2.2
-    version: 14.2.2(eslint@9.1.0)(typescript@5.4.5)
-  eslint-config-prettier:
-    specifier: ^9.1.0
-    version: 9.1.0(eslint@9.1.0)
-  eslint-plugin-simple-import-sort:
-    specifier: ^12.1.0
-    version: 12.1.0(eslint@9.1.0)
-  eslint-plugin-unused-imports:
-    specifier: ^3.1.0
-    version: 3.1.0(@typescript-eslint/eslint-plugin@7.7.0)(eslint@9.1.0)
-  husky:
-    specifier: ^9.0.11
-    version: 9.0.11
-  lint-staged:
-    specifier: ^15.2.2
-    version: 15.2.2
-  postcss:
-    specifier: ^8.4.38
-    version: 8.4.38
-  prettier:
-    specifier: ^3.2.5
-    version: 3.2.5
-  prettier-plugin-organize-imports:
-    specifier: ^3.2.4
-    version: 3.2.4(prettier@3.2.5)(typescript@5.4.5)
-  prettier-plugin-tailwindcss:
-    specifier: ^0.5.14
-    version: 0.5.14(prettier-plugin-organize-imports@3.2.4)(prettier@3.2.5)
-  tailwindcss:
-    specifier: ^3.4.3
-    version: 3.4.3
-  typescript:
-    specifier: ^5.4.5
-    version: 5.4.5
+  .:
+    dependencies:
+      '@emotion/styled':
+        specifier: ^11.11.5
+        version: 11.11.5(@emotion/react@11.11.4(@types/react@18.2.79)(react@18.2.0))(@types/react@18.2.79)(react@18.2.0)
+      '@radix-ui/react-avatar':
+        specifier: ^1.0.4
+        version: 1.0.4(@types/react-dom@18.2.25)(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      axios:
+        specifier: ^1.6.8
+        version: 1.6.8
+      clsx:
+        specifier: ^2.1.0
+        version: 2.1.0
+      firebase:
+        specifier: ^10.11.0
+        version: 10.11.0
+      firebase-admin:
+        specifier: ^12.1.0
+        version: 12.1.0
+      framer-motion:
+        specifier: ^11.1.7
+        version: 11.1.7(@emotion/is-prop-valid@1.2.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next:
+        specifier: 14.2.2
+        version: 14.2.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.75.0)
+      next-nprogress-bar:
+        specifier: ^2.3.11
+        version: 2.3.11
+      next-themes:
+        specifier: ^0.3.0
+        version: 0.3.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-icons:
+        specifier: ^5.1.0
+        version: 5.1.0(react@18.2.0)
+      react-markdown:
+        specifier: ^9.0.1
+        version: 9.0.1(@types/react@18.2.79)(react@18.2.0)
+      sass:
+        specifier: ^1.75.0
+        version: 1.75.0
+      styled-components:
+        specifier: ^6.1.8
+        version: 6.1.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      tailwind-merge:
+        specifier: ^2.3.0
+        version: 2.3.0
+      tailwind-scrollbar-hide:
+        specifier: ^1.1.7
+        version: 1.1.7
+      zustand:
+        specifier: ^4.5.2
+        version: 4.5.2(@types/react@18.2.79)(react@18.2.0)
+    devDependencies:
+      '@types/node':
+        specifier: ^20.12.7
+        version: 20.12.7
+      '@types/react':
+        specifier: ^18.2.79
+        version: 18.2.79
+      '@types/react-dom':
+        specifier: ^18.2.25
+        version: 18.2.25
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^7.7.0
+        version: 7.7.0(@typescript-eslint/parser@7.5.0(eslint@9.1.0)(typescript@5.4.5))(eslint@9.1.0)(typescript@5.4.5)
+      autoprefixer:
+        specifier: ^10.4.19
+        version: 10.4.19(postcss@8.4.38)
+      eslint:
+        specifier: ^9.1.0
+        version: 9.1.0
+      eslint-config-next:
+        specifier: 14.2.2
+        version: 14.2.2(eslint@9.1.0)(typescript@5.4.5)
+      eslint-config-prettier:
+        specifier: ^9.1.0
+        version: 9.1.0(eslint@9.1.0)
+      eslint-plugin-simple-import-sort:
+        specifier: ^12.1.0
+        version: 12.1.0(eslint@9.1.0)
+      eslint-plugin-unused-imports:
+        specifier: ^3.1.0
+        version: 3.1.0(@typescript-eslint/eslint-plugin@7.7.0(@typescript-eslint/parser@7.5.0(eslint@9.1.0)(typescript@5.4.5))(eslint@9.1.0)(typescript@5.4.5))(eslint@9.1.0)
+      husky:
+        specifier: ^9.0.11
+        version: 9.0.11
+      lint-staged:
+        specifier: ^15.2.2
+        version: 15.2.2
+      postcss:
+        specifier: ^8.4.38
+        version: 8.4.38
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
+      prettier-plugin-organize-imports:
+        specifier: ^3.2.4
+        version: 3.2.4(prettier@3.2.5)(typescript@5.4.5)
+      prettier-plugin-tailwindcss:
+        specifier: ^0.5.14
+        version: 0.5.14(prettier-plugin-organize-imports@3.2.4(prettier@3.2.5)(typescript@5.4.5))(prettier@3.2.5)
+      tailwindcss:
+        specifier: ^3.4.3
+        version: 3.4.3
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
 
 packages:
 
