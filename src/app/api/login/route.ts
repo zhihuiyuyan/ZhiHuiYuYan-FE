@@ -28,7 +28,7 @@ export async function POST(req: Request) {
       const res = {
         msg: 'Login Success',
         token: newToken,
-      }
+      };
 
       return new NextResponse(JSON.stringify(res), { status: 200 });
     } else {
