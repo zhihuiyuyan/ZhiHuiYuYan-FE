@@ -7,9 +7,10 @@ interface PaperOrScholarSelectedProps {
   ) => void;
 }
 
-export const usePaperOrScholarSelected =
-  create<PaperOrScholarSelectedProps>((set) => ({
+export const usePaperOrScholarSelected = create<PaperOrScholarSelectedProps>(
+  (set) => ({
     PaperOrScholarSelected: '论文',
     setPaperOrScholarSelected: (newPaperOrScholarSelected) =>
       set({ PaperOrScholarSelected: newPaperOrScholarSelected }),
-  }));
+  })
+);
