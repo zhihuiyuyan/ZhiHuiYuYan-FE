@@ -1,13 +1,16 @@
 import { fileInfoType } from '@/common/hooks/useChatStore';
-import React from 'react';
+
 import PluginTemplate, { PluginProps } from './pluginTemplate';
+
 interface FileProps {
   index: number;
   fileInfo: fileInfoType;
 }
+
 const UploadFilePlugin: React.FC<Partial<PluginProps<string>>> = (props) => {
   const handleTrigger = () => Promise.resolve('123');
   const handleFail = () => {};
+
   return (
     <>
       <PluginTemplate<string>
@@ -26,6 +29,7 @@ export default UploadFilePlugin;
 
 export const ChatFiles: React.FC<FileProps> = (props) => {
   const { index, fileInfo } = props;
+
   return (
     <div className="relative m-2 h-8 w-8 rounded-sm border-mdGray shadow transition-all hover:scale-110">
       <img className="h-full w-full" src={fileInfo.url} alt={`文件-${index}`} />

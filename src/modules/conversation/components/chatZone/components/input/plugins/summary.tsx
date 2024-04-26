@@ -1,16 +1,17 @@
-import React from 'react';
-import PluginTemplate, { PluginProps } from './pluginTemplate';
+import { useChat } from '@/common/hooks/useChatStore';
+
 import { geneSummaryOutput } from '../plugins.config';
-import {useChat} from '@/common/hooks/useChatStore';
+import PluginTemplate, { PluginProps } from './pluginTemplate';
 
 const SummaryPlugin: React.FC<Partial<PluginProps<string>>> = (props) => {
-  const {sendMessage} = useChat()
+  const { sendMessage } = useChat();
   const handleTrigger = () => Promise.resolve('123');
   const handleFail = () => {};
   const handleSuccess = (name: string) => {
     console.log(geneSummaryOutput(name));
-    sendMessage('robot', geneSummaryOutput(name))
-  }
+    sendMessage('robot', geneSummaryOutput(name));
+  };
+
   return (
     <>
       <PluginTemplate<string>
@@ -26,4 +27,4 @@ const SummaryPlugin: React.FC<Partial<PluginProps<string>>> = (props) => {
   );
 };
 
-export default SummaryPlugin
+export default SummaryPlugin;

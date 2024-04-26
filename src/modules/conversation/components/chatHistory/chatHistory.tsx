@@ -1,3 +1,5 @@
+"use client"
+
 import { useMemo } from 'react';
 
 import { genKey } from '@/common/utils/keyGen';
@@ -19,6 +21,7 @@ const ChatHistory: React.FC = () => {
   const handleNewChat = () => {
     addNewHistory('test');
   };
+
   return (
     <>
       <div className="h-full w-1/5 bg-lightGray p-4 shadow">

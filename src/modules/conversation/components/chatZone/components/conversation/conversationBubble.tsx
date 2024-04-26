@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Avatar,
   AvatarFallback,
@@ -16,7 +18,9 @@ const ConversationBubble: React.FC<ChatRecordProps> = (props) => {
         <AvatarFallback>avatar</AvatarFallback>
       </Avatar>
       <div className="m-4 mt-4 max-w-4/5 whitespace-pre-wrap break-words rounded-md bg-white px-4 py-2 text-blackText shadow">
-        {renderFunction ? renderFunction(children as string, additionalElem) : children}
+        {renderFunction
+          ? renderFunction(children as string, additionalElem)
+          : children}
       </div>
     </div>
   );

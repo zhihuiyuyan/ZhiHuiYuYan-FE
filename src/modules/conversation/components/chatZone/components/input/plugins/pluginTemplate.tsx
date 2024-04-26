@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react';
 
-export interface PluginProps<T> extends HTMLAttributes<HTMLDivElement>{
+export interface PluginProps<T> extends HTMLAttributes<HTMLDivElement> {
   onTrigger?: () => Promise<T>;
   onSuccess?: (name: string, res: T) => void;
   onFail?: (err: unknown) => void;
@@ -9,7 +9,15 @@ export interface PluginProps<T> extends HTMLAttributes<HTMLDivElement>{
 }
 
 const PluginTemplate = <T,>(props: PluginProps<T>) => {
-  const { onTrigger, className, onSuccess, name, onFail, children, ...restProps } = props;
+  const {
+    onTrigger,
+    className,
+    onSuccess,
+    name,
+    onFail,
+    children,
+    ...restProps
+  } = props;
   const handleClick = () => {
     onTrigger &&
       onTrigger()

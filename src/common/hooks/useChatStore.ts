@@ -6,7 +6,10 @@ export interface ChatRecordProps {
   role?: bubbleType;
   children?: string;
   additionalElem?: React.ReactNode;
-  renderFunction?: (children: string, additionalElem?: React.ReactNode) => React.ReactNode;
+  renderFunction?: (
+    children: string,
+    additionalElem?: React.ReactNode
+  ) => React.ReactNode;
 }
 export type fileInfoType = {
   url: string;
@@ -70,15 +73,18 @@ export const useChat = create<ChatStore>((set) => ({
     set((state) => {
       let id = String(genKey.next().value);
       const date = new Date().toLocaleDateString();
-      state.setCurrentSelect(id)
-      return { chatHistories: [{ id, date, title }].concat(state.chatHistories) };
+      state.setCurrentSelect(id);
+      return {
+        chatHistories: [{ id, date, title }].concat(state.chatHistories),
+      };
     }),
-  sendMessage: (role, text) => set((state) => ({
-    chatRecords: state.chatRecords.concat({
-      children: text,
-      role: role,
-    }),
-  })),
+  sendMessage: (role, text) =>
+    set((state) => ({
+      chatRecords: state.chatRecords.concat({
+        children: text,
+        role: role,
+      }),
+    })),
 }));
 
 export const useChatInput = create<ChatInputStore>((set) => ({
@@ -98,4 +104,4 @@ export const useChatInput = create<ChatInputStore>((set) => ({
   setText: (text) => set((state) => ({ inputs: { ...state.inputs, text } })),
   setPlugins: (name, res) =>
     set((state) => ({ inputs: { ...state.inputs, [name]: res } })),
-}))
+}));

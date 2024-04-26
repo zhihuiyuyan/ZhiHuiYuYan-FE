@@ -1,3 +1,5 @@
+'use client';
+
 import { bubbleType, useChat } from '@/common/hooks/useChatStore';
 import { genKey } from '@/common/utils/keyGen';
 import { bubbleConfig } from '@/modules/conversation/components/chatZone/components/conversation/bubble.config';
@@ -5,9 +7,10 @@ import ConversationBubble from '@/modules/conversation/components/chatZone/compo
 
 const Conversation: React.FC = () => {
   const { chatRecords } = useChat();
+
   return (
     <>
-      <div className="flex w-full flex-col px-32 lg:px-52 h-3/4vh overflow-auto">
+      <div className="flex h-3/4vh w-full flex-col overflow-auto px-32 lg:px-52">
         {chatRecords.map((chat) => (
           <ConversationBubble
             key={genKey.next().value as number}
