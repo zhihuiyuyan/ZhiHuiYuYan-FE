@@ -70,8 +70,8 @@ const config: Config = {
       height: {
         '1/2vh': '50vh',
         '4/5vh': '80vh',
-        '3/4vh': '75vh'
-      }
+        '3/4vh': '75vh',
+      },
     },
   },
   plugins: [require('tailwind-scrollbar-hide')],

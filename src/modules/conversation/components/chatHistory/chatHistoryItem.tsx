@@ -1,8 +1,9 @@
-import React from 'react';
+'use client';
+
+import Image from 'next/image';
 
 import { ChatHistoryItemType, useChat } from '@/common/hooks/useChatStore';
 import { genKey } from '@/common/utils/keyGen';
-import Image from 'next/image';
 
 interface HistoryHeaderProps {
   onClick?: () => void;
@@ -17,6 +18,7 @@ export const ChatHistoryItem: React.FC<ChatHistoryItemType> = (props) => {
   const { currentSelect, setCurrentSelect } = useChat();
   const active = id === currentSelect;
   const handleClick = () => setCurrentSelect(id);
+
   return (
     <>
       <div
@@ -49,6 +51,7 @@ export const HistoryByDate: React.FC<HistoryByDateProps> = (props) => {
 
 export const HistoryHeader: React.FC = () => {
   const { addNewHistory } = useChat();
+
   return (
     <>
       <div

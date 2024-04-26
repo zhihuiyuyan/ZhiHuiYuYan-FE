@@ -1,31 +1,36 @@
-import React, { useEffect, useRef, useState } from 'react';
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
 
 import { genKey } from '@/common/utils/keyGen';
-
 import { useChat, useChatInput } from '@/common/hooks/useChatStore';
+
 import { PluginProps } from './plugins/pluginTemplate';
-import UploadFile, { ChatFiles } from './plugins/uploadFile';
 import RecommendPlugin from './plugins/recommend';
 import SummaryPlugin from './plugins/summary';
+import UploadFile, { ChatFiles } from './plugins/uploadFile';
+
 const ChatInput: React.FC = () => {
   const { sendMessage } = useChat();
-  const {inputs, setText, setPlugins} = useChatInput()
-  const [plugins, setLocalPlugins] = useState<React.FC<PluginProps<any>>[]>([UploadFile]);
+  const { inputs, setText, setPlugins } = useChatInput();
+  const [plugins, setLocalPlugins] = useState<React.FC<PluginProps<any>>[]>([
+    UploadFile,
+  ]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
     adjustHeight();
   }, [inputs.text]);
   const handleSubmit = () => {
     sendMessage('user', inputs['text']);
-    setText('')
+    setText('');
   };
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value)
+    setText(e.target.value);
     // adjustHeight();
   };
   const handleSetPluginInputs = (name: string, res: string) => {
     setPlugins(name, res);
-    setLocalPlugins([UploadFile, RecommendPlugin, SummaryPlugin])
+    setLocalPlugins([UploadFile, RecommendPlugin, SummaryPlugin]);
   };
   const adjustHeight = (height?: string) => {
     const textarea = textareaRef.current as HTMLTextAreaElement;
@@ -37,7 +42,7 @@ const ChatInput: React.FC = () => {
     if (event.key === 'Enter') {
       event.preventDefault();
       if (event.shiftKey) {
-        setText(inputs['text'] + '\n')
+        setText(inputs['text'] + '\n');
       } else {
         handleSubmit();
       }

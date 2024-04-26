@@ -17,8 +17,8 @@ const Logo: React.FC = () => {
           height={25}
           className="h-[3vh] w-[3vh] select-none"
         />
-        <p className="h-[4vh] w-[110%] select-none font-zheng text-[2.5vh] text-white">f
-          智汇语研
+        <p className="h-[4vh] w-[110%] select-none font-zheng text-[2.5vh] text-white">
+          f 智汇语研
         </p>
       </Link>
     </motion.div>

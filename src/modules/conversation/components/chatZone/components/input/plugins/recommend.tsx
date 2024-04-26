@@ -1,15 +1,19 @@
-import React from 'react';
-import PluginTemplate, { PluginProps } from './pluginTemplate';
+'use client';
+
 import { useChat } from '@/common/hooks/useChatStore';
+
 import { geneRecommendOutput } from '../plugins.config';
+import PluginTemplate, { PluginProps } from './pluginTemplate';
+
 const RecommendPlugin: React.FC<Partial<PluginProps<string>>> = (props) => {
-  const {sendMessage} = useChat()
+  const { sendMessage } = useChat();
   const handleTrigger = () => Promise.resolve('123');
   const handleFail = () => {};
   const handleSuccess = (name: string) => {
     console.log(geneRecommendOutput(name));
-    sendMessage('robot', geneRecommendOutput(name))
-  }
+    sendMessage('robot', geneRecommendOutput(name));
+  };
+
   return (
     <>
       <PluginTemplate<string>
@@ -25,4 +29,4 @@ const RecommendPlugin: React.FC<Partial<PluginProps<string>>> = (props) => {
   );
 };
 
-export default RecommendPlugin
+export default RecommendPlugin;

@@ -1,3 +1,5 @@
+'use client';
+
 import { bubbleType, useChat } from '@/common/hooks/useChatStore';
 import { genKey } from '@/common/utils/keyGen';
 import { bubbleConfig } from '@/modules/conversation/components/chatZone/components/conversation/bubble.config';
@@ -5,6 +7,7 @@ import ConversationBubble from '@/modules/conversation/components/chatZone/compo
 
 const Conversation: React.FC = () => {
   const { chatRecords } = useChat();
+
   return (
     <>
       <div className="flex w-full mt-12 flex-col px-32 lg:px-52 h-3/4vh overflow-auto">

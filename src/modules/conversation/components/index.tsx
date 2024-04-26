@@ -1,5 +1,3 @@
-'use client';
-
 import ChatHistory from '../components/chatHistory/chatHistory';
 import ChatZone from './chatZone';
 
