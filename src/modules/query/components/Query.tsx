@@ -1,4 +1,5 @@
 import Search from './Search';
+import Columns from './columns';
 
 const Query = () => {
   return (
@@ -13,9 +14,7 @@ const Query = () => {
           }}
           className="relative h-[2vh] w-full"
         ></div>
-        <div className="flex h-auto w-full bg-[#F9FAFC] px-[2%] pb-10 xl:px-[10%] relative">
-          <div className="h-[60vh] w-full bg-white relative top-[2vh]"></div>
-        </div>
+        <Columns />
       </div>
     </>
   );
