@@ -1,4 +1,5 @@
 import LeftColumn from './LeftColumn';
+import RightColumn from './RightColumn';
 
 const Columns: React.FC = () => {
   const columnStyle =
@@ -8,8 +9,9 @@ const Columns: React.FC = () => {
     <div className="relative flex h-auto w-full gap-[1%] bg-[#F9FAFC] px-[2%] pb-10 xl:px-[10%]">
       <LeftColumn className={`${columnStyle} flex-[1.8]`} />
       <div className={`${columnStyle} flex-[5]`}></div>
-      <div className={`${columnStyle} flex-[1.5]`}></div>
+      <RightColumn className={`${columnStyle} flex-[1.5]`} />
     </div>
   );
 };
+
 export default Columns;
