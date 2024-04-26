@@ -12,39 +12,39 @@ interface SearchBarProps {
 
 const AdvancedSearch: React.FC = () => {
   return (
-    <div className="h-[9vh] border-x-2 border-b-2 border-[#841710] bg-white">
+    <div className="h-[9vh] border-x-2 border-b-2 border-red-800 bg-white">
       <div className="flex h-[5vh] w-full items-center gap-[2%] pl-[2%]">
-        <button className="flex h-[3vh] items-center justify-center rounded-[0.5vh] border-2 p-[0.5vh] text-[1.3vh] text-[#737374]">
+        <button className="flex h-[3vh] items-center justify-center rounded-[0.5vh] border-2 p-[0.5vh] text-[1.3vh] text-gray-500">
           并且&nbsp;
           <FaChevronDown />
         </button>
-        <button className="flex h-[3vh] items-center justify-center rounded-[0.5vh] border-2 p-[0.5vh] text-[1.3vh] text-[#737374]">
+        <button className="flex h-[3vh] items-center justify-center rounded-[0.5vh] border-2 p-[0.5vh] text-[1.3vh] text-gray-500">
           全部&nbsp;
           <FaChevronDown />
         </button>
         <div className="flex h-[3vh] w-[60%]">
           <input
-            className="w-full rounded-l-[0.5vh] border-y-2 border-l-2 p-[0.5vh] text-[1.3vh] text-[#737374] outline-none"
+            className="w-full rounded-l-[0.5vh] border-y-2 border-l-2 p-[0.5vh] text-[1.3vh] text-gray-500 outline-none"
             placeholder="搜索"
           />
-          <p className="rounded-r-[0.5vh] border-y-2 border-r-2 p-[0.5vh] text-[1.3vh] text-[#737374]">
+          <p className="rounded-r-[0.5vh] border-y-2 border-r-2 p-[0.5vh] text-[1.3vh] text-gray-500">
             <IoSearchOutline />
           </p>
         </div>
-        <button className="p-[0.5vh] text-[1.3vh] text-[#737374]">
+        <button className="p-[0.5vh] text-[1.3vh] text-gray-500">
           <FiMinusCircle />
         </button>
       </div>
       <div className="relative -mt-[1vh] flex h-[5vh] w-full items-center gap-[2%] pl-[2%]">
-        <button className="flex h-[3vh] items-center justify-center rounded-[0.5vh] border-2 p-[0.5vh] text-[1.3vh] text-[#737374]">
+        <button className="flex h-[3vh] items-center justify-center rounded-[0.5vh] border-2 p-[0.5vh] text-[1.3vh] text-gray-500">
           <FiPlusCircle />
           &nbsp;&nbsp;添加搜索条件
         </button>
         <div className="absolute right-[2%] flex w-[30%] gap-[2%]">
-          <button className="flex h-[3vh] flex-1 items-center justify-center rounded-[0.5vh] border-2 p-[0.5vh] text-[1.3vh] text-[#737374]">
+          <button className="flex h-[3vh] flex-1 items-center justify-center rounded-[0.5vh] border-2 p-[0.5vh] text-[1.3vh] text-gray-500">
             重置条件
           </button>
-          <button className="flex h-[3vh] flex-1 items-center justify-center rounded-[0.5vh] border-2 bg-[#C6C6C6] p-[0.5vh] text-[1.3vh] text-white">
+          <button className="flex h-[3vh] flex-1 items-center justify-center rounded-[0.5vh] border-2 bg-gray-300 p-[0.5vh] text-[1.3vh] text-white">
             确定
           </button>
         </div>
@@ -58,7 +58,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ type }) => {
   const [isAdvancedClicked, setIsAdvancedClicked] = useState(false);
 
   const inputStyle =
-    'rounded-l-lg border-2 border-[#841710] px-[2%] text-[1.8vh] outline-none';
+    'rounded-l-lg border-2 border-red-800 px-[2%] text-[1.8vh] outline-none';
 
   return (
     <motion.div
@@ -69,7 +69,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ type }) => {
         <div className="flex flex-[5] flex-col">
           <div className="flex h-[5vh] w-full min-w-[220px]">
             <button
-              className={`relative flex flex-1 items-center justify-center border-x-2 border-y-2 border-[#841710] bg-white px-[2%] text-[1.8vh] text-[#737374] ${isAdvancedClicked ? 'rounded-tl-lg' : 'rounded-l-lg'}`}
+              className={`relative flex flex-1 items-center justify-center border-x-2 border-y-2 border-red-800 bg-white px-[2%] text-[1.8vh] text-gray-500 ${isAdvancedClicked ? 'rounded-tl-lg' : 'rounded-l-lg'}`}
               onClick={() => setIsAllClicked(!isAllClicked)}
             >
               全部&nbsp;
@@ -79,9 +79,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ type }) => {
                 <FaChevronDown className="absolute right-2" />
               )}
             </button>
-            <input className="flex-[3] border-y-2 border-[#841710] px-[2%] text-[1.8vh] outline-none lg:flex-[4]" />
+            <input className="flex-[3] border-y-2 border-red-800 px-[2%] text-[1.8vh] outline-none lg:flex-[4]" />
             <button
-              className="flex flex-1 items-center justify-center border-y-2 border-[#841710] bg-white text-[1.3vh] text-[#737374]"
+              className="flex flex-1 items-center justify-center border-y-2 border-red-800 bg-white text-[1.3vh] text-gray-500"
               onClick={() => setIsAdvancedClicked(!isAdvancedClicked)}
             >
               高级检索&nbsp;
@@ -96,7 +96,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ type }) => {
         />
       )}
       <button
-        className={`flex-1 rounded-r-lg bg-[#841710] px-[2%] text-[1.8vh] text-white ${type === 'advanced' ? 'h-[5vh]' : ''}`}
+        className={`flex-1 rounded-r-lg bg-red-800 px-[2%] text-[1.8vh] text-white ${type === 'advanced' ? 'h-[5vh]' : ''}`}
       >
         检索
       </button>

@@ -25,8 +25,8 @@ const RecordItem: React.FC<RecordItemProps> = ({ item }) => {
   return (
     <>
       <div className="flex flex-1 flex-col items-center gap-4">
-        <p className="text-[1.8vh] text-[#AC6461]">{item.value}</p>
-        <p className="text-[1.8vh] font-bold text-[#0B489B]">{item.type}</p>
+        <p className="text-[1.8vh] text-red-800">{item.value}</p>
+        <p className="text-[1.8vh] font-bold text-blue-800">{item.type}</p>
       </div>
       {item.id !== 3 && (
         <BreaklineDashed className="relative -bottom-5 border-r-2" />
@@ -40,11 +40,11 @@ const RecordColumn: React.FC = () => {
     <div className="hidden flex-1 lg:block">
       <div className="relative flex h-[17vh] w-full items-center gap-4">
         <div className="absolute left-[15%] flex gap-7">
-          <Avatar className="h-[9vh] w-[9vh] rounded-full bg-[#E7E7E7]">
+          <Avatar className="h-[9vh] w-[9vh] rounded-full bg-gray-100">
             <AvatarImage src="https://www.github.com/Wishforpeace.png" />
             <AvatarFallback></AvatarFallback>
           </Avatar>
-          <p className="relative text-[2.2vh] font-bold text-[#474747]">
+          <p className="relative text-[2.2vh] font-bold text-gray-700">
             用户名
           </p>
         </div>
@@ -56,7 +56,7 @@ const RecordColumn: React.FC = () => {
           ))}
         </div>
         <BreaklineDashed className="w-[90%] border-t-2" />
-        <p className="relative left-[10%] top-0 w-full text-[2vh] text-[#6F6F6F]">
+        <p className="relative left-[10%] top-0 w-full text-[2vh] text-gray-500">
           最近浏览
         </p>
       </div>
