@@ -29,14 +29,14 @@ export const Tabs: React.FC<TabsProps> = ({ tabs }) => {
             whileTap={{ scale: 1.2 }}
             whileHover={{ scale: 1.1 }}
             key={index}
-            className={`ml-[5vh] flex h-full cursor-pointer items-center justify-center px-[3vh] text-[1.5vh] ${activeTab === index ? 'rounded-t-[1vh] bg-[#F3F3F3] font-semibold text-[#943C3C]' : 'text-[#707070]'} `}
+            className={`ml-[5vh] flex h-full cursor-pointer items-center justify-center px-[3vh] text-[1.5vh] ${activeTab === index ? 'rounded-t-[1vh] bg-gray-100 font-semibold text-red-800' : 'text-gray-700'} `}
             onClick={() => handleTabClick(index)}
           >
             {tab.label}
           </motion.button>
         ))}
       </div>
-      <div className="flex h-[63vh] w-[95%] flex-col items-center rounded-[3vh] bg-[#F3F3F3] px-[2%] py-[1vh]">
+      <div className="flex h-[63vh] w-[95%] flex-col items-center rounded-[3vh] bg-gray-100 px-[2%] py-[1vh]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}

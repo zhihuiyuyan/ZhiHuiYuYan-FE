@@ -20,7 +20,7 @@ const Profile: React.FC<ProfileProps> = ({ route }) => {
     return (
       <div className={commonStyles}>
         <Information />
-        <BreaklineDashed className="relative w-[85%] border-t-2 border-[#B9B9B9]" />
+        <BreaklineDashed className="relative w-[85%] border-t-2 border-gray-300" />
         {children}
       </div>
     );
@@ -28,7 +28,7 @@ const Profile: React.FC<ProfileProps> = ({ route }) => {
 
   return (
     <>
-      <div className="flex h-[92vh] w-full items-center justify-center bg-[#F9FAFC]">
+      <div className="flex h-[92vh] w-full items-center justify-center bg-gray-50">
         {route === 'history' && (
           <div className={commonStyles}>
             <History />

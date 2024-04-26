@@ -17,7 +17,7 @@ const RadioItem = () => {
       onClick={() => setIsClicked(!isClicked)}
     >
       <button
-        className={`h-[1.3vh] w-[1.3vh] rounded-[0.5vh] border-2 border-gray-100 ${isClicked ? 'bg-[#943C3C]' : 'bg-white'}`}
+        className={`h-[1.3vh] w-[1.3vh] rounded-[0.5vh] border-2 border-gray-100 ${isClicked ? 'bg-red-800' : 'bg-white'}`}
       ></button>
       <p className="text-[1.3vh] text-gray-500">选项1</p>
     </div>
