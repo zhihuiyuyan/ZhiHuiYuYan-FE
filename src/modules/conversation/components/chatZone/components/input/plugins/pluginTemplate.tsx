@@ -1,4 +1,6 @@
-export interface PluginProps<T> {
+import { HTMLAttributes } from 'react';
+
+export interface PluginProps<T> extends HTMLAttributes<HTMLDivElement>{
   onTrigger?: () => Promise<T>;
   onSuccess?: (name: string, res: T) => void;
   onFail?: (err: unknown) => void;
@@ -7,7 +9,7 @@ export interface PluginProps<T> {
 }
 
 const PluginTemplate = <T,>(props: PluginProps<T>) => {
-  const { onTrigger, onSuccess, name, onFail, children } = props;
+  const { onTrigger, className, onSuccess, name, onFail, children, ...restProps } = props;
   const handleClick = () => {
     onTrigger &&
       onTrigger()
@@ -22,7 +24,8 @@ const PluginTemplate = <T,>(props: PluginProps<T>) => {
   return (
     <>
       <div
-        className="border-1 ml-6 flex h-12 w-20 cursor-pointer items-center justify-center rounded-lg border-darkGray bg-white text-sm text-mdDarkGrayText transition-all hover:bg-lightGray"
+        className={`border-1 ml-6 flex h-12 w-20 cursor-pointer items-center justify-center rounded-lg border-darkGray bg-white text-sm text-mdDarkGrayText transition-all hover:bg-lightGray ${className}`}
+        {...restProps}
         onClick={handleClick}
       >
         {children}

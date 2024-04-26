@@ -4,8 +4,9 @@ import { create } from 'zustand';
 
 export interface ChatRecordProps {
   role?: bubbleType;
-  children?: React.ReactNode;
-  renderFunction?: (children: React.ReactNode) => React.ReactNode;
+  children?: string;
+  additionalElem?: React.ReactNode;
+  renderFunction?: (children: string, additionalElem?: React.ReactNode) => React.ReactNode;
 }
 export type fileInfoType = {
   url: string;
@@ -29,29 +30,18 @@ export type bubbleType = 'robot' | 'user';
 interface ChatStore {
   chatHistories: ChatHistoryItemType[];
   chatRecords: ChatRecordProps[];
-  inputs: inputType;
   currentSelect: string;
   addNewHistory: (title: string) => void;
-  userSendMessage: () => void;
-  setText: (text: string) => void;
+  sendMessage: (role: bubbleType, text: string) => void;
   refreshChatRecords: (id?: string) => void;
   setCurrentSelect: (id: string) => void;
+}
+interface ChatInputStore {
+  inputs: inputType;
+  setText: (text: string) => void;
   setPlugins: (name: string, res: string) => void;
 }
 export const useChat = create<ChatStore>((set) => ({
-  inputs: {
-    text: '',
-    files: [
-      {
-        url: 'https://s2.loli.net/2024/04/18/eo6hWcET7H5BGA1.webp',
-        status: 'success',
-      },
-      {
-        url: 'https://s2.loli.net/2024/04/18/eo6hWcET7H5BGA1.webp',
-        status: 'progressing',
-      },
-    ],
-  },
   chatHistories: [
     {
       date: '2024/04/12',
@@ -61,7 +51,7 @@ export const useChat = create<ChatStore>((set) => ({
   ],
   chatRecords: [
     {
-      role: 'user',
+      role: 'robot',
       children: 'test1',
     },
   ],
@@ -76,20 +66,36 @@ export const useChat = create<ChatStore>((set) => ({
       console.log(id || state.currentSelect);
       return { chatRecords: state.chatRecords };
     }),
-  setText: (text) => set((state) => ({ inputs: { ...state.inputs, text } })),
-  setPlugins: (name, res) =>
-    set((state) => ({ inputs: { ...state.inputs, [name]: res } })),
   addNewHistory: (title) =>
     set((state) => {
       let id = String(genKey.next().value);
       const date = new Date().toLocaleDateString();
-      return { chatHistories: state.chatHistories.concat({ id, date, title }) };
+      state.setCurrentSelect(id)
+      return { chatHistories: [{ id, date, title }].concat(state.chatHistories) };
     }),
-  userSendMessage: () =>
-    set((state) => ({
-      chatRecords: state.chatRecords.concat({
-        children: state.inputs.text,
-        role: 'user',
-      }),
-    })),
+  sendMessage: (role, text) => set((state) => ({
+    chatRecords: state.chatRecords.concat({
+      children: text,
+      role: role,
+    }),
+  })),
 }));
+
+export const useChatInput = create<ChatInputStore>((set) => ({
+  inputs: {
+    text: '',
+    files: [
+      {
+        url: 'https://s2.loli.net/2024/04/18/eo6hWcET7H5BGA1.webp',
+        status: 'success',
+      },
+      {
+        url: 'https://s2.loli.net/2024/04/18/eo6hWcET7H5BGA1.webp',
+        status: 'progressing',
+      },
+    ],
+  },
+  setText: (text) => set((state) => ({ inputs: { ...state.inputs, text } })),
+  setPlugins: (name, res) =>
+    set((state) => ({ inputs: { ...state.inputs, [name]: res } })),
+}))
