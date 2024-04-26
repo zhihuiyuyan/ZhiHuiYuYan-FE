@@ -2,30 +2,30 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { genKey } from '@/common/utils/keyGen';
 
-import { useChat } from '@/common/hooks/useChatStore';
+import { useChat, useChatInput } from '@/common/hooks/useChatStore';
 import { PluginProps } from './plugins/pluginTemplate';
 import UploadFile, { ChatFiles } from './plugins/uploadFile';
-
-interface ChatInputProps {
-  onSubmit?: (context: string) => void;
-}
-
-const ChatInput: React.FC<ChatInputProps> = () => {
-  const { inputs, userSendMessage, setText, setPlugins } = useChat();
-  const [plugins] = useState<React.FC<PluginProps<any>>[]>([UploadFile]);
+import RecommendPlugin from './plugins/recommend';
+import SummaryPlugin from './plugins/summary';
+const ChatInput: React.FC = () => {
+  const { sendMessage } = useChat();
+  const {inputs, setText, setPlugins} = useChatInput()
+  const [plugins, setLocalPlugins] = useState<React.FC<PluginProps<any>>[]>([UploadFile]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
     adjustHeight();
   }, [inputs.text]);
   const handleSubmit = () => {
-    userSendMessage();
-    setText('');
+    sendMessage('user', inputs['text']);
+    setText('')
   };
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value);
+    setText(e.target.value)
+    // adjustHeight();
   };
   const handleSetPluginInputs = (name: string, res: string) => {
     setPlugins(name, res);
+    setLocalPlugins([UploadFile, RecommendPlugin, SummaryPlugin])
   };
   const adjustHeight = (height?: string) => {
     const textarea = textareaRef.current as HTMLTextAreaElement;
@@ -37,7 +37,7 @@ const ChatInput: React.FC<ChatInputProps> = () => {
     if (event.key === 'Enter') {
       event.preventDefault();
       if (event.shiftKey) {
-        setText(inputs.text + '\n');
+        setText(inputs['text'] + '\n')
       } else {
         handleSubmit();
       }
@@ -53,7 +53,7 @@ const ChatInput: React.FC<ChatInputProps> = () => {
           ref={textareaRef}
           value={inputs['text']}
           onKeyDown={handleKeyDown}
-          className="z-20 mx-3 h-12 max-h-40 flex-1 resize-none overflow-scroll  bg-transparent outline-0"
+          className="z-20 mx-3 h-12 flex-1 resize-none overflow-scroll  bg-transparent outline-0"
           onChange={handleInput}
         />
         {!inputs.text && (
