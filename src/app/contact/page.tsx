@@ -1,7 +1,13 @@
 import { NextPage } from 'next';
 
+import Contact from '@/modules/contact';
+
 const Page: NextPage = () => {
-  return <>contact us</>;
+  return (
+    <>
+      <Contact />
+    </>
+  );
 };
 
 export default Page;
