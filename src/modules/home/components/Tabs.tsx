@@ -32,7 +32,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs }) => {
             whileTap={{ scale: 1.2 }}
             whileHover={{ scale: 1.1 }}
             key={index}
-            className="flex w-[40%] cursor-pointer items-center justify-center gap-2 text-[2.5vh] font-bold text-[#9B361C] lg:w-[25%]"
+            className="flex w-[40%] cursor-pointer items-center justify-center gap-2 text-[2.5vh] font-bold text-red-800 lg:w-[25%]"
             onClick={() => handleTabClick(index)}
           >
             {activeTab === index && (
@@ -57,7 +57,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs }) => {
           </motion.button>
         ))}
       </div>
-      <div className="flex h-full flex-col items-center rounded-xl border border-[#BBBBBB]">
+      <div className="flex h-full flex-col items-center rounded-xl border border-gray-300 bg-white">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}

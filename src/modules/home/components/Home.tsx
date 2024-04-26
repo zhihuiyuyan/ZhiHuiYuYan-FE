@@ -15,7 +15,7 @@ const Home = () => {
           }}
           className="relative h-[2vh] w-full"
         ></div>
-        <div className="flex h-auto w-full bg-[#F9FAFC] px-[2%] pb-10 xl:px-[10%]">
+        <div className="flex h-auto w-full bg-gray-50 px-[2%] pb-10 xl:px-[10%]">
           <ArticleColumn />
           <RecordColumn />
         </div>

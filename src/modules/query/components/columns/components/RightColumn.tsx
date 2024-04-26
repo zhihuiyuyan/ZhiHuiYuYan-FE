@@ -40,7 +40,7 @@ const SCHOLAR_ITEMS: ScholarItem[] = [
 const Scholar: React.FC<ScholarProps> = ({ item }) => {
   return (
     <div className="flex h-[5vh] w-[75%] gap-[5%]">
-      <Avatar className="h-[5vh] w-[5vh] rounded-full bg-[#E7E7E7]">
+      <Avatar className="h-[5vh] w-[5vh] rounded-full bg-gray-100">
         <AvatarImage src={item.avatar} />
         <AvatarFallback>{item.name}</AvatarFallback>
       </Avatar>

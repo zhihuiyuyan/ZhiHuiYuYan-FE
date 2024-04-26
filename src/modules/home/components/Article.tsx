@@ -71,8 +71,8 @@ const ArticleItem: React.FC<ArticleItemProps> = ({ item }) => {
           <h3 className={`text-[2.3vh] ${isHovered && 'underline'}`}>
             {item.title}
           </h3>
-          <p className="pt-1 text-[1.9vh] text-[#939393]">{item.content}</p>
-          <span className="absolute bottom-0 flex text-[1.5vh] text-[#9F9F9F]">
+          <p className="pt-1 text-[1.9vh] text-gray-400">{item.content}</p>
+          <span className="absolute bottom-0 flex text-[1.5vh] text-gray-400">
             <p>发布时间：{item.timestamp}</p>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <p>阅读量：{item.readings}</p>

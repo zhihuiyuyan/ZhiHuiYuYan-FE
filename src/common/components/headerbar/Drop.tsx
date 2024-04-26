@@ -24,7 +24,7 @@ const Drop: React.FC = () => {
         <motion.p
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
-          className="text-[1.7vh] text-[#838383]"
+          className="text-[1.7vh] text-gray-400"
           onClick={() => {
             setIsLogined(false);
           }}
@@ -35,7 +35,7 @@ const Drop: React.FC = () => {
     );
   else {
     return (
-      <p className="absolute top-[17vh] text-[1.5vh] text-[#838383]">
+      <p className="absolute top-[17vh] text-[1.5vh] text-gray-400">
         登录后使用个人服务
       </p>
     );

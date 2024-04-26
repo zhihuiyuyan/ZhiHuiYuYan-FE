@@ -42,16 +42,16 @@ const Profile: React.FC = () => {
               height={160}
               className={`${isLogined ? 'h-[31.5vh]' : 'h-[25vh]'} w-full`}
             />
-            <Avatar className="absolute left-[3vh] top-[3vh] h-[7vh] w-[7vh] rounded-full bg-[#E7E7E7]">
+            <Avatar className="absolute left-[3vh] top-[3vh] h-[7vh] w-[7vh] rounded-full bg-gray-100">
               <AvatarImage src="https://www.github.com/Wishforpeace.png" />
               <AvatarFallback></AvatarFallback>
             </Avatar>
             {isLogined ? (
               <div>
-                <p className="absolute left-[11vh] top-[3.5vh] text-[1.7vh] font-bold text-[#4F4F4F]">
+                <p className="absolute left-[11vh] top-[3.5vh] text-[1.7vh] font-bold text-gray-700">
                   名称：111
                 </p>
-                <p className="absolute left-[11vh] top-[7vh] text-[1.7vh] font-bold text-[#4F4F4F]">
+                <p className="absolute left-[11vh] top-[7vh] text-[1.7vh] font-bold text-gray-700">
                   id：111
                 </p>
               </div>
@@ -59,7 +59,7 @@ const Profile: React.FC = () => {
               <motion.p
                 whileTap={{ scale: 0.9 }}
                 whileHover={{ scale: 1.1 }}
-                className="absolute right-[5vh] top-[5.5vh] text-[1.8vh] font-bold text-[#841710]"
+                className="absolute right-[5vh] top-[5.5vh] text-[1.8vh] font-bold text-red-800"
                 onClick={() => onOpen('auth')}
               >
                 立即登录
