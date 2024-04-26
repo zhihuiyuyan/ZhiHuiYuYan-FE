@@ -1,6 +1,4 @@
-'use client';
-
-import { motion } from 'framer-motion';
+import SearchBar from '@/common/components/elements/SearchBar';
 import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 
 type PaperItem = {
@@ -93,26 +91,10 @@ const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
   );
 };
 
-const Search = () => {
-  return (
-    <>
-      <motion.div
-        whileTap={{ scale: 0.9 }}
-        className="relative top-[5vh] flex h-[5vh] w-[65%] min-w-[220px]"
-      >
-        <input className="flex-[4] rounded-l-lg border-2 border-[#841710] px-[2%] text-[1.8vh] outline-none lg:flex-[6]" />
-        <button className="flex-1 rounded-r-lg bg-[#841710] px-[2%] text-[1.8vh] text-white">
-          检索
-        </button>
-      </motion.div>
-    </>
-  );
-};
-
 const History = () => {
   return (
     <>
-      <Search />
+      <SearchBar type="history" />
       <div className="relative top-[8vh] flex h-[73vh] w-[85%] flex-col overflow-y-auto scrollbar-hide">
         <p className="relative left-[5%] my-[1vh] w-[95%] text-[2.3vh] font-semibold text-[#0B489B]">
           最近
