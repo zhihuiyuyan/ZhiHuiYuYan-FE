@@ -1,6 +1,7 @@
 import { genKey } from '@/common/utils/keyGen';
 import React from 'react';
 import { create } from 'zustand';
+import { additionalElem, geneGridLinks } from '@/common/hooks/utils';
 
 export interface ChatRecordProps {
   role?: bubbleType;
@@ -55,7 +56,9 @@ export const useChat = create<ChatStore>((set) => ({
   chatRecords: [
     {
       role: 'robot',
-      children: 'test1',
+      children: `## 你好👋\n #### 我是语言科研小助手～ \n #### 试着这样问我：
+      `,
+      additionalElem:additionalElem
     },
   ],
   currentSelect: '1',
