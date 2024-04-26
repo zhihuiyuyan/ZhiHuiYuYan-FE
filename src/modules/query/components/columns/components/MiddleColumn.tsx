@@ -23,7 +23,7 @@ const Selector: React.FC = () => {
       SELECTER_ITEMS.map((content) => (
         <button
           key={content}
-          className={`h-[3.5vh] w-[12%] rounded-[1vh] text-[1.5vh] font-semibold ${PaperOrScholarSelected === content ? 'bg-[#943C3C] text-white' : 'bg-gray-100 text-gray-500'}`}
+          className={`h-[3.5vh] w-[12%] rounded-[1vh] text-[1.5vh] font-semibold ${PaperOrScholarSelected === content ? 'bg-red-800 text-white' : 'bg-gray-100 text-gray-500'}`}
           onClick={() => setPaperOrScholarSelected(content)}
         >
           {content}

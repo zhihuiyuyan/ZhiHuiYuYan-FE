@@ -7,6 +7,7 @@ import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 
 type ScholarItem = {
   name: string;
+  avatar: string;
   institution: string;
 };
 
@@ -19,17 +20,28 @@ interface ScholarProps {
 }
 
 const SCHOLAR_ITEMS: ScholarItem[] = [
-  { name: '姓名', institution: '所属单位' },
-  { name: '姓名', institution: '所属单位' },
-  { name: '姓名', institution: '所属单位' },
-  { name: '姓名', institution: '所属单位' },
+  {
+    name: '姓名',
+    avatar: 'https://www.github.com/Wishforpeace.png',
+    institution: '所属单位',
+  },
+  {
+    name: '姓名',
+    avatar: 'https://www.github.com/BlackishGreen33.png',
+    institution: '所属单位',
+  },
+  {
+    name: '姓名',
+    avatar: 'https://www.github.com/konodioda727.png',
+    institution: '所属单位',
+  },
 ];
 
 const Scholar: React.FC<ScholarProps> = ({ item }) => {
   return (
     <div className="flex h-[5vh] w-[75%] gap-[5%]">
       <Avatar className="h-[5vh] w-[5vh] rounded-full bg-[#E7E7E7]">
-        <AvatarImage src="https://www.github.com/Wishforpeace.png" />
+        <AvatarImage src={item.avatar} />
         <AvatarFallback>{item.name}</AvatarFallback>
       </Avatar>
       <div className="flex flex-col justify-center gap-[0.5vh]">
