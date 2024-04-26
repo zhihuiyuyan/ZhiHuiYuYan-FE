@@ -7,7 +7,7 @@ import { FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
 import { IoSearchOutline } from 'react-icons/io5';
 
 interface SearchBarProps {
-  type: 'normal' | 'history' | 'advanced';
+  type: 'normal' | 'advanced' | 'history';
 }
 
 const AdvancedSearch: React.FC = () => {
@@ -57,65 +57,50 @@ const SearchBar: React.FC<SearchBarProps> = ({ type }) => {
   const [isAllClicked, setIsAllClicked] = useState(false);
   const [isAdvancedClicked, setIsAdvancedClicked] = useState(false);
 
+  const inputStyle =
+    'rounded-l-lg border-2 border-[#841710] px-[2%] text-[1.8vh] outline-none';
+
   return (
-    <>
-      {type === 'normal' && (
-        <motion.div
-          whileTap={{ scale: 0.9 }}
-          className="flex h-[5vh] w-[43%] min-w-[220px]"
-        >
-          <input className="flex-[3] rounded-l-lg border-2 border-[#841710] px-[2%] text-[1.8vh] outline-none lg:flex-[4]" />
-          <button className="flex-1 rounded-r-lg bg-[#841710] px-[2%] text-[1.8vh] text-white">
-            检索
-          </button>
-        </motion.div>
-      )}
-      {type === 'history' && (
-        <motion.div
-          whileTap={{ scale: 0.9 }}
-          className="relative top-[5vh] flex h-[5vh] w-[65%] min-w-[220px]"
-        >
-          <input className="flex-[4] rounded-l-lg border-2 border-[#841710] px-[2%] text-[1.8vh] outline-none lg:flex-[6]" />
-          <button className="flex-1 rounded-r-lg bg-[#841710] px-[2%] text-[1.8vh] text-white">
-            检索
-          </button>
-        </motion.div>
-      )}
-      {type === 'advanced' && (
-        <motion.div
-          whileTap={{ scale: 0.9 }}
-          className="flex w-[43%] min-w-[220px] "
-        >
-          <div className="flex flex-[5] flex-col">
-            <div className="flex h-[5vh] w-full min-w-[220px]">
-              <button
-                className={`relative flex flex-1 items-center justify-center border-x-2 border-y-2 border-[#841710] bg-white px-[2%] text-[1.8vh] text-[#737374] ${isAdvancedClicked ? 'rounded-tl-lg' : 'rounded-l-lg'}`}
-                onClick={() => setIsAllClicked(!isAllClicked)}
-              >
-                全部&nbsp;
-                {isAllClicked ? (
-                  <FaChevronUp className="absolute right-2" />
-                ) : (
-                  <FaChevronDown className="absolute right-2" />
-                )}
-              </button>
-              <input className="flex-[3] border-y-2 border-[#841710] px-[2%] text-[1.8vh] outline-none lg:flex-[4]" />
-              <button
-                className="flex flex-1 items-center justify-center border-y-2 border-[#841710] bg-white text-[1.3vh] text-[#737374]"
-                onClick={() => setIsAdvancedClicked(!isAdvancedClicked)}
-              >
-                高级检索&nbsp;
-                {isAdvancedClicked ? <FaChevronUp /> : <FaChevronDown />}
-              </button>
-            </div>
-            {isAdvancedClicked && <AdvancedSearch />}
+    <motion.div
+      whileTap={{ scale: 0.9 }}
+      className={`flex min-w-[220px] ${type === 'history' ? 'relative top-[5vh] w-[65%]' : 'w-[43%]'} ${type === 'advanced' ? '' : 'h-[5vh]'}`}
+    >
+      {type === 'advanced' ? (
+        <div className="flex flex-[5] flex-col">
+          <div className="flex h-[5vh] w-full min-w-[220px]">
+            <button
+              className={`relative flex flex-1 items-center justify-center border-x-2 border-y-2 border-[#841710] bg-white px-[2%] text-[1.8vh] text-[#737374] ${isAdvancedClicked ? 'rounded-tl-lg' : 'rounded-l-lg'}`}
+              onClick={() => setIsAllClicked(!isAllClicked)}
+            >
+              全部&nbsp;
+              {isAllClicked ? (
+                <FaChevronUp className="absolute right-2" />
+              ) : (
+                <FaChevronDown className="absolute right-2" />
+              )}
+            </button>
+            <input className="flex-[3] border-y-2 border-[#841710] px-[2%] text-[1.8vh] outline-none lg:flex-[4]" />
+            <button
+              className="flex flex-1 items-center justify-center border-y-2 border-[#841710] bg-white text-[1.3vh] text-[#737374]"
+              onClick={() => setIsAdvancedClicked(!isAdvancedClicked)}
+            >
+              高级检索&nbsp;
+              {isAdvancedClicked ? <FaChevronUp /> : <FaChevronDown />}
+            </button>
           </div>
-          <button className="h-[5vh] flex-1 rounded-r-lg bg-[#841710] px-[2%] text-[1.8vh] text-white">
-            检索
-          </button>
-        </motion.div>
+          {isAdvancedClicked && <AdvancedSearch />}
+        </div>
+      ) : (
+        <input
+          className={`${inputStyle} ${type === 'normal' && 'flex-[3] lg:flex-[4]'} ${type === 'history' && 'flex-[4] lg:flex-[6]'}`}
+        />
       )}
-    </>
+      <button
+        className={`flex-1 rounded-r-lg bg-[#841710] px-[2%] text-[1.8vh] text-white ${type === 'advanced' ? 'h-[5vh]' : ''}`}
+      >
+        检索
+      </button>
+    </motion.div>
   );
 };
 export default SearchBar;
