@@ -5,7 +5,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from '@/common/components/elements/Avatar';
-import Breakline from '@/common/components/elements/BreaklineDashed';
+import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 
 type ScholarItem = {
   id: number;
@@ -79,7 +79,7 @@ const ScholarItem: React.FC<ScholarItemProps> = ({ item }) => {
         </p>
       </div>
       {item.id !== SCHOLAR_ITEMS.length && (
-        <Breakline className="w-[90%] border-t-2" />
+        <BreaklineDashed className="w-[90%] border-t-2" />
       )}
     </div>
   );

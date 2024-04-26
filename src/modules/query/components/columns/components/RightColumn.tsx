@@ -3,7 +3,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from '@/common/components/elements/Avatar';
-import Breakline from '@/common/components/elements/BreaklineDashed';
+import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 
 type ScholarItem = {
   name: string;
@@ -53,7 +53,7 @@ const RightColumn: React.FC<RightColumnProps> = ({ className }) => {
           折线图
         </div>
       </div>
-      <Breakline className="mb-0 w-[80%] border-b-2" />
+      <BreaklineDashed className="mb-0 w-[80%] border-b-2" />
       <div className={columnItemStyle}>
         <p className="text-[1.8vh] font-semibold text-blue-800">相关专家</p>
         <div className="flex h-[3vh] w-full flex-col items-center gap-[2vh]">

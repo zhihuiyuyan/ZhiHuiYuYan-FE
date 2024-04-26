@@ -1,6 +1,6 @@
 'use client';
 
-import Breakline from '@/common/components/elements/BreaklineDashed';
+import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 import { usePaperOrScholarSelected } from '@/common/hooks/useIsPaperOrScholarSelected';
 import { useState } from 'react';
 
@@ -40,13 +40,13 @@ const LeftColumn: React.FC<LeftColumnProps> = ({ className }) => {
               <button className="w-[30%] rounded-[0.5vh] bg-gray-100 pl-[5%] text-left text-[1.2vh] text-gray-500">
                 选择
               </button>
-              <Breakline className="w-[10%] border-b-2" />
+              <BreaklineDashed className="w-[10%] border-b-2" />
               <button className="w-[30%] rounded-[0.5vh] bg-gray-100 pl-[5%] text-left text-[1.2vh] text-gray-500">
                 选择
               </button>
             </div>
           </div>
-          <Breakline className="mb-0 w-[80%] border-b-2" />
+          <BreaklineDashed className="mb-0 w-[80%] border-b-2" />
           <div className={columnItemStyle}>
             <p className="text-[1.8vh] font-semibold text-blue-800">学科</p>
             <div className="h-[15vh] w-[75%] rounded-[0.5vh] bg-gray-100 p-[1vh]">
@@ -57,7 +57,7 @@ const LeftColumn: React.FC<LeftColumnProps> = ({ className }) => {
               </div>
             </div>
           </div>
-          <Breakline className="mb-0 w-[80%] border-b-2" />
+          <BreaklineDashed className="mb-0 w-[80%] border-b-2" />
           <div className={columnItemStyle}>
             <p className="text-[1.8vh] font-semibold text-blue-800">期刊</p>
             <div className="grid w-[75%] grid-cols-2 grid-rows-2">
@@ -80,7 +80,7 @@ const LeftColumn: React.FC<LeftColumnProps> = ({ className }) => {
           </div>
         </div>
       )}
-      <Breakline className="mb-0 w-[80%] border-b-2" />
+      <BreaklineDashed className="mb-0 w-[80%] border-b-2" />
       <div className={columnItemStyle}>
         <p className="text-[1.8vh] font-semibold text-blue-800">机构</p>
         <div className="grid w-[75%] grid-cols-2 grid-rows-1">
