@@ -8,7 +8,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from '@/common/components/elements/Avatar';
-import Breakline from '@/common/components/elements/BreaklineDashed';
+import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 import { useIsLogined } from '@/common/hooks/useIsLogined';
 import { useModal } from '@/common/hooks/useModalStore';
 
@@ -66,7 +66,7 @@ const Profile: React.FC = () => {
               </motion.p>
             )}
           </div>
-          <Breakline className="absolute top-[10vh] w-[80%] border-t-2" />
+          <BreaklineDashed className="absolute top-[10vh] w-[80%] border-t-2" />
           <Drop />
         </div>
       )}

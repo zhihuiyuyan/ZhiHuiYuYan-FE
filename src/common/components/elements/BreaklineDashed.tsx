@@ -3,7 +3,10 @@ type BreaklineProps = {
   [propName: string]: string | undefined;
 };
 
-const Breakline: React.FC<BreaklineProps> = ({ className = '', ...others }) => {
+const BreaklineDashed: React.FC<BreaklineProps> = ({
+  className = '',
+  ...others
+}) => {
   return (
     <div
       className={`my-4 border-dashed border-gray-300 dark:border-neutral-700 ${className}`}
@@ -13,4 +16,4 @@ const Breakline: React.FC<BreaklineProps> = ({ className = '', ...others }) => {
   );
 };
 
-export default Breakline;
+export default BreaklineDashed;

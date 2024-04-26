@@ -1,6 +1,6 @@
 import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 
-import Breakline from '@/common/components/elements/BreaklineDashed';
+import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 
 type PaperItem = {
   id: number;
@@ -66,7 +66,7 @@ const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
         </p>
       </div>
       {item.id !== PAPER_ITEMS.length && (
-        <Breakline className="w-[90%] border-t-2" />
+        <BreaklineDashed className="w-[90%] border-t-2" />
       )}
     </div>
   );
