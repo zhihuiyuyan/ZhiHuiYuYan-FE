@@ -20,6 +20,7 @@ const config: Config = {
         lightGray: '#f3f3f3',
         mdGray: '#ececec',
         bgDefault: '#F9FAFC',
+        lightBlue: '#EFF6FF',
         mdDarkGrayText: '#8D8D8D',
         darkGray: '#C7C7C7',
         darkRed: '#841710',

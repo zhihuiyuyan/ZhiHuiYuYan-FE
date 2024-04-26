@@ -7,7 +7,7 @@ const Conversation: React.FC = () => {
   const { chatRecords } = useChat();
   return (
     <>
-      <div className="flex w-full flex-col px-32 lg:px-52 h-3/4vh overflow-auto">
+      <div className="flex w-full mt-12 flex-col px-32 lg:px-52 h-3/4vh overflow-auto">
         {chatRecords.map((chat) => (
           <ConversationBubble
             key={genKey.next().value as number}
