@@ -12,7 +12,14 @@ const config: Config = {
         zheng: ['var(--maShanZheng-font)'],
         emoji: ['Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'],
       },
+      textColor: {
+        wechatGreen: '#20C300',
+        brown: '#B79D9D',
+        orange: '#E58934',
+        darkRed: '#841710',
+      },
       colors: {
+        wechatGreen: '#20C300',
         darkText: '#E4E6EB',
         dark: '#121212',
         blackText: '#4A4A4A',
@@ -23,6 +30,8 @@ const config: Config = {
         lightBlue: '#EFF6FF',
         mdDarkGrayText: '#8D8D8D',
         darkGray: '#C7C7C7',
+        brown: '#B79D9D',
+        orange: '#E58934',
         darkRed: '#841710',
       },
       maxWidth: {
@@ -71,6 +80,7 @@ const config: Config = {
         '1/2vh': '50vh',
         '4/5vh': '80vh',
         '3/4vh': '75vh',
+        '86vh': '86vh'
       },
     },
   },
