@@ -57,21 +57,13 @@ const ACHIEVEMENT_ITEMS: AchievementItem[] = [
 const AchievementItem: React.FC<AchievementItemProps> = ({ item }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
-
   return (
     <>
       <motion.div
         whileTap={{ scale: 0.9 }}
         className="flex h-[18vh] w-full cursor-pointer px-[7%] pt-[2vh]"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <div className="relative flex flex-[4] flex-col">
           <h3 className={`text-[2.3vh] ${isHovered && 'underline'}`}>
