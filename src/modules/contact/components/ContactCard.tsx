@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
+
 import { ContactCardProps } from './contact.config';
 
 const ContactCard: React.FC<ContactCardProps> = (props) => {
@@ -21,7 +21,6 @@ const ContactCard: React.FC<ContactCardProps> = (props) => {
             ></Image>
           </div>
         </div>
-
         <p
           className={`mx-auto mt-10 cursor-pointer ${textColor} w-full  text-center`}
         >

@@ -1,7 +1,8 @@
 import Breakline from '@/common/components/elements/Breakline';
 import { genKey } from '@/common/utils/keyGen';
-import ContactCard from '@/modules/contact/components/ContactCard';
-import { contactConfig } from '@/modules/contact/components/contact.config';
+
+import ContactCard from './ContactCard';
+import { contactConfig } from './contact.config';
 
 const Contact: React.FC = () => {
   return (

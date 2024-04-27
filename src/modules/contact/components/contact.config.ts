@@ -5,6 +5,7 @@ export interface ContactCardProps {
   name: string;
   detail: string;
 }
+
 export const contactConfig: ContactCardProps[] = [
   {
     name: '地址',
