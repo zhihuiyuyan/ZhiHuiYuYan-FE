@@ -79,7 +79,7 @@ const AchievementItem: React.FC<AchievementItemProps> = ({ item }) => {
         <div className="flex-1 overflow-hidden">
           <Image
             src={item.image}
-            alt="main-bg"
+            alt={item.title}
             width={124}
             height={83}
             className={`h-full w-full select-none ${isHovered && 'blur-lg' && 'scale-110'}`}
