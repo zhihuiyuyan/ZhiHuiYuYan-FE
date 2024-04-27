@@ -9,6 +9,7 @@ import { ChatRecordProps } from '@/common/hooks/useChatStore';
 
 const ConversationBubble: React.FC<ChatRecordProps> = (props) => {
   const { role, children, additionalElem, renderFunction } = props;
+
   return (
     <div className={`flex w-full ${role === 'user' && 'flex-row-reverse'}`}>
       <Avatar>
