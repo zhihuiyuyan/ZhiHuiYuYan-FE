@@ -28,7 +28,7 @@ const Contact: React.FC = () => {
           </div>
         </div>
         <Breakline className="mx-auto mt-8 w-4/5"></Breakline>
-        <div className="mx-auto flex w-2/3 justify-between text-sm text-gray-400 gap-[5%]">
+        <div className="mx-auto flex w-2/3 justify-between gap-[5%] text-sm text-gray-400">
           <p>版权所有：XXX</p>
           <p>网站建设：华中师范大学</p>
           <p>技术支持：XXXXXXXX</p>
