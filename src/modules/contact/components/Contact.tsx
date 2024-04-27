@@ -7,8 +7,8 @@ import { contactConfig } from './contact.config';
 const Contact: React.FC = () => {
   return (
     <>
-      <div className="mx-auto mt-8 h-86vh w-4/5 rounded-lg bg-white shadow">
-        <div className="mx-auto flex w-3/4 justify-between">
+      <div className="mx-auto my-[5vh] w-4/5 rounded-[3vh] bg-white pb-[15vh] shadow">
+        <div className="mx-auto flex w-3/4 justify-between gap-[5%]">
           {contactConfig.map((config) => (
             <ContactCard
               key={genKey.next().value as number}
@@ -28,7 +28,7 @@ const Contact: React.FC = () => {
           </div>
         </div>
         <Breakline className="mx-auto mt-8 w-4/5"></Breakline>
-        <div className="mx-auto flex w-2/3 justify-between text-xs text-gray-400">
+        <div className="mx-auto flex w-2/3 justify-between text-sm text-gray-400 gap-[5%]">
           <p>版权所有：XXX</p>
           <p>网站建设：华中师范大学</p>
           <p>技术支持：XXXXXXXX</p>
