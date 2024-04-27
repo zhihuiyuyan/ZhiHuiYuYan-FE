@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { genKey } from '@/common/utils/keyGen';
 import { useChat, useChatInput } from '@/common/hooks/useChatStore';
+import { genKey } from '@/common/utils/keyGen';
 
 import { PluginProps } from './plugins/pluginTemplate';
 import RecommendPlugin from './plugins/recommend';

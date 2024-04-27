@@ -1,27 +1,45 @@
-"use client"
+'use client';
 
+import { motion } from 'framer-motion';
 import Image from 'next/image';
-import React from 'react';
+
 import { ContactCardProps } from './contact.config';
 
-
 const ContactCard: React.FC<ContactCardProps> = (props) => {
-  const {textColor, bgColor, icon, name, detail} = props
+  const { textColor, bgColor, icon, name, detail } = props;
+
   return (
     <>
-      <div className='border-brown border-2 transition-all hover:scale-105 hover:shadow shadow-transparent relative w-44 h-28 mt-12 rounded-sm'>
-        <div className='w-20 h-26 transition-all hover:w-20 bg-white absolute left-1/2 top-0 -translate-y-1/2 -translate-x-1/2 p-2'>
-          <div className='w-14  h-14 rounded-full transition-all hover:scale-90 border-2 border-brown p-0.5 relative mx-auto'>
-            <div className={`w-full h-full rounded-full ${bgColor}`}></div>
-            <Image alt='image' src={icon} width={22} height={22} className='absolute top-1/2  transition-all hover:scale-110 left-1/2 -translate-x-1/2 -translate-y-1/2'></Image>
-          </div>
+      <motion.div
+        whileHover={{ scale: 1.05, shadow: '#000000' }}
+        className="relative mt-12 w-44 rounded-sm border-2 border-brown pb-[1vh] shadow-transparent transition-all"
+      >
+        <div className="h-26 absolute left-1/2 top-0 w-20 -translate-x-1/2 -translate-y-1/2 bg-white p-2 transition-all hover:w-20">
+          <motion.div
+            whileHover={{ scale: 0.9 }}
+            className="relative  mx-auto h-14 w-14 rounded-full border-2 border-brown p-0.5 transition-all"
+          >
+            <div className={`h-full w-full rounded-full ${bgColor}`}></div>
+            <Image
+              alt="image"
+              src={icon}
+              width={22}
+              height={22}
+              className="absolute left-1/2  top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all hover:scale-110"
+            ></Image>
+          </motion.div>
         </div>
-
-        <p className={`mt-10 mx-auto cursor-pointer ${textColor} text-center  w-full`}>{name}</p>
-        <p className='text-brown mt-2 mx-auto cursor-pointer text-center w-full text-sm'>{detail}</p>
-      </div>
+        <p
+          className={`mx-auto mt-10 cursor-pointer ${textColor} w-full  text-center`}
+        >
+          {name}
+        </p>
+        <p className="mx-auto my-2 w-full cursor-pointer text-center text-sm text-brown">
+          {detail}
+        </p>
+      </motion.div>
     </>
-  )
-}
+  );
+};
 
-export default ContactCard
+export default ContactCard;

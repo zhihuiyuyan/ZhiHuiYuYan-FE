@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 import Breakline from '@/common/components/elements/Breakline';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 type ArticleItem = {
   id: number;
@@ -51,7 +51,7 @@ const ARTICLE_ITEMS: ArticleItem[] = [
 
 const ArticleItem: React.FC<ArticleItemProps> = ({ item }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -61,8 +61,8 @@ const ArticleItem: React.FC<ArticleItemProps> = ({ item }) => {
     setIsHovered(false);
   };
   const handleClick = () => {
-    router.push(`\\${item.id}`)
-  }
+    router.push(`\\${item.id}`);
+  };
 
   return (
     <>
