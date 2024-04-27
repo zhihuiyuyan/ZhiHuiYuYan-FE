@@ -80,7 +80,7 @@ const config: Config = {
         '1/2vh': '50vh',
         '4/5vh': '80vh',
         '3/4vh': '75vh',
-        '86vh': '86vh'
+        '86vh': '86vh',
       },
     },
   },
