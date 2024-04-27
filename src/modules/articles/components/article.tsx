@@ -1,6 +1,6 @@
 'use client';
+
 import { AnimatePresence, motion } from 'framer-motion';
-import React from 'react';
 
 const ArticlePage: React.FC<{ article: string }> = ({ article }) => {
   return (
