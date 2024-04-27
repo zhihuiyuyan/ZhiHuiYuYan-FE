@@ -1,3 +1,3 @@
 import ArticlePage from './components/article';
 
-export default ArticlePage
+export default ArticlePage;

@@ -5,7 +5,7 @@ const Article = ({ params }: { params: { article: string } }) => {
     <>
       <ArticlePage article={params.article}></ArticlePage>
     </>
-  )
-}
+  );
+};
 
-export default Article
+export default Article;
