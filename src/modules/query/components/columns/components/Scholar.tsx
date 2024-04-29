@@ -47,7 +47,7 @@ const ScholarItem: React.FC<ScholarItemProps> = ({ item }) => {
         <p
           className="absolute left-[30%] top-0 cursor-pointer text-[2vh] font-semibold hover:underline md:left-[25%] lg:left-[22%] xl:left-[15%]"
           onClick={() => {
-            router.push(`/query/${item.expert_id}`);
+            router.push(`/query/${expert_id}`);
           }}
         >
           {expert_name}

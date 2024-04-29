@@ -10,7 +10,7 @@ const Page: NextPage = () => {
 
   return (
     <>
-      <Scholar scholar={params.scholar} />
+      <Scholar scholarID={params.scholar} />
     </>
   );
 };
