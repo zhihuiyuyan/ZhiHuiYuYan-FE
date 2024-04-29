@@ -6,16 +6,33 @@ import {
   AvatarImage,
 } from '@/common/components/elements/Avatar';
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
-import { ScholarItem as SchoInfoItem, expertInfo, usePersonInfo as useInfo } from '@/common/hooks/useInfo';
-import { useEffect, useState } from 'react';
+import {
+  ScholarItem as SchoInfoItem,
+  expertInfo,
+  usePersonInfo as useInfo,
+} from '@/common/hooks/useInfo';
 import { randomFunc } from '@/common/hooks/utils';
+import { useEffect, useState } from 'react';
 interface ScholarItemProps {
   item: SchoInfoItem;
 }
 
 const ScholarItem: React.FC<ScholarItemProps> = ({ item }) => {
-  const {expert_name, expert_id,paper_num, expert_img, books, followers, isFollowed, personal_profile, research_direction, work_organization, job_title, citations} = item
-  const {allInfo} = useInfo()
+  const {
+    expert_name,
+    expert_id,
+    paper_num,
+    expert_img,
+    books,
+    followers,
+    isFollowed,
+    personal_profile,
+    research_direction,
+    work_organization,
+    job_title,
+    citations,
+  } = item;
+  const { allInfo } = useInfo();
   return (
     <div className="relative flex w-full flex-col items-center">
       <div className="relative flex h-[14vh] w-full items-center">
@@ -50,22 +67,30 @@ const ScholarItem: React.FC<ScholarItemProps> = ({ item }) => {
 };
 
 const Scholar = () => {
-  const {filteredList, setAllInfo, allInfo, setFilterList} = useInfo()
+  const { filteredList, setAllInfo, allInfo, setFilterList } = useInfo();
   const [pagination, setPagination] = useState<number>(1);
   const nums = 3;
   useEffect(() => {
-    !allInfo.length && expertInfo.then((res: any[]) => {
-      console.log(res);
-      setAllInfo(res.map((item: Partial<SchoInfoItem>) => ({...item, citations: randomFunc(20, 80), paper_num: randomFunc(8, 12), followers: randomFunc(8, 80)})))
-      setFilterList('job_title')
-      setFilterList('work_organization')
-    })
+    !allInfo.length &&
+      expertInfo.then((res: any[]) => {
+        console.log(res);
+        setAllInfo(
+          res.map((item: Partial<SchoInfoItem>) => ({
+            ...item,
+            citations: randomFunc(20, 80),
+            paper_num: randomFunc(8, 12),
+            followers: randomFunc(8, 80),
+          }))
+        );
+        setFilterList('job_title');
+        setFilterList('work_organization');
+      });
   }, []);
   return (
     <>
-      {filteredList.map((item) => (
-        <ScholarItem key={item.expert_id} item={item} />
-      )).slice((pagination - 1)*nums, pagination*nums)}
+      {filteredList
+        .map((item) => <ScholarItem key={item.expert_id} item={item} />)
+        .slice((pagination - 1) * nums, pagination * nums)}
     </>
   );
 };

@@ -71,7 +71,10 @@ const MiddleColumn: React.FC<MiddleColumnProps> = ({ className }) => {
       <div className="flex w-full gap-[2%] px-[5%] py-[2vh]">
         <Selector />
       </div>
-      <Tabs tabs={tabs} type={PaperOrScholarSelected === '论文' ? 'paper' : 'scholar'}/>
+      <Tabs
+        tabs={tabs}
+        type={PaperOrScholarSelected === '论文' ? 'paper' : 'scholar'}
+      />
     </div>
   );
 };

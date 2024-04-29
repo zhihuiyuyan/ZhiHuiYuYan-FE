@@ -1,18 +1,18 @@
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
-import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 import {
-  paperInfo,
   PaperItem as PaperItemType,
+  paperInfo,
   usePaperInfo,
 } from '@/common/hooks/useInfo';
 import { useEffect, useState } from 'react';
+import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 
 interface PaperItemProps {
   item: PaperItemType;
 }
 
 const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
-  const {allInfo} = usePaperInfo()
+  const { allInfo } = usePaperInfo();
   return (
     <div className="relative flex h-[20vh] w-full flex-col items-center bg-gray-100">
       <div className="relative my-[3vh] flex h-[14vh] w-full items-center">
@@ -45,22 +45,22 @@ const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
 };
 
 const Paper = () => {
-  const {filteredList, setAllInfo, setFilterList} = usePaperInfo()
+  const { filteredList, setAllInfo, setFilterList } = usePaperInfo();
   const [pagination, setPagination] = useState<number>(1);
   const nums = 3;
   useEffect(() => {
     paperInfo.then((res) => {
       console.log(res);
-      setAllInfo(res)
-      setFilterList('topics')
-      setFilterList('belong_db')
-    })
+      setAllInfo(res);
+      setFilterList('topics');
+      setFilterList('belong_db');
+    });
   }, []);
   return (
     <>
-      {filteredList.map((item) => (
-        <PaperItem key={item.article_id} item={item} />
-      )).slice(0,3)}
+      {filteredList
+        .map((item) => <PaperItem key={item.article_id} item={item} />)
+        .slice(0, 3)}
     </>
   );
 };
