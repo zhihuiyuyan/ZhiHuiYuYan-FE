@@ -3,6 +3,7 @@ export function geneRecommendOutput(text: string) {
     ${text}
   `;
 }
+
 export function geneSummaryOutput(text: string) {
   return `<div class="ml-4 min-w-96">
             <h4 class="text-blue-600 my-0 min-w-96">关键词</h4>

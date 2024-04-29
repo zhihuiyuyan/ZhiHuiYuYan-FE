@@ -1,12 +1,12 @@
-'use client'
-import React from 'react';
+'use client';
+
 import { AnimatePresence, motion } from 'framer-motion';
 import Breakline from '@/common/components/elements/Breakline';
 import { MockArticle, splitWords } from '@/modules/articles/components/mock';
 
-const ArticlePage: React.FC<{article: string}> = ({article}) => {
+const ArticlePage: React.FC<{ article: string }> = ({ article }) => {
   return (
-    <AnimatePresence mode='wait'>
+    <AnimatePresence mode="wait">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -24,8 +24,7 @@ const ArticlePage: React.FC<{article: string}> = ({article}) => {
         </div>) }
       </motion.div>
     </AnimatePresence>
+  );
+};
 
-  )
-}
-
-export default ArticlePage
+export default ArticlePage;

@@ -2,8 +2,9 @@
 
 import { bubbleType, useChat } from '@/common/hooks/useChatStore';
 import { genKey } from '@/common/utils/keyGen';
-import { bubbleConfig } from '@/modules/conversation/components/chatZone/components/conversation/bubble.config';
-import ConversationBubble from '@/modules/conversation/components/chatZone/components/conversation/conversationBubble';
+
+import { bubbleConfig } from './bubble.config';
+import ConversationBubble from './conversationBubble';
 
 const Conversation: React.FC = () => {
   const { chatRecords } = useChat();
