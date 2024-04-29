@@ -7,7 +7,6 @@ import {
   paperInfo,
   usePaperInfo,
 } from '@/common/hooks/useInfo';
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 interface PaperItemProps {
