@@ -52,7 +52,7 @@ const ScholarItem: React.FC<ScholarItemProps> = ({ item }) => {
         >
           {expert_name}
         </p>
-        <p className="absolute left-[30%] top-[3.8vh] flex h-[2vh] w-[50%] gap-[2vh] overflow-hidden text-[1.5vh] text-blue-800 md:left-[25%] lg:left-[22%] lg:h-[2vh] lg:w-[60%] xl:left-[15%] xl:h-[4.2vh] xl:w-[70%]">
+        <p className="absolute left-[30%] top-[3.8vh] line-clamp-1 w-[50%] gap-[2vh] overflow-hidden text-ellipsis text-[1.5vh] text-blue-800 md:left-[25%] lg:left-[22%] lg:w-[60%] xl:left-[15%] xl:line-clamp-2 xl:w-[70%]">
           研究领域：{research_direction}
         </p>
         <div className="absolute left-[30%] top-[6.5vh] flex w-[50%] flex-col gap-[0.5vh] text-[1.5vh] text-blue-800 md:left-[25%] lg:left-[22%] xl:left-[15%] xl:top-[8vh] xl:flex-row xl:items-center">
