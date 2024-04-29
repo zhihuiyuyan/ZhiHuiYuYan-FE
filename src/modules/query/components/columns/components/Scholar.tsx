@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 
@@ -34,14 +35,21 @@ const ScholarItem: React.FC<ScholarItemProps> = ({ item }) => {
     citations,
   } = item;
   const { allInfo } = useInfo();
+  const router = useRouter();
+
   return (
-    <div className="relative flex w-full flex-col items-center">
+    <div className="relative flex w-full flex-col items-center pt-[2vh]">
       <div className="relative flex h-[14vh] w-full items-center">
-        <Avatar className="absolute left-0 top-0 h-[9vh] w-[9vh] rounded-full bg-gray-100">
+        <Avatar className="absolute left-[3%] top-0 h-[9vh] w-[9vh] rounded-full bg-gray-100">
           <AvatarImage src={expert_img} />
           <AvatarFallback>{expert_name}</AvatarFallback>
         </Avatar>
-        <p className="absolute left-[30%] top-0 text-[2vh] font-semibold md:left-[25%] lg:left-[22%] xl:left-[15%]">
+        <p
+          className="absolute left-[30%] top-0 cursor-pointer text-[2vh] font-semibold hover:underline md:left-[25%] lg:left-[22%] xl:left-[15%]"
+          onClick={() => {
+            router.push(`\\${item.expert_name}`);
+          }}
+        >
           {expert_name}
         </p>
         <p className="absolute left-[30%] top-[4vh] flex items-center gap-[2vh] text-[1.5vh] text-blue-800 md:left-[25%] lg:left-[22%] xl:left-[15%]">
@@ -69,8 +77,9 @@ const ScholarItem: React.FC<ScholarItemProps> = ({ item }) => {
 
 const Scholar = () => {
   const { filteredList, setAllInfo, allInfo, setFilterList } = useInfo();
-  const [pagination, setPagination] = useState<number>(1);
+  const [pagination] = useState<number>(1);
   const nums = 3;
+
   useEffect(() => {
     !allInfo.length &&
       expertInfo.then((res: any[]) => {
@@ -87,6 +96,7 @@ const Scholar = () => {
         setFilterList('work_organization');
       });
   }, []);
+
   return (
     <>
       {filteredList

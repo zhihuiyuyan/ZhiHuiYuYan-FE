@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 
 import ArticlePage from '@/modules/articles';
 
-const Article: NextPage = () => {
+const Page: NextPage = () => {
   const params = useParams<{ article: string }>();
 
   return (
@@ -15,4 +15,4 @@ const Article: NextPage = () => {
   );
 };
 
-export default Article;
+export default Page;
