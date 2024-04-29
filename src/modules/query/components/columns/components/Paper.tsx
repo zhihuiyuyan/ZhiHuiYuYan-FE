@@ -14,13 +14,17 @@ interface PaperItemProps {
 }
 
 export const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
-  const {allInfo} = usePaperInfo()
-  const router = useRouter()
+  const { allInfo } = usePaperInfo();
+  const router = useRouter();
   const handleClick = () => {
-    router.push(`\\query\\${item.article_id}`);
-  }
+    router.push(`/query/paper/${item.article_id}`);
+  };
+
   return (
-    <div onClick={handleClick} className="relative flex h-[20vh] w-full flex-col items-center bg-gray-100">
+    <div
+      onClick={handleClick}
+      className="relative flex h-[20vh] w-full flex-col items-center bg-gray-100"
+    >
       <div className="relative my-[3vh] flex h-[14vh] w-full items-center">
         <p className="absolute left-[5%] top-0 text-[2vh] font-semibold">
           {item.article_name}
@@ -56,11 +60,10 @@ const Paper = () => {
   const nums = 3;
   useEffect(() => {
     paperInfo.then((res) => {
-      setAllInfo(res.items)
-      setFilterList('topics')
-      setFilterList('belong_db')
-    })
-
+      setAllInfo(res.items);
+      setFilterList('topics');
+      setFilterList('belong_db');
+    });
   }, []);
   return (
     <>

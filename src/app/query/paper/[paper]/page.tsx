@@ -8,4 +8,4 @@ const Article = ({ params }: { params: { paper: number } }) => {
   );
 };
 
-  export default Article;
+export default Article;
