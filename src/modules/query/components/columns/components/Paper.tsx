@@ -6,15 +6,20 @@ import {
   usePaperInfo,
 } from '@/common/hooks/useInfo';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface PaperItemProps {
   item: PaperItemType;
 }
 
-const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
+export const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
   const {allInfo} = usePaperInfo()
+  const router = useRouter()
+  const handleClick = () => {
+    router.push(`\\query\\${item.article_id}`);
+  }
   return (
-    <div className="relative flex h-[20vh] w-full flex-col items-center bg-gray-100">
+    <div onClick={handleClick} className="relative flex h-[20vh] w-full flex-col items-center bg-gray-100">
       <div className="relative my-[3vh] flex h-[14vh] w-full items-center">
         <p className="absolute left-[5%] top-0 text-[2vh] font-semibold">
           {item.article_name}
@@ -51,7 +56,7 @@ const Paper = () => {
   useEffect(() => {
     paperInfo.then((res) => {
       console.log(res);
-      setAllInfo(res)
+      setAllInfo(res.items)
       setFilterList('topics')
       setFilterList('belong_db')
     })

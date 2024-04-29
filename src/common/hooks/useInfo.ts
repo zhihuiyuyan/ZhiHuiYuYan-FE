@@ -54,8 +54,11 @@ const createStore = <T>() => create<InfoStore<T>>((set) => ({
   filterChoiceList: {}
 }));
 
-
+const rootUrl = 'http://121.41.170.32:8090'
 export const usePersonInfo = createStore<ScholarItem>()
 export const usePaperInfo = createStore<PaperItem>()
-export const expertInfo = fetch('http://localhost:3000/expert_info.json').then((res) => res.json())
-export const paperInfo = fetch('http://localhost:3000/article_info.json').then((res) => res.json())
+export const expertInfo = fetch(`${rootUrl}/info?name=scholar&page=1`).then((res) =>{
+  console.log(res);
+  return res.json()
+})
+export const paperInfo = fetch(`${rootUrl}/info?name=paper&page=1`).then((res) => res.json())

@@ -54,9 +54,9 @@ const Scholar = () => {
   const [pagination, setPagination] = useState<number>(1);
   const nums = 3;
   useEffect(() => {
-    !allInfo.length && expertInfo.then((res: any[]) => {
+    !allInfo.length && expertInfo.then((res: {items: any[]}) => {
       console.log(res);
-      setAllInfo(res.map((item: Partial<SchoInfoItem>) => ({...item, citations: randomFunc(20, 80), paper_num: randomFunc(8, 12), followers: randomFunc(8, 80)})))
+      setAllInfo(res?.items.map((item: Partial<SchoInfoItem>) => ({...item, citations: randomFunc(20, 80), paper_num: randomFunc(8, 12), followers: randomFunc(8, 80)})))
       setFilterList('job_title')
       setFilterList('work_organization')
     })
