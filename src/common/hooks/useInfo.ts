@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { create } from 'zustand';
 
 export type ScholarItem = {
@@ -44,7 +43,7 @@ interface InfoStore<T> {
   setFilteredList: (name: keyof T, value: any) => void;
 }
 
-const rootUrl = 'http://121.41.170.32:8090'
+const rootUrl = 'http://121.41.170.32:8090';
 const createStore = <T>() =>
   create<InfoStore<T>>((set) => ({
     setAllInfo: (list: T[]) => set({ allInfo: list, filteredList: list }),
@@ -76,11 +75,15 @@ const createStore = <T>() =>
     filteredList: [],
     filterChoiceList: {},
   }));
-export const expertInfo = fetch(`${rootUrl}/info?name=scholar&page=1`).then((res) =>{
-  console.log(res);
-  return res.json()
-})
-export const paperInfo = fetch(`${rootUrl}/info?name=paper&page=1`).then((res) => res.json())
+export const expertInfo = fetch(`${rootUrl}/info?name=scholar&page=1`).then(
+  (res) => {
+    console.log(res);
+    return res.json();
+  }
+);
+export const paperInfo = fetch(`${rootUrl}/info?name=paper&page=1`).then(
+  (res) => res.json()
+);
 
-export const usePersonInfo = createStore<ScholarItem>()
-export const usePaperInfo = createStore<PaperItem>()
+export const usePersonInfo = createStore<ScholarItem>();
+export const usePaperInfo = createStore<PaperItem>();
