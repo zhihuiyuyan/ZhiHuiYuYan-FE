@@ -1,6 +1,13 @@
+'use client';
+
+import { NextPage } from 'next';
+import { useParams } from 'next/navigation';
+
 import PaperDetail from '@/modules/query/components/paperDetail';
 
-const Article = ({ params }: { params: { paper: number } }) => {
+const Page: NextPage = () => {
+  const params = useParams<{ paper: string }>();
+
   return (
     <>
       <PaperDetail paper_id={params.paper}></PaperDetail>
@@ -8,4 +15,4 @@ const Article = ({ params }: { params: { paper: number } }) => {
   );
 };
 
-export default Article;
+export default Page;

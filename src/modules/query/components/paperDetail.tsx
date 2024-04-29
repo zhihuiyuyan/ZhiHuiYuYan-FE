@@ -6,7 +6,7 @@ import { PaperItem, usePaperInfo } from '@/common/hooks/useInfo';
 
 import { PaperItem as Item } from './columns/components/Paper';
 
-const PaperDetail: React.FC<{ paper_id: number }> = ({ paper_id }) => {
+const PaperDetail: React.FC<{ paper_id: string }> = ({ paper_id }) => {
   const { allInfo } = usePaperInfo();
   const [curItem, setCurItem] = useState<PaperItem>();
   const [recommend, setRecommend] = useState<PaperItem[]>();
