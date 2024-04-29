@@ -5,6 +5,7 @@ export function geneGridLinks(name: string) {
     </div>
   );
 }
+
 export const additionalElem = (
   <div className="my-6 grid w-[45vw] grid-cols-3 grid-rows-2 gap-4">
     {geneGridLinks('科研助手')}

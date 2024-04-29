@@ -14,6 +14,7 @@ interface PaperItemProps {
 
 const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
   const { allInfo } = usePaperInfo();
+
   return (
     <div className="relative flex h-[20vh] w-full flex-col items-center bg-gray-100">
       <div className="relative my-[3vh] flex h-[14vh] w-full items-center">
@@ -23,7 +24,7 @@ const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
         <p className="absolute left-[5%] top-[3vh] flex items-center gap-[2vh] text-[1.5vh] text-blue-800">
           {item.article_author}
         </p>
-        <div className="absolute left-[5%] top-[5.5vh] w-[50%] text-[1.3vh] text-gray-700">
+        <div className="absolute left-[5%] top-[5.5vh] h-[6vh] w-[50%] overflow-hidden text-[1.3vh]  text-gray-700">
           <p className="flex-1">{item.abstract}</p>
         </div>
         <div className="absolute left-[5%] top-[12vh] flex items-center gap-[5vh] text-[1.3vh] text-gray-700">

@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+
 export type ScholarItem = {
   expert_id: number;
   expert_img: string;
@@ -41,6 +42,7 @@ interface InfoStore<T> {
   setFilterChoice: (name: keyof T, value: any) => void;
   setFilteredList: (name: keyof T, value: any) => void;
 }
+
 const createStore = <T>() =>
   create<InfoStore<T>>((set) => ({
     setAllInfo: (list: T[]) => set({ allInfo: list, filteredList: list }),
