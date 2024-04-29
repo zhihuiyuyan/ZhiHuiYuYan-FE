@@ -4,7 +4,7 @@ import { usePaperOrScholarSelected } from '@/common/hooks/useIsPaperOrScholarSel
 import { useMemo } from 'react';
 import Paper from './Paper';
 import Scholar from './Scholar';
-import { Tabs } from './Tabs';
+import { TabProps, Tabs } from './Tabs';
 
 interface MiddleColumnProps {
   className: string;
@@ -42,18 +42,24 @@ const MiddleColumn: React.FC<MiddleColumnProps> = ({ className }) => {
     return PaperOrScholarSelected === '论文' ? <Paper /> : <Scholar />;
   }, [PaperOrScholarSelected]);
 
-  const tabs = useMemo(
+  const tabs: TabProps[] = useMemo(
     () => [
       {
         label: '最新',
+        paper_tag: 'publish_time',
+        person_tag: 'books',
         children: tabItems,
       },
       {
         label: '综合',
+        paper_tag: 'article_id',
+        person_tag: 'followers',
         children: tabItems,
       },
       {
         label: '引用数',
+        paper_tag: 'download_count',
+        person_tag: 'citations',
         children: tabItems,
       },
     ],
@@ -65,7 +71,7 @@ const MiddleColumn: React.FC<MiddleColumnProps> = ({ className }) => {
       <div className="flex w-full gap-[2%] px-[5%] py-[2vh]">
         <Selector />
       </div>
-      <Tabs tabs={tabs} />
+      <Tabs tabs={tabs} type={PaperOrScholarSelected === '论文' ? 'paper' : 'scholar'}/>
     </div>
   );
 };

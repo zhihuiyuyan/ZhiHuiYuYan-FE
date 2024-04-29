@@ -35,7 +35,6 @@
     "next": "14.2.2",
     "next-nprogress-bar": "^2.3.11",
     "next-themes": "^0.3.0",
-    "papaparse": "^5.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.1.0",

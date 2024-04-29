@@ -2,15 +2,20 @@
 
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 import { usePaperOrScholarSelected } from '@/common/hooks/useIsPaperOrScholarSelected';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { ScholarItem, usePersonInfo, usePaperInfo, PaperItem } from '@/common/hooks/useInfo';
 
 interface LeftColumnProps {
   className: string;
 }
 
-const RadioItem = () => {
+const RadioItem: React.FC<{val?: any, name: keyof ScholarItem | keyof PaperItem, type: 'scholar' | 'paper'}> = ({name, type, val}) => {
   const [isClicked, setIsClicked] = useState(false);
-
+  const {setFilteredList} = type === 'scholar' ? usePersonInfo() : usePaperInfo()
+  useEffect(() => {
+    // @ts-ignore
+    isClicked && type === 'scholar' && setFilteredList(name, val)
+  }, [isClicked]);
   return (
     <div
       className="flex cursor-pointer items-center gap-[0.5vh]"
@@ -19,13 +24,14 @@ const RadioItem = () => {
       <button
         className={`h-[1.3vh] w-[1.3vh] rounded-[0.5vh] border-2 border-gray-100 ${isClicked ? 'bg-red-800' : 'bg-white'}`}
       ></button>
-      <p className="text-[1.3vh] text-gray-500">选项1</p>
+      <p className="text-[1.3vh] text-gray-500">{val || '选项1'}</p>
     </div>
   );
 };
 
 const LeftColumn: React.FC<LeftColumnProps> = ({ className }) => {
   const { PaperOrScholarSelected } = usePaperOrScholarSelected();
+  const {filterChoiceList} = usePersonInfo()
 
   const columnItemStyle =
     'flex w-full flex-col items-center pt-[1.5vh] gap-[1.5vh]';
@@ -61,10 +67,7 @@ const LeftColumn: React.FC<LeftColumnProps> = ({ className }) => {
           <div className={columnItemStyle}>
             <p className="text-[1.8vh] font-semibold text-blue-800">期刊</p>
             <div className="grid w-[75%] grid-cols-2 grid-rows-2">
-              <RadioItem />
-              <RadioItem />
-              <RadioItem />
-              <RadioItem />
+              {filterChoiceList['belong_db']?.map((item) => <RadioItem name='belong_db' val={item} type='paper'></RadioItem>)}
             </div>
           </div>
         </>
@@ -73,10 +76,7 @@ const LeftColumn: React.FC<LeftColumnProps> = ({ className }) => {
         <div className={columnItemStyle}>
           <p className="text-[1.8vh] font-semibold text-blue-800">职称</p>
           <div className="grid w-[75%] grid-cols-2 grid-rows-2">
-            <RadioItem />
-            <RadioItem />
-            <RadioItem />
-            <RadioItem />
+            {filterChoiceList['job_title']?.map((item) => <RadioItem name='job_title' val={item} type='scholar'></RadioItem>)}
           </div>
         </div>
       )}
@@ -84,8 +84,7 @@ const LeftColumn: React.FC<LeftColumnProps> = ({ className }) => {
       <div className={columnItemStyle}>
         <p className="text-[1.8vh] font-semibold text-blue-800">机构</p>
         <div className="grid w-[75%] grid-cols-2 grid-rows-1">
-          <RadioItem />
-          <RadioItem />
+          {filterChoiceList['work_organization']?.map((item) => <RadioItem name='work_organization' type='scholar' val={item}></RadioItem>)}
         </div>
       </div>
     </div>

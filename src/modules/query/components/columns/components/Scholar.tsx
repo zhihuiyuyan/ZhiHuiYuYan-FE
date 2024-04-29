@@ -6,79 +6,43 @@ import {
   AvatarImage,
 } from '@/common/components/elements/Avatar';
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
-
-type ScholarItem = {
-  id: number;
-  avatar: string;
-  name: string;
-  field: string;
-  institution: string;
-  title: string;
-  citations: number;
-  papers: number;
-  isFollowed: boolean;
-  followers: number;
-};
-
+import { ScholarItem as SchoInfoItem, expertInfo, usePersonInfo as useInfo } from '@/common/hooks/useInfo';
+import { useEffect, useState } from 'react';
+import { randomFunc } from '@/common/hooks/utils';
 interface ScholarItemProps {
-  item: ScholarItem;
+  item: SchoInfoItem;
 }
 
-const SCHOLAR_ITEMS: ScholarItem[] = [
-  {
-    id: 1,
-    avatar: 'https://www.github.com/BlackishGreen33.png',
-    name: '张三',
-    field: '计算机科学与技术',
-    institution: '清华大学',
-    title: '教授',
-    citations: 111,
-    papers: 111,
-    isFollowed: false,
-    followers: 99,
-  },
-  {
-    id: 2,
-    avatar: 'https://www.github.com/konodioda727.png',
-    name: '李四',
-    field: '计算机科学与技术',
-    institution: '华中师范大学',
-    title: '教授',
-    citations: 111,
-    papers: 111,
-    isFollowed: true,
-    followers: 100,
-  },
-];
-
 const ScholarItem: React.FC<ScholarItemProps> = ({ item }) => {
+  const {expert_name, expert_id,paper_num, expert_img, books, followers, isFollowed, personal_profile, research_direction, work_organization, job_title, citations} = item
+  const {allInfo} = useInfo()
   return (
     <div className="relative flex w-full flex-col items-center">
       <div className="relative flex h-[14vh] w-full items-center">
         <Avatar className="absolute left-0 top-0 h-[9vh] w-[9vh] rounded-full bg-gray-100">
-          <AvatarImage src={item.avatar} />
-          <AvatarFallback>{item.name}</AvatarFallback>
+          <AvatarImage src={expert_img} />
+          <AvatarFallback>{expert_name}</AvatarFallback>
         </Avatar>
         <p className="absolute left-[30%] top-0 text-[2vh] font-semibold md:left-[25%] lg:left-[22%] xl:left-[15%]">
-          {item.name}
+          {expert_name}
         </p>
         <p className="absolute left-[30%] top-[4vh] flex items-center gap-[2vh] text-[1.5vh] text-blue-800 md:left-[25%] lg:left-[22%] xl:left-[15%]">
-          研究领域：{item.field}
+          研究领域：{research_direction}
         </p>
         <div className="absolute left-[30%] top-[6.5vh] flex w-[50%] flex-col gap-[0.5vh] text-[1.5vh] text-blue-800 md:left-[25%] lg:left-[22%] xl:left-[15%] xl:top-[8vh] xl:flex-row xl:items-center">
-          <p className="flex-1">职称：{item.title}</p>
-          <p className="flex-1">所属机构：{item.institution}</p>
+          <p className="flex-1">职称：{job_title}</p>
+          <p className="flex-1">所属机构：{work_organization}</p>
         </div>
         <div className="absolute left-[25%] top-[12vh] flex items-center gap-[5vh] text-[1.3vh] text-gray-700 md:left-[22%] lg:left-[20%] xl:left-[13%]">
-          <p>引用数：{item.citations}</p>
-          <p>论文数：{item.papers}</p>
+          <p>引用数：{citations}</p>
+          <p>论文数：{paper_num}</p>
         </div>
         <p className="absolute right-[2%] top-[2vh] flex cursor-pointer items-center gap-[1vh] text-[1.3vh] text-red-800">
-          {item.isFollowed ? <IoHeart /> : <IoHeartOutline />}
-          关注人数：{item.followers}
+          {isFollowed ? <IoHeart /> : <IoHeartOutline />}
+          关注人数：{followers}
         </p>
       </div>
-      {item.id !== SCHOLAR_ITEMS.length && (
+      {expert_id !== allInfo[allInfo.length - 1].expert_id && (
         <BreaklineDashed className="w-[90%] border-t-2" />
       )}
     </div>
@@ -86,11 +50,22 @@ const ScholarItem: React.FC<ScholarItemProps> = ({ item }) => {
 };
 
 const Scholar = () => {
+  const {filteredList, setAllInfo, allInfo, setFilterList} = useInfo()
+  const [pagination, setPagination] = useState<number>(1);
+  const nums = 3;
+  useEffect(() => {
+    !allInfo.length && expertInfo.then((res: any[]) => {
+      console.log(res);
+      setAllInfo(res.map((item: Partial<SchoInfoItem>) => ({...item, citations: randomFunc(20, 80), paper_num: randomFunc(8, 12), followers: randomFunc(8, 80)})))
+      setFilterList('job_title')
+      setFilterList('work_organization')
+    })
+  }, []);
   return (
     <>
-      {SCHOLAR_ITEMS.map((item) => (
-        <ScholarItem key={item.id} item={item} />
-      ))}
+      {filteredList.map((item) => (
+        <ScholarItem key={item.expert_id} item={item} />
+      )).slice((pagination - 1)*nums, pagination*nums)}
     </>
   );
 };
