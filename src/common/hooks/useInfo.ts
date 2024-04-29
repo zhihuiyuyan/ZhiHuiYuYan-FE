@@ -45,13 +45,6 @@ interface InfoStore<T> {
 }
 
 const rootUrl = 'http://121.41.170.32:8090'
-export const usePersonInfo = createStore<ScholarItem>()
-export const usePaperInfo = createStore<PaperItem>()
-export const expertInfo = fetch(`${rootUrl}/info?name=scholar&page=1`).then((res) =>{
-  console.log(res);
-  return res.json()
-})
-export const paperInfo = fetch(`${rootUrl}/info?name=paper&page=1`).then((res) => res.json())
 const createStore = <T>() =>
   create<InfoStore<T>>((set) => ({
     setAllInfo: (list: T[]) => set({ allInfo: list, filteredList: list }),
@@ -83,3 +76,11 @@ const createStore = <T>() =>
     filteredList: [],
     filterChoiceList: {},
   }));
+export const expertInfo = fetch(`${rootUrl}/info?name=scholar&page=1`).then((res) =>{
+  console.log(res);
+  return res.json()
+})
+export const paperInfo = fetch(`${rootUrl}/info?name=paper&page=1`).then((res) => res.json())
+
+export const usePersonInfo = createStore<ScholarItem>()
+export const usePaperInfo = createStore<PaperItem>()

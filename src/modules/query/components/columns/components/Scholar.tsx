@@ -82,9 +82,9 @@ const Scholar = () => {
 
   useEffect(() => {
     !allInfo.length &&
-      expertInfo.then((res: any[]) => {
+      expertInfo.then((res: any) => {
         setAllInfo(
-          res.map((item: Partial<SchoInfoItem>) => ({
+          res.items.map((item: Partial<SchoInfoItem>) => ({
             ...item,
             citations: randomFunc(20, 80),
             paper_num: randomFunc(8, 12),
