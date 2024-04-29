@@ -79,8 +79,8 @@ const createStore = <T>() =>
 export const usePersonInfo = createStore<ScholarItem>();
 export const usePaperInfo = createStore<PaperItem>();
 export const expertInfo = axios
-  .get('http://localhost:3000/expert_info.json')
+  .get('https://zhihuiyuyan.vercel.app/expert_info.json')
   .then((res) => JSON.parse(res.request.response));
 export const paperInfo = axios
-  .get('http://localhost:3000/article_info.json')
+  .get('https://zhihuiyuyan.vercel.app/article_info.json')
   .then((res) => JSON.parse(res.request.response));
