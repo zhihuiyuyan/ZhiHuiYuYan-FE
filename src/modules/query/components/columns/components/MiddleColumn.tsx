@@ -70,7 +70,7 @@ const MiddleColumn: React.FC<MiddleColumnProps> = ({ className }) => {
 
   return (
     <div className={className}>
-      <div className="flex w-full gap-[2%] px-[5%] py-[2vh]">
+      <div className="flex w-full gap-[2%] py-[2vh] pl-12 pr-[5%]">
         <Selector />
       </div>
       <Tabs
