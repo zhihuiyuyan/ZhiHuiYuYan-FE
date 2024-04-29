@@ -6,11 +6,11 @@ import { useParams } from 'next/navigation';
 import Scholar from '@/modules/scholar';
 
 const Page: NextPage = () => {
-  const params = useParams<{ expert_name: string }>();
+  const params = useParams<{ scholar: string }>();
 
   return (
     <>
-      <Scholar />
+      <Scholar scholar={params.scholar} />
     </>
   );
 };
