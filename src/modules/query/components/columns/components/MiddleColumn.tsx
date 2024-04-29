@@ -1,7 +1,9 @@
 'use client';
 
-import { usePaperOrScholarSelected } from '@/common/hooks/useIsPaperOrScholarSelected';
 import { useMemo } from 'react';
+
+import { usePaperOrScholarSelected } from '@/common/hooks/useIsPaperOrScholarSelected';
+
 import Paper from './Paper';
 import Scholar from './Scholar';
 import { TabProps, Tabs } from './Tabs';

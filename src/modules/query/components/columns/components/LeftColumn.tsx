@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 import {
   PaperItem,
@@ -8,7 +10,6 @@ import {
   usePersonInfo,
 } from '@/common/hooks/useInfo';
 import { usePaperOrScholarSelected } from '@/common/hooks/useIsPaperOrScholarSelected';
-import React, { useEffect, useState } from 'react';
 
 interface LeftColumnProps {
   className: string;

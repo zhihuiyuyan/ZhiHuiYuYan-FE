@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 
 import {
@@ -12,7 +13,7 @@ import {
   usePersonInfo as useInfo,
 } from '@/common/hooks/useInfo';
 import { randomFunc } from '@/common/hooks/utils';
-import { useEffect, useState } from 'react';
+
 interface ScholarItemProps {
   item: SchoInfoItem;
 }

@@ -1,11 +1,12 @@
+import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
+
 import {
   PaperItem,
   ScholarItem,
   usePaperInfo,
   usePersonInfo,
 } from '@/common/hooks/useInfo';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
 
 export interface TabProps {
   label: React.ReactNode;

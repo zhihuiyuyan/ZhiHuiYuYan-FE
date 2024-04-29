@@ -1,11 +1,12 @@
+import { useEffect, useState } from 'react';
+import { IoHeart, IoHeartOutline } from 'react-icons/io5';
+
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 import {
   PaperItem as PaperItemType,
   paperInfo,
   usePaperInfo,
 } from '@/common/hooks/useInfo';
-import { useEffect, useState } from 'react';
-import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 
 interface PaperItemProps {
   item: PaperItemType;
