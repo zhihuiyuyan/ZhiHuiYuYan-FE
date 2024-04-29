@@ -1,10 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import Breakline from '@/common/components/elements/Breakline';
-import { useRouter } from 'next/navigation';
 
 type ArticleItem = {
   id: number;

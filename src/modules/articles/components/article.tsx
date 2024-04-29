@@ -1,8 +1,9 @@
 'use client';
 
+import { AnimatePresence, motion } from 'framer-motion';
+
 import Breakline from '@/common/components/elements/Breakline';
 import { MockArticle, splitWords } from '@/modules/articles/components/mock';
-import { AnimatePresence, motion } from 'framer-motion';
 
 const ArticlePage: React.FC<{ article: string }> = ({ article }) => {
   return (

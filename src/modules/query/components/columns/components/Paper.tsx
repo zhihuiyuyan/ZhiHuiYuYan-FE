@@ -52,7 +52,6 @@ const Paper = () => {
   const nums = 3;
   useEffect(() => {
     paperInfo.then((res) => {
-      console.log(res);
       setAllInfo(res);
       setFilterList('topics');
       setFilterList('belong_db');

@@ -3,14 +3,14 @@
 import { NextPage } from 'next';
 import { useParams } from 'next/navigation';
 
-import ArticlePage from '@/modules/articles';
+import Scholar from '@/modules/scholar';
 
 const Page: NextPage = () => {
-  const params = useParams<{ article: string }>();
+  const params = useParams<{ scholar: string }>();
 
   return (
     <>
-      <ArticlePage article={params.article}></ArticlePage>
+      <Scholar scholarID={params.scholar} />
     </>
   );
 };

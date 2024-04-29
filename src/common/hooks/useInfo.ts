@@ -80,7 +80,7 @@ export const usePersonInfo = createStore<ScholarItem>();
 export const usePaperInfo = createStore<PaperItem>();
 export const expertInfo = axios
   .get('https://zhihuiyuyan.vercel.app/expert_info.json')
-  .then((res) => JSON.parse(res.request.response));
+  .then((res) => JSON!.parse(res.request.response));
 export const paperInfo = axios
   .get('https://zhihuiyuyan.vercel.app/article_info.json')
-  .then((res) => JSON.parse(res.request.response));
+  .then((res) => JSON!.parse(res.request.response));
