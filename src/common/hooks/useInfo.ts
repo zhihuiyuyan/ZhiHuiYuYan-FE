@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { create } from 'zustand';
 
 export type ScholarItem = {
@@ -77,9 +78,9 @@ const createStore = <T>() =>
 
 export const usePersonInfo = createStore<ScholarItem>();
 export const usePaperInfo = createStore<PaperItem>();
-export const expertInfo = fetch('http://localhost:3000/expert_info.json').then(
-  (res) => res.json()
-);
-export const paperInfo = fetch('http://localhost:3000/article_info.json').then(
-  (res) => res.json()
-);
+export const expertInfo = axios
+  .get('http://localhost:3000/expert_info.json')
+  .then((res) => JSON.parse(res.request.response));
+export const paperInfo = axios
+  .get('http://localhost:3000/article_info.json')
+  .then((res) => JSON.parse(res.request.response));
