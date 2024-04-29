@@ -1,4 +1,6 @@
-import {create} from 'zustand';
+import axios from 'axios';
+import { create } from 'zustand';
+
 export type ScholarItem = {
   expert_id: number;
   expert_img: string;
@@ -30,29 +32,17 @@ export type PaperItem = {
   followers: number;
 };
 
-
 interface InfoStore<T> {
-  allInfo: T[],
-  filteredList: T[],
-  activatedChoice: {[name: string]: []}
-  filterChoiceList: {[name: string]: any[]},
-  setAllInfo: (list: any[]) => void,
-  setSort: (name: keyof T) => void,
-  setFilterList: (name: keyof T) => void,
-  setFilterChoice: (name: keyof T, value: any) => void,
-  setFilteredList: (name: keyof T, value: any) => void,
+  allInfo: T[];
+  filteredList: T[];
+  activatedChoice: { [name: string]: [] };
+  filterChoiceList: { [name: string]: any[] };
+  setAllInfo: (list: any[]) => void;
+  setSort: (name: keyof T) => void;
+  setFilterList: (name: keyof T) => void;
+  setFilterChoice: (name: keyof T, value: any) => void;
+  setFilteredList: (name: keyof T, value: any) => void;
 }
-const createStore = <T>() => create<InfoStore<T>>((set) => ({
-  setAllInfo: (list:T[]) =>set({allInfo: list, filteredList: list}),
-  setSort: (name) => set((state) => ({filteredList: state.filteredList.sort((a, b) => Number(b[name])-Number( a[name] as number))})),
-  setFilterChoice: (name, value) => set((state) => ({activatedChoice: {...state.activatedChoice, [name]: value}})),
-  setFilterList: (name) => set((state) => ({filterChoiceList: {...state.filterChoiceList,[name]: Array.from(new Set(state.allInfo.map((info) => info[name])))}})),
-  setFilteredList: (name, value) => set((state) => ({filteredList: Array.from(new Set(state.allInfo.filter((item) => item[name] === value)))})),
-  allInfo: [],
-  activatedChoice: {},
-  filteredList: [],
-  filterChoiceList: {}
-}));
 
 const rootUrl = 'http://121.41.170.32:8090'
 export const usePersonInfo = createStore<ScholarItem>()
@@ -62,3 +52,34 @@ export const expertInfo = fetch(`${rootUrl}/info?name=scholar&page=1`).then((res
   return res.json()
 })
 export const paperInfo = fetch(`${rootUrl}/info?name=paper&page=1`).then((res) => res.json())
+const createStore = <T>() =>
+  create<InfoStore<T>>((set) => ({
+    setAllInfo: (list: T[]) => set({ allInfo: list, filteredList: list }),
+    setSort: (name) =>
+      set((state) => ({
+        filteredList: state.filteredList.sort(
+          (a, b) => Number(b[name]) - Number(a[name] as number)
+        ),
+      })),
+    setFilterChoice: (name, value) =>
+      set((state) => ({
+        activatedChoice: { ...state.activatedChoice, [name]: value },
+      })),
+    setFilterList: (name) =>
+      set((state) => ({
+        filterChoiceList: {
+          ...state.filterChoiceList,
+          [name]: Array.from(new Set(state.allInfo.map((info) => info[name]))),
+        },
+      })),
+    setFilteredList: (name, value) =>
+      set((state) => ({
+        filteredList: Array.from(
+          new Set(state.allInfo.filter((item) => item[name] === value))
+        ),
+      })),
+    allInfo: [],
+    activatedChoice: {},
+    filteredList: [],
+    filterChoiceList: {},
+  }));

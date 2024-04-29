@@ -1,6 +1,5 @@
 import { additionalElem } from '@/common/hooks/utils';
 import { genKey } from '@/common/utils/keyGen';
-import React from 'react';
 import { create } from 'zustand';
 
 export interface ChatRecordProps {

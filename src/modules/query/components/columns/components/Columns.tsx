@@ -1,6 +1,7 @@
 'use client';
 
 import { usePaperOrScholarSelected } from '@/common/hooks/useIsPaperOrScholarSelected';
+
 import LeftColumn from './LeftColumn';
 import MiddleColumn from './MiddleColumn';
 import RightColumn from './RightColumn';

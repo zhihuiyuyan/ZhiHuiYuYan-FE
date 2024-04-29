@@ -1,7 +1,9 @@
 'use client';
 
-import { usePaperOrScholarSelected } from '@/common/hooks/useIsPaperOrScholarSelected';
 import { useMemo } from 'react';
+
+import { usePaperOrScholarSelected } from '@/common/hooks/useIsPaperOrScholarSelected';
+
 import Paper from './Paper';
 import Scholar from './Scholar';
 import { TabProps, Tabs } from './Tabs';
@@ -68,10 +70,13 @@ const MiddleColumn: React.FC<MiddleColumnProps> = ({ className }) => {
 
   return (
     <div className={className}>
-      <div className="flex w-full gap-[2%] px-[5%] py-[2vh]">
+      <div className="flex w-full gap-[2%] py-[2vh] pl-12 pr-[5%]">
         <Selector />
       </div>
-      <Tabs tabs={tabs} type={PaperOrScholarSelected === '论文' ? 'paper' : 'scholar'}/>
+      <Tabs
+        tabs={tabs}
+        type={PaperOrScholarSelected === '论文' ? 'paper' : 'scholar'}
+      />
     </div>
   );
 };

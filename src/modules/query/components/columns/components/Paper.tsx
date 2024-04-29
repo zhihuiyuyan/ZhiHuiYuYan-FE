@@ -1,8 +1,10 @@
-import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
+import { useEffect, useState } from 'react';
 import { IoHeart, IoHeartOutline } from 'react-icons/io5';
+
+import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 import {
-  paperInfo,
   PaperItem as PaperItemType,
+  paperInfo,
   usePaperInfo,
 } from '@/common/hooks/useInfo';
 import { useEffect, useState } from 'react';
@@ -27,7 +29,7 @@ export const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
         <p className="absolute left-[5%] top-[3vh] flex items-center gap-[2vh] text-[1.5vh] text-blue-800">
           {item.article_author}
         </p>
-        <div className="absolute left-[5%] top-[5.5vh] w-[50%] text-[1.3vh] text-gray-700">
+        <div className="absolute left-[5%] top-[5.5vh] h-[6vh] w-[50%] overflow-hidden text-[1.3vh]  text-gray-700">
           <p className="flex-1">{item.abstract}</p>
         </div>
         <div className="absolute left-[5%] top-[12vh] flex items-center gap-[5vh] text-[1.3vh] text-gray-700">
@@ -50,22 +52,22 @@ export const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
 };
 
 const Paper = () => {
-  const {filteredList, setAllInfo, setFilterList} = usePaperInfo()
+  const { filteredList, setAllInfo, setFilterList } = usePaperInfo();
   const [pagination, setPagination] = useState<number>(1);
   const nums = 3;
   useEffect(() => {
     paperInfo.then((res) => {
-      console.log(res);
       setAllInfo(res.items)
       setFilterList('topics')
       setFilterList('belong_db')
     })
+
   }, []);
   return (
     <>
-      {filteredList.map((item) => (
-        <PaperItem key={item.article_id} item={item} />
-      )).slice(0,3)}
+      {filteredList
+        .map((item) => <PaperItem key={item.article_id} item={item} />)
+        .slice(0, 3)}
     </>
   );
 };
