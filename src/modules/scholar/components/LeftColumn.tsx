@@ -93,8 +93,6 @@ const LeftColumn: React.FC<LeftColumnProps> = ({ scholarID }) => {
       });
   }, []);
 
-  console.log(scholar);
-
   return (
     <div className="flex flex-[1.8] flex-col gap-[2vh]">
       <div className="relative top-[2vh] flex h-auto flex-col rounded-[1vh] bg-white px-[8%] pb-[4vh] pt-[3vh] shadow-md">
