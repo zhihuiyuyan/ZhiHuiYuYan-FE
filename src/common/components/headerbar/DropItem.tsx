@@ -8,7 +8,7 @@ const DropItem: React.FC<DropItemProps> = ({ value }) => (
   <motion.p
     whileTap={{ scale: 0.9 }}
     whileHover={{ scale: 1.1 }}
-    className="text-[1.7vh] text-blue-800"
+    className="text-[1.7vh] text-blue-800 will-change-transform"
   >
     {value}
   </motion.p>
