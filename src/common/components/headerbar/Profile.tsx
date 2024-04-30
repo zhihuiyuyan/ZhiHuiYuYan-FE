@@ -26,7 +26,7 @@ const Profile: React.FC = () => {
   return (
     <motion.div
       whileTap={{ scale: 0.9 }}
-      className="absolute right-[5%] top-0 flex h-[7vh] cursor-pointer items-center"
+      className="absolute right-[5%] top-0 flex h-[7vh] cursor-pointer items-center will-change-transform z-50"
       onClick={handleAuthClick}
     >
       <motion.div whileHover={{ scale: 1.1 }}>
