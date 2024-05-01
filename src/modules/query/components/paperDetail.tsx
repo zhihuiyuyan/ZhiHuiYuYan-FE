@@ -14,7 +14,7 @@ const PaperDetail: React.FC<{ paper_id: string }> = ({ paper_id }) => {
     setCurItem(
       allInfo.filter((item, index) => {
         let judge = item.article_id === Number(paper_id);
-        judge && setRecommend(allInfo.slice(index + 1, index + 6));
+        judge && setRecommend(allInfo.slice(1, index + 6).reverse());
         judge && console.log(item);
         return judge;
       })[0]

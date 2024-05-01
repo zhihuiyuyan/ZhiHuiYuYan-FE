@@ -10,10 +10,10 @@ import {
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 import {
   ScholarItem as SchoInfoItem,
-  expertInfo,
   usePersonInfo as useInfo,
 } from '@/common/hooks/useInfo';
 import { randomFunc } from '@/common/hooks/utils';
+import Pagination from '@/common/components/elements/pagination';
 
 interface ScholarItemProps {
   item: SchoInfoItem;
@@ -34,7 +34,7 @@ const ScholarItem: React.FC<ScholarItemProps> = ({ item }) => {
     job_title,
     citations,
   } = item;
-  const { allInfo } = useInfo();
+  const { filteredList } = useInfo();
   const router = useRouter();
 
   return (
@@ -68,7 +68,7 @@ const ScholarItem: React.FC<ScholarItemProps> = ({ item }) => {
           关注人数：{followers}
         </p>
       </div>
-      {expert_id !== allInfo[allInfo.length - 1].expert_id && (
+      {expert_id !== filteredList[filteredList.length - 1].expert_id && (
         <BreaklineDashed className="w-[90%] border-t-2" />
       )}
     </div>
@@ -76,31 +76,26 @@ const ScholarItem: React.FC<ScholarItemProps> = ({ item }) => {
 };
 
 const Scholar = () => {
-  const { filteredList, setAllInfo, allInfo, setFilterList } = useInfo();
+  const { filteredList, setCurPage, curPage, totalNum, setFilteredList } = useInfo();
   const [pagination] = useState<number>(1);
   const nums = 3;
 
   useEffect(() => {
-    !allInfo.length &&
-      expertInfo.then((res: any) => {
-        setAllInfo(
-          res.items.map((item: Partial<SchoInfoItem>) => ({
-            ...item,
-            citations: randomFunc(20, 80),
-            paper_num: randomFunc(8, 12),
-            followers: randomFunc(8, 80),
-          }))
-        );
-        setFilterList('job_title');
-        setFilterList('work_organization');
-      });
-  }, []);
 
+    //     setFilterList('job_title');
+    //     setFilterList('work_organization');
+    setFilteredList({name: 'scholar', page:1, pageSize: nums})
+  }, []);
+  const handleChoose = (index: number) => {
+    setCurPage(index)
+    setFilteredList({page: index, name: 'scholar', pageSize: nums})
+  }
   return (
     <>
       {filteredList
         .map((item) => <ScholarItem key={item.expert_id} item={item} />)
         .slice((pagination - 1) * nums, pagination * nums)}
+      <Pagination pageSize={nums} dataLength={totalNum} onChosen={handleChoose} className='w-full flex justify-center relative'></Pagination>
     </>
   );
 };
