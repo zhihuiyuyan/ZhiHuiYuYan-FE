@@ -21,6 +21,7 @@ const AuthModal: React.FC = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [verificationCode, setVerificationCode] = useState('');
 
   const [isLogin, setIsLogin] = useState(true);
   const [isSending, setIsSending] = useState(false);
@@ -28,10 +29,18 @@ const AuthModal: React.FC = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('/api/login', {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        'http://124.222.113.16:5000/auth/login',
+        {
+          email,
+          password,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
       if (response.status === 200) {
         localStorage.setItem('token', response.data.token);
@@ -46,15 +55,66 @@ const AuthModal: React.FC = () => {
     }
   };
 
-  const handleButtonClick = () => {
-    setIsSending(true);
-    setTimeout(() => {
-      setIsSending(false);
-    }, 1000);
-    setCountdown(60);
-    setTimeout(() => {
-      setCountdown(0);
-    }, 60000);
+  const handleRegister = async () => {
+    try {
+      const response = await axios.post(
+        'http://124.222.113.16:5000/auth/register',
+        {
+          email: email,
+          password: password,
+          verification_code: verificationCode,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        localStorage.setItem('token', response.data.token);
+        setIsLogined(true);
+        onClose();
+      }
+
+      return response;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('请求出错:', error);
+    }
+  };
+
+  const handleVerification = async () => {
+    try {
+      // 这边只是让它每60秒才能点一次发送验证码
+      setIsSending(true);
+      setTimeout(() => {
+        setIsSending(false);
+      }, 1000);
+      setCountdown(60);
+      setTimeout(() => {
+        setCountdown(0);
+      }, 60000);
+
+      const response = await axios.post(
+        'http://124.222.113.16:5000/auth/verification',
+        { email: email },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log(response.data.message);
+      }
+
+      return response;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('请求出错:', error);
+    }
   };
 
   useEffect(() => {
@@ -138,14 +198,19 @@ const AuthModal: React.FC = () => {
                 <div className="flex w-[60%] items-center rounded-lg border border-red-800 bg-gray-100">
                   <IoShieldCheckmarkOutline className="relative left-3 text-[3.5vh] text-red-800" />
                   <input
+                    value={verificationCode}
+                    onChange={(e) => {
+                      setVerificationCode(e.target.value);
+                    }}
                     className="h-full w-full bg-transparent px-5 text-[1.5vh] outline-none"
                     placeholder="请输入验证码"
+                    required
                   />
                 </div>
                 <motion.button
                   whileTap={countdown ? undefined : { scale: 0.9 }}
                   className={`h-[5vh] w-[35%] rounded-xl ${countdown ? 'bg-gray-300' : 'bg-red-800'} text-[1.5vh] font-semibold text-white`}
-                  onClick={handleButtonClick}
+                  onClick={handleVerification}
                   disabled={!!countdown}
                 >
                   {isSending
@@ -165,7 +230,7 @@ const AuthModal: React.FC = () => {
           <motion.button
             whileTap={{ scale: 0.9 }}
             className={`relative ${isLogin ? 'top-[13vh]' : 'top-[17vh]'} h-[5vh] w-[20vh] rounded-3xl bg-[#A43E21] text-[1.7vh] font-semibold text-white`}
-            onClick={handleLogin}
+            onClick={isLogin ? handleLogin : handleRegister}
           >
             {isLogin ? '登录' : '注册'}
           </motion.button>
