@@ -11,7 +11,7 @@ const Conversation: React.FC = () => {
 
   return (
     <>
-      <div className="mt-12 flex h-3/4vh w-full flex-col overflow-auto px-[15vw]">
+      <div className="mt-12 flex h-[70vh] w-full flex-col overflow-auto px-[15vw]">
         {chatRecords.map((chat) => (
           <ConversationBubble
             key={genKey.next().value as number}

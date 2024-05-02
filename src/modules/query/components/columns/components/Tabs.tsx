@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
   PaperItem,
@@ -26,15 +26,17 @@ export const Tab: React.FC<TabProps> = ({ children }) => {
 
 export const Tabs: React.FC<TabsProps> = ({ tabs, type }) => {
   const [activeTab, setActiveTab] = useState(0);
-  const { setSort } = type === 'paper' ? usePaperInfo() : usePersonInfo();
-  const handleTabClick = (
-    name: keyof ScholarItem | keyof PaperItem,
-    index: number
-  ) => {
-    // @ts-ignore
-    setSort(name);
+  const { setFilteredList, setSort, pageSize } = type === 'paper' ? usePaperInfo() : usePersonInfo();
+  const handleTabClick = (index: number) => {
     setActiveTab(index);
   };
+  useEffect(() => {
+    const name = type === 'paper' ? tabs[activeTab].paper_tag : tabs[activeTab].person_tag;
+    // @ts-ignore
+    setSort(name)
+    // @ts-ignore
+    setFilteredList({name: type, sort: name, pageSize, page: 1})
+  }, [activeTab]);
 
   return (
     <div className="relative flex w-full flex-col items-center">
@@ -45,12 +47,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, type }) => {
             whileHover={{ scale: 1.1 }}
             key={index}
             className={`ml-12 flex h-full cursor-pointer items-center justify-center px-[3vh] text-[1.5vh] ${activeTab === index ? 'rounded-t-[1vh] bg-gray-100 font-semibold text-red-800' : 'text-gray-700'} `}
-            onClick={() =>
-              handleTabClick(
-                type === 'paper' ? tab.paper_tag : tab.person_tag,
-                index
-              )
-            }
+            onClick={() => handleTabClick(index)}
           >
             {tab.label}
           </motion.button>

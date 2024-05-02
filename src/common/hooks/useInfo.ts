@@ -1,4 +1,6 @@
 import { create } from 'zustand';
+import axios from 'axios';
+import { getData } from '@/app/api/loadData';
 
 export type ScholarItem = {
   expert_id: number;
@@ -31,59 +33,56 @@ export type PaperItem = {
   followers: number;
 };
 
-interface InfoStore<T> {
-  allInfo: T[];
-  filteredList: T[];
-  activatedChoice: { [name: string]: [] };
-  filterChoiceList: { [name: string]: any[] };
-  setAllInfo: (list: any[]) => void;
-  setSort: (name: keyof T) => void;
-  setFilterList: (name: keyof T) => void;
-  setFilterChoice: (name: keyof T, value: any) => void;
-  setFilteredList: (name: keyof T, value: any) => void;
+export type listType<T>  = {
+  name: 'scholar' | 'paper',
+  sort?: keyof T,
+  filters?: { [key: string]: string[] },
+  page: number,
+  pageSize?: number
 }
 
-const rootUrl = 'http://121.41.170.32:8090';
+interface InfoStore<T> {
+  filteredList: T[];
+  pageSize: number;
+  curPage: number;
+  totalNum: number;
+  sort: keyof T | null;
+  setSort: (name: keyof T) => void;
+  setCurPage: (index: number) => void;
+  filters: { [key: string]: string[] };
+  setFilters: (name: keyof T, value: string) => void;
+  unsetFilters: (name: keyof T, value: string) => void;
+  setFilteredList: (props: listType<T>) => void;
+}
+
+
 const createStore = <T>() =>
   create<InfoStore<T>>((set) => ({
-    setAllInfo: (list: T[]) => set({ allInfo: list, filteredList: list }),
-    setSort: (name) =>
-      set((state) => ({
-        filteredList: state.filteredList.sort(
-          (a, b) => Number(b[name]) - Number(a[name] as number)
-        ),
-      })),
-    setFilterChoice: (name, value) =>
-      set((state) => ({
-        activatedChoice: { ...state.activatedChoice, [name]: value },
-      })),
-    setFilterList: (name) =>
-      set((state) => ({
-        filterChoiceList: {
-          ...state.filterChoiceList,
-          [name]: Array.from(new Set(state.allInfo.map((info) => info[name]))),
-        },
-      })),
-    setFilteredList: (name, value) =>
-      set((state) => ({
-        filteredList: Array.from(
-          new Set(state.allInfo.filter((item) => item[name] === value))
-        ),
-      })),
-    allInfo: [],
+    setCurPage: (index) => set({curPage: index}),
+    setFilters: (name, value) =>
+      set((state) => {
+        // @ts-ignore
+        if(state.filters[name]?.length) return {filters: {...state.filters, [name]:state.filters[name].concat(value)}}
+        return {filters: {...state.filters, [name]: [value]}}
+      }),
+    unsetFilters: (name, value) =>
+      set((state) => {
+        // @ts-ignore
+        if(state.filters[name]?.length) return {filters: {...state.filters, [name]:state.filters[name].filter(val => val !== value)}}
+        return {filters: state.filters}
+      }),
+    setFilteredList: async (props) => {
+      let data = await getData<T>(props)
+      set({filteredList: data.items, totalNum: data.totalItems})
+    },
+    setSort: (name) => set({sort: name}),
+    sort: null,
+    pageSize: 3,
+    curPage: 1,
+    totalNum: 1,
     activatedChoice: {},
     filteredList: [],
-    filterChoiceList: {},
+    filters: {},
   }));
-export const expertInfo = fetch(`${rootUrl}/info?name=scholar&page=1`).then(
-  (res) => {
-    console.log(res);
-    return res.json();
-  }
-);
-export const paperInfo = fetch(`${rootUrl}/info?name=paper&page=1`).then(
-  (res) => res.json()
-);
-
 export const usePersonInfo = createStore<ScholarItem>();
 export const usePaperInfo = createStore<PaperItem>();
