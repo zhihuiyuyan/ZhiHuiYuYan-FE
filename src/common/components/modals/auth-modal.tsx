@@ -86,7 +86,6 @@ const AuthModal: React.FC = () => {
 
   const handleVerification = async () => {
     try {
-      // 这边只是让它每60秒才能点一次发送验证码
       setIsSending(true);
       setTimeout(() => {
         setIsSending(false);
