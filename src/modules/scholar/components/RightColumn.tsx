@@ -1,19 +1,18 @@
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 import {
   PaperItem as PaperItemType,
   ScholarItem as SchoInfoItem,
-  expertInfo,
-  paperInfo,
   usePaperInfo,
   usePersonInfo,
 } from '@/common/hooks/useInfo';
+import { getPapers } from '@/app/api/loadData';
 
 export const PaperItem: React.FC<{ item: PaperItemType }> = ({ item }) => {
-  const { allInfo } = usePaperInfo();
+  const { filteredList } = usePaperInfo();
   const router = useRouter();
   const handleClick = () => {
     router.push(`/query/paper/${item.article_id}`);
@@ -46,7 +45,7 @@ export const PaperItem: React.FC<{ item: PaperItemType }> = ({ item }) => {
           下载全文
         </p>
       </div>
-      {item.article_id !== allInfo[length - 1]?.article_id && (
+      {item.article_id !== filteredList[length - 1]?.article_id && (
         <BreaklineDashed className="w-[90%] border-t-2" />
       )}
     </div>
@@ -54,35 +53,13 @@ export const PaperItem: React.FC<{ item: PaperItemType }> = ({ item }) => {
 };
 
 const Paper: React.FC<{ scholarID: string }> = ({ scholarID }) => {
-  const { filteredList, setAllInfo, setFilterList } = usePaperInfo();
-  const { allInfo } = usePersonInfo();
-  const scholar = allInfo.find(
-    (item) => item.expert_id === parseInt(scholarID)
-  );
-  const { expert_name } = scholar!;
-
+  const [paperList, setPaperList] = useState<PaperItemType[]>([]);
   useEffect(() => {
-    !allInfo.length &&
-      expertInfo.then((res: any[]) => {
-        setAllInfo(
-          res.map((item: Partial<SchoInfoItem>) => ({
-            ...item,
-          }))
-        );
-      });
-    paperInfo.then((res) => {
-      const list = res.items.filter((obj: PaperItemType) =>
-        obj.article_author.includes(expert_name)
-      );
-      setAllInfo(list);
-      setFilterList('topics');
-      setFilterList('belong_db');
-    });
+    getPapers(Number(scholarID)).then(res => setPaperList(res))
   }, []);
-
   return (
     <>
-      {filteredList.map((item) => (
+      {paperList && paperList.map((item) => (
         <PaperItem key={item.article_id} item={item} />
       ))}
     </>

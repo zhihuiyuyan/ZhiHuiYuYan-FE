@@ -4,17 +4,17 @@ import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 import {
   PaperItem as PaperItemType,
-  paperInfo,
   usePaperInfo,
 } from '@/common/hooks/useInfo';
 import { useRouter } from 'next/navigation';
+import Pagination from '@/common/components/elements/pagination';
 
 interface PaperItemProps {
   item: PaperItemType;
 }
 
 export const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
-  const { allInfo } = usePaperInfo();
+  const { filteredList } = usePaperInfo();
   const router = useRouter();
   const handleClick = () => {
     router.push(`/query/paper/${item.article_id}`);
@@ -47,7 +47,7 @@ export const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
           查看全文
         </p>
       </div>
-      {item.article_id !== allInfo[length - 1]?.article_id && (
+      {item.article_id !== filteredList[length - 1]?.article_id && (
         <BreaklineDashed className="w-[90%] border-t-2" />
       )}
     </div>
@@ -55,21 +55,18 @@ export const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
 };
 
 const Paper = () => {
-  const { filteredList, setAllInfo, setFilterList } = usePaperInfo();
-  const [pagination, setPagination] = useState<number>(1);
-  const nums = 3;
+  const { filteredList, setFilteredList, pageSize, sort, filters, totalNum, curPage, setCurPage } = usePaperInfo();
+  const handleChoose = (index: number) => {
+    setCurPage(index)
+    setFilteredList({page: index, name: 'paper', pageSize: pageSize, sort: sort as keyof PaperItemType, filters})
+  }
   useEffect(() => {
-    paperInfo.then((res) => {
-      setAllInfo(res.items);
-      setFilterList('topics');
-      setFilterList('belong_db');
-    });
-  }, []);
+    setFilteredList({name: 'paper', page: 1 ,pageSize: pageSize, sort: sort as keyof PaperItemType, filters})
+  }, [filters, pageSize]);
   return (
     <>
-      {filteredList
-        .map((item) => <PaperItem key={item.article_id} item={item} />)
-        .slice(0, 3)}
+      {filteredList.map((item) => <PaperItem key={item.article_id} item={item} />)}
+      <Pagination pageSize={pageSize} dataLength={totalNum} onChosen={handleChoose} className='w-full flex justify-center relative'></Pagination>
     </>
   );
 };
