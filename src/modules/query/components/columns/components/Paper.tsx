@@ -55,19 +55,18 @@ export const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
 };
 
 const Paper = () => {
-  const { filteredList, setFilteredList, totalNum, curPage, setCurPage } = usePaperInfo();
-  const num = 3;
+  const { filteredList, setFilteredList, pageSize, sort, filters, totalNum, curPage, setCurPage } = usePaperInfo();
   const handleChoose = (index: number) => {
     setCurPage(index)
-    setFilteredList({page: index, name: 'paper', pageSize: num})
+    setFilteredList({page: index, name: 'paper', pageSize: pageSize, sort: sort as keyof PaperItemType, filters})
   }
   useEffect(() => {
-    setFilteredList({name: 'paper', page: 1 ,pageSize: num})
-  }, []);
+    setFilteredList({name: 'paper', page: 1 ,pageSize: pageSize, sort: sort as keyof PaperItemType, filters})
+  }, [filters, pageSize]);
   return (
     <>
       {filteredList.map((item) => <PaperItem key={item.article_id} item={item} />)}
-      <Pagination pageSize={num} dataLength={totalNum} onChosen={handleChoose} className='w-full flex justify-center relative'></Pagination>
+      <Pagination pageSize={pageSize} dataLength={totalNum} onChosen={handleChoose} className='w-full flex justify-center relative'></Pagination>
     </>
   );
 };

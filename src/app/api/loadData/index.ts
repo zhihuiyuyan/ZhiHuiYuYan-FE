@@ -10,6 +10,17 @@ export const getData = async <T>(props: listType<T>) => {
   })
 }
 
-// export const getFilterList = async <T>() => {
-//   return await axios.get()
-// }
+export const getFilterList = async (name: 'scholar' | 'paper', filter_names: string[]) => {
+  return await axios.post(`${rootUrl}/filter`, {
+    name,
+    filter_names
+  }).then((res) => res.data.data).catch((error) => {
+    console.error('There was an error in getting filtered list!', error);
+  })
+}
+
+export const getPapers = async (id: number) => {
+  return axios.get(`${rootUrl}/filter?id=${id}`).then(res => res.data.data).catch((error) => {
+    console.error('There was an error in getting papers!', error);
+  })
+}

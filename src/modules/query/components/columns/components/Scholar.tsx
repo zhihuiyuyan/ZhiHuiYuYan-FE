@@ -76,26 +76,20 @@ const ScholarItem: React.FC<ScholarItemProps> = ({ item }) => {
 };
 
 const Scholar = () => {
-  const { filteredList, setCurPage, curPage, totalNum, setFilteredList } = useInfo();
-  const [pagination] = useState<number>(1);
-  const nums = 3;
+  const { filteredList, pageSize, setCurPage, sort,filters, curPage, totalNum, setFilteredList } = useInfo();
 
   useEffect(() => {
 
-    //     setFilterList('job_title');
-    //     setFilterList('work_organization');
-    setFilteredList({name: 'scholar', page:1, pageSize: nums})
-  }, []);
+    setFilteredList({name: 'scholar', page:1, pageSize: pageSize, sort: sort as keyof SchoInfoItem, filters})
+  }, [filters, pageSize]);
   const handleChoose = (index: number) => {
     setCurPage(index)
-    setFilteredList({page: index, name: 'scholar', pageSize: nums})
+    setFilteredList({page: index, name: 'scholar', sort: sort as keyof SchoInfoItem, pageSize: pageSize, filters})
   }
   return (
     <>
-      {filteredList
-        .map((item) => <ScholarItem key={item.expert_id} item={item} />)
-        .slice((pagination - 1) * nums, pagination * nums)}
-      <Pagination pageSize={nums} dataLength={totalNum} onChosen={handleChoose} className='w-full flex justify-center relative'></Pagination>
+      {filteredList.map((item) => <ScholarItem key={item.expert_id} item={item} />)}
+      <Pagination pageSize={pageSize} dataLength={totalNum} onChosen={handleChoose} className='w-full flex justify-center relative'></Pagination>
     </>
   );
 };

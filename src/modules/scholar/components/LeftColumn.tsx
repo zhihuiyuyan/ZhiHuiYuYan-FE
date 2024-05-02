@@ -9,7 +9,6 @@ import {
 } from '@/common/components/elements/Avatar';
 import {
   ScholarItem as SchoInfoItem,
-  expertInfo,
   usePersonInfo as useInfo,
 } from '@/common/hooks/useInfo';
 
@@ -63,8 +62,8 @@ const Scholar: React.FC<ScholarProps> = ({ item }) => {
 };
 
 const LeftColumn: React.FC<LeftColumnProps> = ({ scholarID }) => {
-  const { setAllInfo, allInfo } = useInfo();
-  const scholar = allInfo.find(
+  const { filteredList } = useInfo();
+  const scholar = filteredList.find(
     (item) => item.expert_id === parseInt(scholarID)
   );
   const {
@@ -81,17 +80,6 @@ const LeftColumn: React.FC<LeftColumnProps> = ({ scholarID }) => {
     job_title,
     citations,
   } = scholar!;
-
-  useEffect(() => {
-    !allInfo.length &&
-      expertInfo.then((res: any[]) => {
-        setAllInfo(
-          res.map((item: Partial<SchoInfoItem>) => ({
-            ...item,
-          }))
-        );
-      });
-  }, []);
 
   return (
     <div className="flex flex-[1.8] flex-col gap-[2vh]">
