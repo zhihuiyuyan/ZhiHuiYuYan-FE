@@ -13,6 +13,7 @@ const Search: React.FC = () => {
     // @ts-ignore
     setFilteredList({filters, search: val, sort, pageSize, page: curPage, name: PaperOrScholarSelected === '论文' ? 'paper' : 'scholar'})
   }
+
   return (
     <>
       <div

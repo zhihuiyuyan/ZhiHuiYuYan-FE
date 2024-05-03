@@ -6,9 +6,11 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa6';
 import { FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
 import { IoSearchOutline } from 'react-icons/io5';
 
+import { useSearchInput } from '@/common/hooks/useSearchInputStore';
+
 interface SearchBarProps {
   type: 'normal' | 'advanced' | 'history';
-  onSubmit?: (e: any) => void
+  onSubmit?: (e: any) => void;
 }
 
 const AdvancedSearch: React.FC = () => {
@@ -57,15 +59,15 @@ const AdvancedSearch: React.FC = () => {
 const SearchBar: React.FC<SearchBarProps> = ({ type, onSubmit }) => {
   const [isAllClicked, setIsAllClicked] = useState(false);
   const [isAdvancedClicked, setIsAdvancedClicked] = useState(false);
-  const [inputValue, setInputValue] = useState<string>('');
+  const { searchInput, setSearchInput } = useSearchInput();
   const inputStyle =
     'rounded-l-lg border-2 border-red-800 px-[2%] text-[1.8vh] outline-none';
   const handleInput = (e: any) => {
-    setInputValue(e.target.value)
-  }
+    setSearchInput(e.target.value);
+  };
   const handleSubmit = () => {
-    onSubmit && onSubmit(inputValue)
-  }
+    onSubmit && onSubmit(searchInput);
+  };
   return (
     <motion.div
       whileTap={{ scale: 0.9 }}
@@ -85,7 +87,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ type, onSubmit }) => {
                 <FaChevronDown className="absolute right-2" />
               )}
             </button>
-            <input value={inputValue} onInput={handleInput} className="flex-[3] border-y-2 border-red-800 px-[2%] text-[1.8vh] outline-none lg:flex-[4]" />
+            <input
+              value={searchInput}
+              onInput={handleInput}
+              className="flex-[3] border-y-2 border-red-800 px-[2%] text-[1.8vh] outline-none lg:flex-[4]"
+            />
             <button
               className="flex flex-1 items-center justify-center border-y-2 border-red-800 bg-white text-[1.3vh] text-gray-500"
               onClick={() => setIsAdvancedClicked(!isAdvancedClicked)}
