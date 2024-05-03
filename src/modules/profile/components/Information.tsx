@@ -1,7 +1,10 @@
 'use client';
 
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { IoPersonCircleOutline } from 'react-icons/io5';
 
 import {
   Avatar,
@@ -11,9 +14,6 @@ import {
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 import { useIsLogined } from '@/common/hooks/useIsLogined';
 import { useProfile } from '@/common/hooks/useProfileStore';
-import axios from 'axios';
-import { useEffect } from 'react';
-import { IoPersonCircleOutline } from 'react-icons/io5';
 
 const BUTTON_ITEMS = [
   { herf: '/profile/follow', content: '我的关注' },
@@ -22,11 +22,10 @@ const BUTTON_ITEMS = [
 
 const Information = () => {
   const router = useRouter();
-  const token = localStorage.getItem('token');
   const { isLogined, setIsLogined } = useIsLogined();
   const { profile, setProfile } = useProfile();
 
-  const handleGetAvatar = async () => {
+  const handleGetAvatar = async (token: string) => {
     try {
       const response = await axios.get(
         'http://124.222.113.16:5000/user/profile',
@@ -48,12 +47,13 @@ const Information = () => {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
     if (token) {
-      handleGetAvatar();
+      handleGetAvatar(token);
     }
 
     setIsLogined(!!token);
-  }, [token]);
+  }, []);
 
   return (
     <div className="relative flex h-[14vh] w-full items-center">
