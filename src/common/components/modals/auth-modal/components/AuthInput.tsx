@@ -1,4 +1,4 @@
-interface AuthInputFieldProps {
+interface AuthInputProps {
   icon: React.ReactNode;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
@@ -6,7 +6,7 @@ interface AuthInputFieldProps {
   className?: string;
 }
 
-const AuthInputField: React.FC<AuthInputFieldProps> = ({
+const AuthInput: React.FC<AuthInputProps> = ({
   icon,
   value,
   setValue,
@@ -31,4 +31,4 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
   );
 };
 
-export default AuthInputField;
+export default AuthInput;

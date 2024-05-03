@@ -18,13 +18,14 @@ import {
 import { useIsLogined } from '@/common/hooks/useIsLogined';
 import { useModal } from '@/common/hooks/useModalStore';
 
-import AuthInputField from './AuthInputField';
+import AuthInputField from './AuthInput';
+import ProfileInputField from './ProfileInput';
 
 const AuthModal: React.FC = () => {
   const { isOpen, onClose, type } = useModal();
   const { setIsLogined } = useIsLogined();
 
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(true);
 
   const isModalOpen = isOpen && type === 'auth';
 
@@ -250,48 +251,24 @@ const AuthModal: React.FC = () => {
           >
             {isRegistered ? (
               <>
-                <div className="relative flex h-[3vh] w-[60%] items-center border-b-2 border-red-800">
-                  <p className="absolute text-nowrap text-[1.5vh] font-semibold text-blue-800">
-                    姓名：
-                  </p>
-                  <input
-                    value={name}
-                    onChange={(e) => {
-                      setName(e.target.value);
-                    }}
-                    className="h-full w-full bg-transparent px-12 text-center text-[1.5vh] outline-none"
-                    placeholder="请输入姓名"
-                    required
-                  />
-                </div>
-                <div className="relative flex h-[3vh] w-[60%] items-center border-b-2 border-red-800">
-                  <p className="absolute text-nowrap text-[1.5vh] font-semibold text-blue-800">
-                    性别：
-                  </p>
-                  <input
-                    value={gender}
-                    onChange={(e) => {
-                      setGender(e.target.value);
-                    }}
-                    className="h-full w-full bg-transparent px-12 text-center text-[1.5vh] outline-none"
-                    placeholder="请输入性别"
-                    required
-                  />
-                </div>
-                <div className="relative flex h-[3vh] w-[60%] items-center border-b-2 border-red-800">
-                  <p className="absolute text-nowrap text-[1.5vh] font-semibold text-blue-800">
-                    所属机构：
-                  </p>
-                  <input
-                    value={institution}
-                    onChange={(e) => {
-                      setInstitution(e.target.value);
-                    }}
-                    className="h-full w-full bg-transparent px-12 text-center text-[1.5vh] outline-none"
-                    placeholder="请输入机构"
-                    required
-                  />
-                </div>
+                <ProfileInputField
+                  label="姓名"
+                  value={name}
+                  setValue={setName}
+                  placeholder="请输入姓名"
+                />
+                <ProfileInputField
+                  label="性别"
+                  value={gender}
+                  setValue={setGender}
+                  placeholder="请输入性别"
+                />
+                <ProfileInputField
+                  label="所属机构"
+                  value={institution}
+                  setValue={setInstitution}
+                  placeholder="请输入机构"
+                />
               </>
             ) : (
               <>
