@@ -10,15 +10,21 @@ import {
   IoShieldCheckmarkOutline,
 } from 'react-icons/io5';
 
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@/common/components/elements/Avatar';
 import { useIsLogined } from '@/common/hooks/useIsLogined';
 import { useModal } from '@/common/hooks/useModalStore';
-import { Avatar, AvatarFallback, AvatarImage } from '../elements/Avatar';
+
+import AuthInputField from './AuthInputField';
 
 const AuthModal: React.FC = () => {
   const { isOpen, onClose, type } = useModal();
   const { setIsLogined } = useIsLogined();
 
-  const [isRegistered, setIsRegistered] = useState(true);
+  const [isRegistered, setIsRegistered] = useState(false);
 
   const isModalOpen = isOpen && type === 'auth';
 
@@ -242,7 +248,7 @@ const AuthModal: React.FC = () => {
           <div
             className={`relative top-[11vh] flex w-full flex-col items-center gap-5 ${isRegistered && 'gap-7'}`}
           >
-            {isRegistered && (
+            {isRegistered ? (
               <>
                 <div className="relative flex h-[3vh] w-[60%] items-center border-b-2 border-red-800">
                   <p className="absolute text-nowrap text-[1.5vh] font-semibold text-blue-800">
@@ -287,62 +293,44 @@ const AuthModal: React.FC = () => {
                   />
                 </div>
               </>
-            )}
-            {!isRegistered && (
-              <div className="relative flex h-[5vh] w-[70%] items-center rounded-lg border border-red-800 bg-gray-100">
-                <IoPersonCircleOutline className="relative left-3 text-[3.5vh] text-red-800" />
-                <input
+            ) : (
+              <>
+                <AuthInputField
+                  icon={<IoPersonCircleOutline />}
                   value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                  className="h-full w-full bg-transparent px-5 text-[1.5vh] outline-none"
-                  placeholder="请输入邮箱"
-                  required
+                  setValue={setEmail}
+                  placeholder={'请输入邮箱'}
                 />
-              </div>
-            )}
-            {!isRegistered && (
-              <div className="relative flex h-[5vh] w-[70%] items-center rounded-lg border border-red-800 bg-gray-100">
-                <IoMdLock className="relative left-3 text-[3.5vh] text-red-800" />
-                <input
+                <AuthInputField
+                  icon={<IoMdLock />}
                   value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                  className="h-full w-full bg-transparent px-5 text-[1.5vh] outline-none"
-                  placeholder="请输入密码"
-                  required
+                  setValue={setPassword}
+                  placeholder={'请输入密码'}
                 />
-              </div>
-            )}
-            {!isRegistered && !isLogin && (
-              <div className="relative flex h-[5vh] w-[70%] justify-between">
-                <div className="flex w-[60%] items-center rounded-lg border border-red-800 bg-gray-100">
-                  <IoShieldCheckmarkOutline className="relative left-3 text-[3.5vh] text-red-800" />
-                  <input
-                    value={verificationCode}
-                    onChange={(e) => {
-                      setVerificationCode(e.target.value);
-                    }}
-                    className="h-full w-full bg-transparent px-5 text-[1.5vh] outline-none"
-                    placeholder="请输入验证码"
-                    required
-                  />
-                </div>
-                <motion.button
-                  whileTap={countdown ? undefined : { scale: 0.9 }}
-                  className={`h-[5vh] w-[35%] rounded-xl ${countdown ? 'bg-gray-300' : 'bg-red-800'} text-[1.5vh] font-semibold text-white`}
-                  onClick={handleVerification}
-                  disabled={!!countdown}
-                >
-                  {isSending
-                    ? '发送中...'
-                    : countdown > 0
-                      ? `${countdown}秒后再发送`
-                      : '获取验证码'}
-                </motion.button>
-              </div>
+                {!isLogin && (
+                  <div className="relative flex h-[5vh] w-[70%] justify-between">
+                    <AuthInputField
+                      icon={<IoShieldCheckmarkOutline />}
+                      value={verificationCode}
+                      setValue={setVerificationCode}
+                      placeholder={'请输入验证码'}
+                      className="!w-[60%]"
+                    />
+                    <motion.button
+                      whileTap={countdown ? undefined : { scale: 0.9 }}
+                      className={`h-[5vh] w-[35%] rounded-xl ${countdown ? 'bg-gray-300' : 'bg-red-800'} text-[1.5vh] font-semibold text-white`}
+                      onClick={handleVerification}
+                      disabled={!!countdown}
+                    >
+                      {isSending
+                        ? '发送中...'
+                        : countdown > 0
+                          ? `${countdown}秒后再发送`
+                          : '获取验证码'}
+                    </motion.button>
+                  </div>
+                )}
+              </>
             )}
           </div>
           {!isRegistered && isLogin && (
