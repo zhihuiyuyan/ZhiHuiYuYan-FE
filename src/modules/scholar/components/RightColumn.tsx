@@ -8,6 +8,7 @@ import {
   usePaperInfo,
 } from '@/common/hooks/useInfo';
 import { getPapers } from '../../../common/utils/loadData';
+import EChartComponent from '@/common/components/elements/Chart/Chart';
 
 export const PaperItem: React.FC<{ item: PaperItemType }> = ({ item }) => {
   const { filteredList } = usePaperInfo();
@@ -37,7 +38,7 @@ export const PaperItem: React.FC<{ item: PaperItemType }> = ({ item }) => {
         </div>
         <p className="absolute right-[5%] top-[2vh] flex cursor-pointer items-center gap-[1vh] text-[1.3vh] text-red-800">
           {item.isCollected ? <IoHeart /> : <IoHeartOutline />}
-          已收藏
+          未收藏
         </p>
         <p className="absolute right-[5%] top-[12vh] flex cursor-pointer items-center gap-[1vh] text-[1.3vh] text-blue-800">
           下载全文
@@ -67,10 +68,16 @@ const Paper: React.FC<{ scholarID: string }> = ({ scholarID }) => {
 
 const RightColumn: React.FC<{ scholarID: string }> = ({ scholarID }) => {
   return (
-    <div className="relative top-[2vh] flex h-auto flex-[5] flex-col items-center gap-[2vh] rounded-[1vh] bg-white px-[2%] py-[3vh]">
-      <div className="flex h-[23vh] w-full items-center justify-center bg-gray-200">
+    <div className="border-2 border-gray-200 rounded-3xl relative top-[2vh] flex h-auto flex-[5] flex-col items-center gap-[2vh] bg-white px-[2%] py-[3vh]">
+      <div className="flex h-[23vh] w-full items-center justify-center bg-gray-200 rounded-lg">
         研究方向趋势图
+        <EChartComponent type='river' data={{
+          data: {},
+          xNames: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+          title: "研究趋势"
+        }} className='w-[80%] h-[90%]'></EChartComponent>
       </div>
+
       <div className="h-[59vh] w-full overflow-x-hidden overflow-y-scroll">
         <Paper scholarID={scholarID} />
       </div>

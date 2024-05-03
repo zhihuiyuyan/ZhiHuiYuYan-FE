@@ -28,6 +28,7 @@
     "@types/jsonwebtoken": "^9.0.6",
     "axios": "^1.6.8",
     "clsx": "^2.1.1",
+    "echarts": "^5.5.0",
     "firebase": "^10.11.1",
     "firebase-admin": "^12.1.0",
     "framer-motion": "^11.1.7",

@@ -59,7 +59,7 @@ const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
         </div>
         <p className="absolute right-[2%] top-[2vh] flex cursor-pointer items-center gap-[1vh] text-[1.3vh] text-red-800">
           {item.isCollected ? <IoHeart /> : <IoHeartOutline />}
-          已收藏
+          未收藏
         </p>
         <p className="absolute right-[3%] top-[12vh] flex cursor-pointer items-center gap-[1vh] text-[1.3vh] text-gray-700">
           下载全文

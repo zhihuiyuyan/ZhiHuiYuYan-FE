@@ -80,9 +80,10 @@ const LeftColumn: React.FC<LeftColumnProps> = ({ className }) => {
             <p className="text-[1.8vh] font-semibold text-blue-800">学科</p>
             <div className="h-[15vh] w-[75%] rounded-[0.5vh] bg-gray-100 p-[1vh]">
               <div className="flex flex-col gap-[0.5vh]">
-                <p className="text-[1.3vh] text-gray-800">医学（9）</p>
-                <p className="text-[1.3vh] text-gray-800">理学（9）</p>
-                <p className="text-[1.3vh] text-gray-800">工学（9）</p>
+                <p className="text-[1.3vh] text-gray-800">中国语言文学（569）</p>
+                <p className="text-[1.3vh] text-gray-800">外国语言文学（367）</p>
+                <p className="text-[1.3vh] text-gray-800">古代语言文学（221）</p>
+                <p className="text-[1.3vh] text-gray-800">近代语言文学（305）</p>
               </div>
             </div>
           </div>

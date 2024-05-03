@@ -84,6 +84,9 @@ const config: Config = {
       },
     },
   },
+  daisyui: {
+    themes: ['light'],
+  },
   plugins: [require('tailwind-scrollbar-hide'), require('daisyui')],
 };
 export default config;
