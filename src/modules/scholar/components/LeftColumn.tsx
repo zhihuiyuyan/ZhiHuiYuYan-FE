@@ -1,16 +1,11 @@
 'use client';
 
-import { useEffect } from 'react';
-
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from '@/common/components/elements/Avatar';
-import {
-  ScholarItem as SchoInfoItem,
-  usePersonInfo as useInfo,
-} from '@/common/hooks/useInfo';
+import { usePersonInfo as useInfo } from '@/common/hooks/useInfo';
 
 interface LeftColumnProps {
   scholarID: string;

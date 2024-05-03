@@ -1,6 +1,5 @@
-import { create } from 'zustand';
-import axios from 'axios';
 import { getData } from '@/app/api/loadData';
+import { create } from 'zustand';
 
 export type ScholarItem = {
   expert_id: number;
@@ -33,13 +32,13 @@ export type PaperItem = {
   followers: number;
 };
 
-export type listType<T>  = {
-  name: 'scholar' | 'paper',
-  sort?: keyof T,
-  filters?: { [key: string]: string[] },
-  page: number,
-  pageSize?: number
-}
+export type listType<T> = {
+  name: 'scholar' | 'paper';
+  sort?: keyof T;
+  filters?: { [key: string]: string[] };
+  page: number;
+  pageSize?: number;
+};
 
 interface InfoStore<T> {
   filteredList: T[];
@@ -55,27 +54,38 @@ interface InfoStore<T> {
   setFilteredList: (props: listType<T>) => void;
 }
 
-
 const createStore = <T>() =>
   create<InfoStore<T>>((set) => ({
-    setCurPage: (index) => set({curPage: index}),
+    setCurPage: (index) => set({ curPage: index }),
     setFilters: (name, value) =>
       set((state) => {
         // @ts-ignore
-        if(state.filters[name]?.length) return {filters: {...state.filters, [name]:state.filters[name].concat(value)}}
-        return {filters: {...state.filters, [name]: [value]}}
+        if (state.filters[name]?.length)
+          return {
+            filters: {
+              ...state.filters,
+              [name]: state.filters[name].concat(value),
+            },
+          };
+        return { filters: { ...state.filters, [name]: [value] } };
       }),
     unsetFilters: (name, value) =>
       set((state) => {
         // @ts-ignore
-        if(state.filters[name]?.length) return {filters: {...state.filters, [name]:state.filters[name].filter(val => val !== value)}}
-        return {filters: state.filters}
+        if (state.filters[name]?.length)
+          return {
+            filters: {
+              ...state.filters,
+              [name]: state.filters[name].filter((val) => val !== value),
+            },
+          };
+        return { filters: state.filters };
       }),
     setFilteredList: async (props) => {
-      let data = await getData<T>(props)
-      set({filteredList: data.items, totalNum: data.totalItems})
+      let data = await getData<T>(props);
+      set({ filteredList: data.items, totalNum: data.totalItems });
     },
-    setSort: (name) => set({sort: name}),
+    setSort: (name) => set({ sort: name }),
     sort: null,
     pageSize: 3,
     curPage: 1,

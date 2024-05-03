@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 
 import {
@@ -8,12 +8,11 @@ import {
   AvatarImage,
 } from '@/common/components/elements/Avatar';
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
+import Pagination from '@/common/components/elements/pagination';
 import {
   ScholarItem as SchoInfoItem,
   usePersonInfo as useInfo,
 } from '@/common/hooks/useInfo';
-import { randomFunc } from '@/common/hooks/utils';
-import Pagination from '@/common/components/elements/pagination';
 
 interface ScholarItemProps {
   item: SchoInfoItem;
@@ -76,20 +75,47 @@ const ScholarItem: React.FC<ScholarItemProps> = ({ item }) => {
 };
 
 const Scholar = () => {
-  const { filteredList, pageSize, setCurPage, sort,filters, curPage, totalNum, setFilteredList } = useInfo();
+  const {
+    filteredList,
+    pageSize,
+    setCurPage,
+    sort,
+    filters,
+    curPage,
+    totalNum,
+    setFilteredList,
+  } = useInfo();
 
   useEffect(() => {
-
-    setFilteredList({name: 'scholar', page:1, pageSize: pageSize, sort: sort as keyof SchoInfoItem, filters})
+    setFilteredList({
+      name: 'scholar',
+      page: 1,
+      pageSize: pageSize,
+      sort: sort as keyof SchoInfoItem,
+      filters,
+    });
   }, [filters, pageSize]);
   const handleChoose = (index: number) => {
-    setCurPage(index)
-    setFilteredList({page: index, name: 'scholar', sort: sort as keyof SchoInfoItem, pageSize: pageSize, filters})
-  }
+    setCurPage(index);
+    setFilteredList({
+      page: index,
+      name: 'scholar',
+      sort: sort as keyof SchoInfoItem,
+      pageSize: pageSize,
+      filters,
+    });
+  };
   return (
     <>
-      {filteredList.map((item) => <ScholarItem key={item.expert_id} item={item} />)}
-      <Pagination pageSize={pageSize} dataLength={totalNum} onChosen={handleChoose} className='w-full flex justify-center relative'></Pagination>
+      {filteredList.map((item) => (
+        <ScholarItem key={item.expert_id} item={item} />
+      ))}
+      <Pagination
+        pageSize={pageSize}
+        dataLength={totalNum}
+        onChosen={handleChoose}
+        className="relative flex w-full justify-center"
+      ></Pagination>
     </>
   );
 };
