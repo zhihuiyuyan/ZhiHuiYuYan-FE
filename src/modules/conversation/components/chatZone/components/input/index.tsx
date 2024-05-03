@@ -11,7 +11,7 @@ import SummaryPlugin from './plugins/summary';
 import UploadFile, { ChatFiles } from './plugins/uploadFile';
 
 const ChatInput: React.FC = () => {
-  const { sendMessage } = useChat();
+  const { sendMessage, replaceMessage } = useChat();
   const { inputs, setText, setPlugins } = useChatInput();
   const [plugins, setLocalPlugins] = useState<React.FC<PluginProps<any>>[]>([
     UploadFile,
@@ -22,6 +22,10 @@ const ChatInput: React.FC = () => {
   }, [inputs.text]);
   const handleSubmit = () => {
     sendMessage('user', inputs['text']);
+    sendMessage('robot', '...')
+    setTimeout(() => {
+      replaceMessage('robot', '1232111111111111111')
+    }, 800)
     setText('');
   };
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

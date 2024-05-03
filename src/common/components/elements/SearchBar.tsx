@@ -8,6 +8,7 @@ import { IoSearchOutline } from 'react-icons/io5';
 
 interface SearchBarProps {
   type: 'normal' | 'advanced' | 'history';
+  onSubmit?: (e: any) => void
 }
 
 const AdvancedSearch: React.FC = () => {
@@ -53,13 +54,18 @@ const AdvancedSearch: React.FC = () => {
   );
 };
 
-const SearchBar: React.FC<SearchBarProps> = ({ type }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ type, onSubmit }) => {
   const [isAllClicked, setIsAllClicked] = useState(false);
   const [isAdvancedClicked, setIsAdvancedClicked] = useState(false);
-
+  const [inputValue, setInputValue] = useState<string>('');
   const inputStyle =
     'rounded-l-lg border-2 border-red-800 px-[2%] text-[1.8vh] outline-none';
-
+  const handleInput = (e: any) => {
+    setInputValue(e.target.value)
+  }
+  const handleSubmit = () => {
+    onSubmit && onSubmit(inputValue)
+  }
   return (
     <motion.div
       whileTap={{ scale: 0.9 }}
@@ -79,7 +85,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ type }) => {
                 <FaChevronDown className="absolute right-2" />
               )}
             </button>
-            <input className="flex-[3] border-y-2 border-red-800 px-[2%] text-[1.8vh] outline-none lg:flex-[4]" />
+            <input value={inputValue} onInput={handleInput} className="flex-[3] border-y-2 border-red-800 px-[2%] text-[1.8vh] outline-none lg:flex-[4]" />
             <button
               className="flex flex-1 items-center justify-center border-y-2 border-red-800 bg-white text-[1.3vh] text-gray-500"
               onClick={() => setIsAdvancedClicked(!isAdvancedClicked)}
@@ -96,6 +102,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ type }) => {
         />
       )}
       <button
+        onClick={handleSubmit}
         className={`flex-1 rounded-r-lg bg-red-800 px-[2%] text-[1.8vh] text-white ${type === 'advanced' ? 'h-[5vh]' : ''}`}
       >
         检索

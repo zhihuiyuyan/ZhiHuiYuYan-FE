@@ -2,12 +2,14 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 
-import { getPapers } from '@/app/api/loadData';
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 import {
   PaperItem as PaperItemType,
+  ScholarItem as SchoInfoItem,
   usePaperInfo,
+  usePersonInfo,
 } from '@/common/hooks/useInfo';
+import { getPapers } from '../../../common/utils/loadData';
 
 export const PaperItem: React.FC<{ item: PaperItemType }> = ({ item }) => {
   const { filteredList } = usePaperInfo();
@@ -53,14 +55,13 @@ export const PaperItem: React.FC<{ item: PaperItemType }> = ({ item }) => {
 const Paper: React.FC<{ scholarID: string }> = ({ scholarID }) => {
   const [paperList, setPaperList] = useState<PaperItemType[]>([]);
   useEffect(() => {
-    getPapers(Number(scholarID)).then((res) => setPaperList(res));
+    getPapers(Number(scholarID)).then(res => setPaperList(res))
   }, []);
   return (
     <>
-      {paperList &&
-        paperList.map((item) => (
-          <PaperItem key={item.article_id} item={item} />
-        ))}
+      {paperList && paperList.map((item) => (
+        <PaperItem key={item.article_id} item={item} />
+      ))}
     </>
   );
 };
