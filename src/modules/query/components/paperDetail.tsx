@@ -23,7 +23,7 @@ const PaperDetail: React.FC<{ paper_id: string }> = ({ paper_id }) => {
   return (
     <div className="flex h-full w-full items-center justify-center">
       <div className="mr-8 mt-8 h-[84vh] w-[70vw] flex-col justify-between ">
-        <div className="h-[50vh] w-full  rounded-2xl bg-white p-4 shadow overflow-scroll">
+        <div className="h-[50vh] w-full  overflow-scroll rounded-2xl bg-white p-4 shadow">
           <h4 className="mt-4 text-center">{curItem?.article_name}</h4>
           <h6 className="mt-2 text-center">{curItem?.article_author}</h6>
           <div className="relative mt-8 h-[24vh] rounded-md bg-bgDefault p-4 shadow">
@@ -42,11 +42,11 @@ const PaperDetail: React.FC<{ paper_id: string }> = ({ paper_id }) => {
             <span>收藏</span>
           </div>
         </div>
-        <div className="mt-8 h-[30vh] w-full rounded-2xl bg-white shadow p-4">
+        <div className="mt-8 h-[30vh] w-full rounded-2xl bg-white p-4 shadow">
           <h4 className="text-center text-blue-500">文章脑图</h4>
         </div>
       </div>
-      <div className="mt-8 h-[84vh] w-[20vw] overflow-scroll rounded-2xl shadow bg-white p-4">
+      <div className="mt-8 h-[84vh] w-[20vw] overflow-scroll rounded-2xl bg-white p-4 shadow">
         <h5 className="text-blue-500">相关论文</h5>
         {recommend && recommend.map((item) => <Item item={item}></Item>)}
       </div>

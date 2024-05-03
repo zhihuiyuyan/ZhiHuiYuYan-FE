@@ -27,6 +27,7 @@ const Drop: React.FC = () => {
           className="text-[1.7vh] text-gray-400"
           onClick={() => {
             setIsLogined(false);
+            // localStorage.removeItem('token');
           }}
         >
           退出账号
