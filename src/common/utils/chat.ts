@@ -11,4 +11,4 @@ socket.on('disconnect', () => {
   console.log('WebSocket connection closed');
 });
 
-export default socket
+export default socket;

@@ -54,13 +54,14 @@ export const PaperItem: React.FC<{ item: PaperItemType }> = ({ item }) => {
 const Paper: React.FC<{ scholarID: string }> = ({ scholarID }) => {
   const [paperList, setPaperList] = useState<PaperItemType[]>([]);
   useEffect(() => {
-    getPapers(Number(scholarID)).then(res => setPaperList(res))
+    getPapers(Number(scholarID)).then((res) => setPaperList(res));
   }, []);
   return (
     <>
-      {paperList && paperList.map((item) => (
-        <PaperItem key={item.article_id} item={item} />
-      ))}
+      {paperList &&
+        paperList.map((item) => (
+          <PaperItem key={item.article_id} item={item} />
+        ))}
     </>
   );
 };

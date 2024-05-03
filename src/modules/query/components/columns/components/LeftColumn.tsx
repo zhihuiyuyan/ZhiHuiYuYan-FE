@@ -43,11 +43,16 @@ const RadioItem: React.FC<{
 
 const LeftColumn: React.FC<LeftColumnProps> = ({ className }) => {
   const { PaperOrScholarSelected } = usePaperOrScholarSelected();
-  const [filterChoiceList, setFilterChoiceList] = useState<{[key: string]: string[]}>({});
+  const [filterChoiceList, setFilterChoiceList] = useState<{
+    [key: string]: string[];
+  }>({});
   useEffect(() => {
-    const name = PaperOrScholarSelected === '论文' ? 'paper' : 'scholar'
-    const filterNames = PaperOrScholarSelected === '论文' ? ['belong_db', 'article_source'] : ['work_organization', 'job_title']
-    getFilterList(name, filterNames).then((res) => setFilterChoiceList(res))
+    const name = PaperOrScholarSelected === '论文' ? 'paper' : 'scholar';
+    const filterNames =
+      PaperOrScholarSelected === '论文'
+        ? ['belong_db', 'article_source']
+        : ['work_organization', 'job_title'];
+    getFilterList(name, filterNames).then((res) => setFilterChoiceList(res));
     console.log(filterChoiceList);
   }, [PaperOrScholarSelected]);
 
@@ -106,10 +111,18 @@ const LeftColumn: React.FC<LeftColumnProps> = ({ className }) => {
       <BreaklineDashed className="mb-0 w-[80%] border-b-2" />
       <div className={`${columnItemStyle} `}>
         <p className="text-[1.8vh] font-semibold text-blue-800">机构</p>
-        <div className="grid w-[75%] grid-cols-2 grid-rows-1 p-4 max-h-40 overflow-x-hidden overflow-y-scroll">
-          {filterChoiceList[PaperOrScholarSelected === '论文' ? 'article_source' : 'work_organization']?.map((item) => (
+        <div className="grid max-h-40 w-[75%] grid-cols-2 grid-rows-1 overflow-scroll">
+          {filterChoiceList[
+            PaperOrScholarSelected === '论文'
+              ? 'article_source'
+              : 'work_organization'
+          ]?.map((item) => (
             <RadioItem
-              name={PaperOrScholarSelected === '论文' ? 'article_source' : 'work_organization'}
+              name={
+                PaperOrScholarSelected === '论文'
+                  ? 'article_source'
+                  : 'work_organization'
+              }
               type={PaperOrScholarSelected === '论文' ? 'paper' : 'scholar'}
               val={item}
             ></RadioItem>

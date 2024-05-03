@@ -50,7 +50,7 @@ const PaperDetail: React.FC<{ paper_id: string }> = ({ paper_id }) => {
       </div>
       <div className="mt-8 h-[84vh] w-[20vw] overflow-scroll rounded-2xl bg-white p-4 shadow">
         <h5 className="text-blue-500">相关论文</h5>
-        {recommend && recommend.map((item) => <Item item={item}></Item>)}
+        {recommend && recommend.map((item) => <Item item={item} />)}
       </div>
     </div>
   );
