@@ -44,11 +44,10 @@ const RecordItem: React.FC<RecordItemProps> = ({ item }) => {
 };
 
 const RecordColumn: React.FC = () => {
-  const token = localStorage.getItem('token');
   const { isLogined, setIsLogined } = useIsLogined();
   const { profile, setProfile } = useProfile();
 
-  const handleGetAvatar = async () => {
+  const handleGetAvatar = async (token: string) => {
     try {
       const response = await axios.get(
         'http://124.222.113.16:5000/user/profile',
@@ -70,12 +69,13 @@ const RecordColumn: React.FC = () => {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
     if (token) {
-      handleGetAvatar();
+      handleGetAvatar(token);
     }
 
     setIsLogined(!!token);
-  }, [token]);
+  }, []);
 
   return (
     <div className="hidden flex-1 lg:block">
