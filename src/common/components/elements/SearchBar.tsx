@@ -6,6 +6,8 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa6';
 import { FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
 import { IoSearchOutline } from 'react-icons/io5';
 
+import { useSearchInput } from '@/common/hooks/useSearchInputStore';
+
 interface SearchBarProps {
   type: 'normal' | 'advanced' | 'history';
   onSubmit?: (e: any) => void;
@@ -57,14 +59,14 @@ const AdvancedSearch: React.FC = () => {
 const SearchBar: React.FC<SearchBarProps> = ({ type, onSubmit }) => {
   const [isAllClicked, setIsAllClicked] = useState(false);
   const [isAdvancedClicked, setIsAdvancedClicked] = useState(false);
-  const [inputValue, setInputValue] = useState<string>('');
+  const { searchInput, setSearchInput } = useSearchInput();
   const inputStyle =
     'rounded-l-lg border-2 border-red-800 px-[2%] text-[1.8vh] outline-none';
   const handleInput = (e: any) => {
-    setInputValue(e.target.value);
+    setSearchInput(e.target.value);
   };
   const handleSubmit = () => {
-    onSubmit && onSubmit(inputValue);
+    onSubmit && onSubmit(searchInput);
   };
   return (
     <motion.div
@@ -86,7 +88,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ type, onSubmit }) => {
               )}
             </button>
             <input
-              value={inputValue}
+              value={searchInput}
               onInput={handleInput}
               className="flex-[3] border-y-2 border-red-800 px-[2%] text-[1.8vh] outline-none lg:flex-[4]"
             />
