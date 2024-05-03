@@ -21,15 +21,13 @@ const Profile: React.FC = () => {
   const { isLogined, setIsLogined } = useIsLogined();
   const { profile, setProfile } = useProfile();
 
-  
-
   const [isClickAuth, setIsClickAuth] = useState(false);
 
   const handleAuthClick = () => {
     setIsClickAuth(!isClickAuth);
   };
 
-  const handleGetAvatar = async (token:string) => {
+  const handleGetAvatar = async (token: string) => {
     try {
       const response = await axios.get(
         'http://124.222.113.16:5000/user/profile',
