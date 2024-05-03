@@ -17,12 +17,13 @@ import { useProfile } from '@/common/hooks/useProfileStore';
 import Drop from './Drop';
 
 const Profile: React.FC = () => {
-  const [isClickAuth, setIsClickAuth] = useState(false);
-
   const { onOpen } = useModal();
-  const token = localStorage.getItem('token');
   const { isLogined, setIsLogined } = useIsLogined();
   const { profile, setProfile } = useProfile();
+
+  const token = localStorage.getItem('token');
+
+  const [isClickAuth, setIsClickAuth] = useState(false);
 
   const handleAuthClick = () => {
     setIsClickAuth(!isClickAuth);
