@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 
-const socketUrl = 'http://localhost:8087';
+const socketUrl = 'http://121.41.170.32:8090';
 
 const socket = io(socketUrl);
 

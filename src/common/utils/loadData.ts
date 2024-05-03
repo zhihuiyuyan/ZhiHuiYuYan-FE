@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { listType } from '@/common/hooks/useInfo';
-// const rootUrl = 'http://121.41.170.32:8090';
-const rootUrl = 'http://localhost:8087'
+const rootUrl = 'http://121.41.170.32:8090';
+// const rootUrl = 'http://localhost:8087'
 export const getData = async <T>(props: listType<T>) => {
   return await axios.post(`${rootUrl}/info`, {
     ...props
