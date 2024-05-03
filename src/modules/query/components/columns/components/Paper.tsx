@@ -1,13 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
-import Pagination from '@/common/components/elements/pagination';
 import {
   PaperItem as PaperItemType,
   usePaperInfo,
 } from '@/common/hooks/useInfo';
 import { useRouter } from 'next/navigation';
+import Pagination from '@/common/components/elements/Pagination';
 
 interface PaperItemProps {
   item: PaperItemType;
@@ -55,46 +55,18 @@ export const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
 };
 
 const Paper = () => {
-  const {
-    filteredList,
-    setFilteredList,
-    pageSize,
-    sort,
-    filters,
-    totalNum,
-    curPage,
-    setCurPage,
-  } = usePaperInfo();
+  const { filteredList, setFilteredList, search, pageSize, sort, filters, totalNum, curPage, setCurPage } = usePaperInfo();
   const handleChoose = (index: number) => {
-    setCurPage(index);
-    setFilteredList({
-      page: index,
-      name: 'paper',
-      pageSize: pageSize,
-      sort: sort as keyof PaperItemType,
-      filters,
-    });
-  };
+    setCurPage(index)
+    setFilteredList({page: index, search, name: 'paper', pageSize: pageSize, sort: sort || 'publish_time', filters})
+  }
   useEffect(() => {
-    setFilteredList({
-      name: 'paper',
-      page: 1,
-      pageSize: pageSize,
-      sort: sort as keyof PaperItemType,
-      filters,
-    });
-  }, [filters, pageSize]);
+    setFilteredList({name: 'paper', search, page: 1 ,pageSize: pageSize, sort: sort || 'publish_time', filters})
+  }, [filters]);
   return (
     <>
-      {filteredList.map((item) => (
-        <PaperItem key={item.article_id} item={item} />
-      ))}
-      <Pagination
-        pageSize={pageSize}
-        dataLength={totalNum}
-        onChosen={handleChoose}
-        className="relative flex w-full justify-center"
-      ></Pagination>
+      {filteredList.map((item) => <PaperItem key={item.article_id} item={item} />)}
+      <Pagination pageSize={pageSize} dataLength={totalNum} onChosen={handleChoose} className='w-full flex justify-center relative'></Pagination>
     </>
   );
 };
