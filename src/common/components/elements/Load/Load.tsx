@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, useEffect } from 'react';
-import './index.css';
+import './index.scss';
 
 interface LoadProps extends HTMLAttributes<HTMLDivElement> {
   paused: boolean;
