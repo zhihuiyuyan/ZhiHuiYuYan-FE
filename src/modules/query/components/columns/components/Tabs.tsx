@@ -26,7 +26,7 @@ export const Tab: React.FC<TabProps> = ({ children }) => {
 
 export const Tabs: React.FC<TabsProps> = ({ tabs, type }) => {
   const [activeTab, setActiveTab] = useState(0);
-  const { setFilteredList, setSort, pageSize } = type === 'paper' ? usePaperInfo() : usePersonInfo();
+  const { setFilteredList, search , filters, setSort, pageSize } = type === 'paper' ? usePaperInfo() : usePersonInfo();
   const handleTabClick = (index: number) => {
     setActiveTab(index);
   };
@@ -35,7 +35,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, type }) => {
     // @ts-ignore
     setSort(name)
     // @ts-ignore
-    setFilteredList({name: type, sort: name, pageSize, page: 1})
+    setFilteredList({name: type, sort: name, search, filters, pageSize, page: 1})
   }, [activeTab]);
 
   return (

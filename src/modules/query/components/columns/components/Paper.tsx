@@ -7,7 +7,7 @@ import {
   usePaperInfo,
 } from '@/common/hooks/useInfo';
 import { useRouter } from 'next/navigation';
-import Pagination from '@/common/components/elements/pagination';
+import Pagination from '@/common/components/elements/Pagination';
 
 interface PaperItemProps {
   item: PaperItemType;
@@ -55,14 +55,14 @@ export const PaperItem: React.FC<PaperItemProps> = ({ item }) => {
 };
 
 const Paper = () => {
-  const { filteredList, setFilteredList, pageSize, sort, filters, totalNum, curPage, setCurPage } = usePaperInfo();
+  const { filteredList, setFilteredList, search, pageSize, sort, filters, totalNum, curPage, setCurPage } = usePaperInfo();
   const handleChoose = (index: number) => {
     setCurPage(index)
-    setFilteredList({page: index, name: 'paper', pageSize: pageSize, sort: sort as keyof PaperItemType, filters})
+    setFilteredList({page: index, search, name: 'paper', pageSize: pageSize, sort: sort || 'publish_time', filters})
   }
   useEffect(() => {
-    setFilteredList({name: 'paper', page: 1 ,pageSize: pageSize, sort: sort as keyof PaperItemType, filters})
-  }, [filters, pageSize]);
+    setFilteredList({name: 'paper', search, page: 1 ,pageSize: pageSize, sort: sort || 'publish_time', filters})
+  }, [filters]);
   return (
     <>
       {filteredList.map((item) => <PaperItem key={item.article_id} item={item} />)}

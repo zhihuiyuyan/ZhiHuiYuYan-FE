@@ -24,3 +24,12 @@ export const getPapers = async (id: number) => {
     console.error('There was an error in getting papers!', error);
   })
 }
+
+export const getRelatedScholars  = async (names: string[], ids?: string[]) => {
+  return axios.post(`${rootUrl}/scholar`, {
+    names: names,
+    ids: ids || []
+  }).then(res => res.data).catch((error) => {
+    console.error('There was an error in getting scholars!', error);
+  })
+}

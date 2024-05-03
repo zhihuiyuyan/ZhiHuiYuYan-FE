@@ -38,11 +38,14 @@ export type listType<T>  = {
   sort?: keyof T,
   filters?: { [key: string]: string[] },
   page: number,
-  pageSize?: number
+  pageSize?: number,
+  search?: string
 }
 
 interface InfoStore<T> {
   filteredList: T[];
+  search: string;
+  setSearch: (val: string) => void;
   pageSize: number;
   curPage: number;
   totalNum: number;
@@ -75,9 +78,11 @@ const createStore = <T>() =>
       let data = await getData<T>(props)
       set({filteredList: data.items, totalNum: data.totalItems})
     },
+    setSearch: (val) => set({search: val}),
     setSort: (name) => set({sort: name}),
     sort: null,
     pageSize: 3,
+    search: '',
     curPage: 1,
     totalNum: 1,
     activatedChoice: {},
