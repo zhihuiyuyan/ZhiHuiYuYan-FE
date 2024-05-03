@@ -1,9 +1,17 @@
+'use client';
+
+import axios from 'axios';
+import { useEffect } from 'react';
+import { IoPersonCircleOutline } from 'react-icons/io5';
+
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from '@/common/components/elements/Avatar';
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
+import { useIsLogined } from '@/common/hooks/useIsLogined';
+import { useProfile } from '@/common/hooks/useProfileStore';
 
 type RecordItem = {
   id: number;
@@ -36,16 +44,53 @@ const RecordItem: React.FC<RecordItemProps> = ({ item }) => {
 };
 
 const RecordColumn: React.FC = () => {
+  const token = localStorage.getItem('token');
+  const { isLogined, setIsLogined } = useIsLogined();
+  const { profile, setProfile } = useProfile();
+
+  const handleGetAvatar = async () => {
+    try {
+      const response = await axios.get(
+        'http://124.222.113.16:5000/user/profile',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        setProfile(response.data.data);
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('请求出错:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      handleGetAvatar();
+    }
+
+    setIsLogined(!!token);
+  }, [token]);
+
   return (
     <div className="hidden flex-1 lg:block">
       <div className="relative flex h-[17vh] w-full items-center gap-4">
         <div className="absolute left-[15%] flex gap-7">
-          <Avatar className="h-[9vh] w-[9vh] rounded-full bg-gray-100">
-            <AvatarImage src="https://www.github.com/Wishforpeace.png" />
-            <AvatarFallback></AvatarFallback>
-          </Avatar>
-          <p className="relative text-[2.2vh] font-bold text-gray-700">
-            用户名
+          {isLogined ? (
+            <Avatar className="h-[9vh] w-[9vh] rounded-full bg-gray-100">
+              <AvatarImage src={profile.avatar} />
+              <AvatarFallback></AvatarFallback>
+            </Avatar>
+          ) : (
+            <IoPersonCircleOutline className="h-[10vh] w-[10vh] text-gray-500" />
+          )}
+          <p className="relative top-[1vh] text-[2.2vh] font-bold text-gray-700">
+            {isLogined ? profile.name : '尚未登录'}
           </p>
         </div>
       </div>

@@ -25,7 +25,7 @@ const AuthModal: React.FC = () => {
   const { isOpen, onClose, type } = useModal();
   const { setIsLogined } = useIsLogined();
 
-  const [isRegistered, setIsRegistered] = useState(true);
+  const [isRegistered, setIsRegistered] = useState(false);
 
   const isModalOpen = isOpen && type === 'auth';
 
@@ -115,30 +115,6 @@ const AuthModal: React.FC = () => {
         { email: email },
         {
           headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        console.log(response.data.message);
-      }
-
-      return response;
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('请求出错:', error);
-    }
-  };
-
-  const handleGetProfile = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get(
-        'http://124.222.113.16:5000/user/profile',
-        {
-          headers: {
-            Authorization: 'Bearer ' + token,
             'Content-Type': 'application/json',
           },
         }
