@@ -1,8 +1,7 @@
-import { fileInfoType, useChat, useChatInput } from '@/common/hooks/useChatStore';
+import { fileInfoType, useChatInput } from '@/common/hooks/useChatStore';
 
+import { useRef } from 'react';
 import PluginTemplate, { PluginProps } from './pluginTemplate';
-import { useRef, useState } from 'react';
-import axios from 'axios';
 
 interface FileProps {
   index: number;
@@ -11,20 +10,37 @@ interface FileProps {
 
 const UploadFilePlugin: React.FC<Partial<PluginProps<string>>> = (props) => {
   const fileRef = useRef<HTMLInputElement>(null);
-  const {setFiles, inputs} = useChatInput()
+  const { setFiles, inputs } = useChatInput();
   const handleTrigger = () => {
-    fileRef.current!.click()
-    return Promise.resolve('123')
+    fileRef.current!.click();
+    return Promise.resolve('123');
   };
   const handleChange = (e: any) => {
-    setFiles(inputs.files!.concat({url: 'https://s2.loli.net/2024/05/03/drN7A8pg4jRuwGS.png', status: 'progressing'} || [{url: 'https://s2.loli.net/2024/05/03/drN7A8pg4jRuwGS.png', status: 'progressing'}]))
+    setFiles(
+      inputs.files!.concat(
+        {
+          url: 'https://s2.loli.net/2024/05/03/drN7A8pg4jRuwGS.png',
+          status: 'progressing',
+        } || [
+          {
+            url: 'https://s2.loli.net/2024/05/03/drN7A8pg4jRuwGS.png',
+            status: 'progressing',
+          },
+        ]
+      )
+    );
     console.log(e.target.files);
-  }
+  };
   const handleFail = () => {};
 
   return (
     <>
-      <input type="file" ref={fileRef} onClick={handleChange} style={{display: 'none'}}/>
+      <input
+        type="file"
+        ref={fileRef}
+        onClick={handleChange}
+        style={{ display: 'none' }}
+      />
       <PluginTemplate<string>
         {...props}
         name="file"
@@ -41,7 +57,7 @@ export default UploadFilePlugin;
 
 export const ChatFiles: React.FC<FileProps> = (props) => {
   const { index, fileInfo } = props;
-  const {removeFiles} = useChatInput()
+  const { removeFiles } = useChatInput();
 
   return (
     <div className="relative m-2 h-8 w-8 rounded-sm border-mdGray shadow transition-all hover:scale-110">
