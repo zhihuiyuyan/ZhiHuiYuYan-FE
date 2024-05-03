@@ -21,7 +21,7 @@ const Profile: React.FC = () => {
   const { isLogined, setIsLogined } = useIsLogined();
   const { profile, setProfile } = useProfile();
 
-  const token = localStorage.getItem('token');
+  
 
   const [isClickAuth, setIsClickAuth] = useState(false);
 
@@ -29,7 +29,7 @@ const Profile: React.FC = () => {
     setIsClickAuth(!isClickAuth);
   };
 
-  const handleGetAvatar = async () => {
+  const handleGetAvatar = async (token:string) => {
     try {
       const response = await axios.get(
         'http://124.222.113.16:5000/user/profile',
@@ -51,12 +51,13 @@ const Profile: React.FC = () => {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
     if (token) {
-      handleGetAvatar();
+      handleGetAvatar(token);
     }
 
     setIsLogined(!!token);
-  }, [token]);
+  }, []);
 
   return (
     <motion.div
