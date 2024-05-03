@@ -1,14 +1,18 @@
 import React, { HTMLAttributes, useEffect } from 'react';
-import './index.css'
+import './index.css';
 
 interface LoadProps extends HTMLAttributes<HTMLDivElement> {
-  paused: boolean
+  paused: boolean;
 }
-const Load: React.FC<LoadProps> = ({className,paused, ...restProps}) => {
+const Load: React.FC<LoadProps> = ({ className, paused, ...restProps }) => {
   useEffect(() => {
     paused
-      ? document.querySelectorAll('.square').forEach((item) => item.classList.add('stop'))
-      : document.querySelectorAll('.square').forEach((item) => item.classList.remove('stop'))
+      ? document
+          .querySelectorAll('.square')
+          .forEach((item) => item.classList.add('stop'))
+      : document
+          .querySelectorAll('.square')
+          .forEach((item) => item.classList.remove('stop'));
   }, [paused]);
   return (
     <>
@@ -23,9 +27,8 @@ const Load: React.FC<LoadProps> = ({className,paused, ...restProps}) => {
         <div className="square "></div>
         <div className="square last"></div>
       </div>
-
     </>
-  )
-}
+  );
+};
 
-export default Load
+export default Load;

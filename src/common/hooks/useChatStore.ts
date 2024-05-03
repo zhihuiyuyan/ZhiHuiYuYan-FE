@@ -65,11 +65,12 @@ export const useChat = create<ChatStore>((set) => ({
     },
   ],
   currentSelect: '1',
-  replaceMessage: (role, text) => set((state) => {
-    let newMessage = state.chatRecords
-    newMessage.at(-1)!.children = text
-    return {chatRecords: newMessage}
-  }),
+  replaceMessage: (role, text) =>
+    set((state) => {
+      let newMessage = state.chatRecords;
+      newMessage.at(-1)!.children = text;
+      return { chatRecords: newMessage };
+    }),
   setCurrentSelect: (id) =>
     set((state) => {
       id !== state.currentSelect && state.refreshChatRecords(id);

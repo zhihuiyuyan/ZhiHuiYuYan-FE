@@ -22,10 +22,10 @@ const ChatInput: React.FC = () => {
   }, [inputs.text]);
   const handleSubmit = () => {
     sendMessage('user', inputs['text']);
-    sendMessage('robot', '...')
+    sendMessage('robot', '...');
     setTimeout(() => {
-      replaceMessage('robot', '1232111111111111111')
-    }, 800)
+      replaceMessage('robot', '1232111111111111111');
+    }, 800);
     setText('');
   };
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
