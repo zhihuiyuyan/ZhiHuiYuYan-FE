@@ -6,7 +6,7 @@ import {
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 import { useEffect, useState } from 'react';
 import { ScholarItem, usePaperInfo } from '@/common/hooks/useInfo';
-import { getRelatedScholars } from '@/app/api/loadData';
+import { getRelatedScholars } from '@/common/utils/loadData';
 
 
 interface RightColumnProps {

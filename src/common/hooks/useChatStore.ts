@@ -6,9 +6,12 @@ export interface ChatRecordProps {
   role?: bubbleType;
   children?: string;
   additionalElem?: React.ReactNode;
+  last?: boolean;
   renderFunction?: (
     children: string,
-    additionalElem?: React.ReactNode
+    additionalElem?: React.ReactNode,
+    setReadyState?: () => void,
+    last?: boolean
   ) => React.ReactNode;
 }
 export type fileInfoType = {
@@ -36,6 +39,7 @@ interface ChatStore {
   currentSelect: string;
   addNewHistory: (title: string) => void;
   sendMessage: (role: bubbleType, text: string) => void;
+  replaceMessage: (role: bubbleType, text: string) => void;
   refreshChatRecords: (id?: string) => void;
   setCurrentSelect: (id: string) => void;
 }
@@ -48,7 +52,7 @@ export const useChat = create<ChatStore>((set) => ({
   chatHistories: [
     {
       date: '2024/04/12',
-      title: 'mock1',
+      title: '示例对话',
       id: '1',
     },
   ],
@@ -61,6 +65,11 @@ export const useChat = create<ChatStore>((set) => ({
     },
   ],
   currentSelect: '1',
+  replaceMessage: (role, text) => set((state) => {
+    let newMessage = state.chatRecords
+    newMessage.at(-1)!.children = text
+    return {chatRecords: newMessage}
+  }),
   setCurrentSelect: (id) =>
     set((state) => {
       id !== state.currentSelect && state.refreshChatRecords(id);

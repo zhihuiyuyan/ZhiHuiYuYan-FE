@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import axios from 'axios';
-import { getData } from '@/app/api/loadData';
+import { getData } from '../utils/loadData';
 
 export type ScholarItem = {
   expert_id: number;
@@ -66,6 +66,7 @@ const createStore = <T>() =>
       set((state) => {
         // @ts-ignore
         if(state.filters[name]?.length) return {filters: {...state.filters, [name]:state.filters[name].concat(value)}}
+        // @ts-ignore
         return {filters: {...state.filters, [name]: [value]}}
       }),
     unsetFilters: (name, value) =>

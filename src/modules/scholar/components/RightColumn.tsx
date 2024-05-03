@@ -9,7 +9,7 @@ import {
   usePaperInfo,
   usePersonInfo,
 } from '@/common/hooks/useInfo';
-import { getPapers } from '@/app/api/loadData';
+import { getPapers } from '../../../common/utils/loadData';
 
 export const PaperItem: React.FC<{ item: PaperItemType }> = ({ item }) => {
   const { filteredList } = usePaperInfo();

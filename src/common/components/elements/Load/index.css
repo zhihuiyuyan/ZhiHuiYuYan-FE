@@ -53,37 +53,23 @@
     }
 }
 
-* {
-    margin: 0;
-}
-@keyframes rotate {
-    60% {
-        transform: rotate(0deg);
-    }
-    80% {
-        transform: rotate(90deg);
-    }
-    100% {
-        transform: rotate(180deg);
-    }
-}
 .loader {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: -27.5px;
-    margin-top: -27.5px;
-    animation: rotate 4s ease-in-out infinite;
+    margin-left: -3rem;
 }
-
+.loader .stop {
+    animation: paused;
+    background: #8D8D8D !important;
+    animation-fill-mode: forwards;
+    opacity: 1;
+}
 .square {
-    background: white;
-    width: 15px;
-    height: 15px;
+    background: transparent;
+    width: 6px;
+    height: 6px;
     float: left;
-    top: -10px;
-    margin-right: 5px;
-    margin-top: 5px;
+    margin-right: 2px;
+    margin-top: 2px;
     position: relative;
     opacity: 0;
     -webkit-animation: enter 6s infinite;
@@ -99,14 +85,12 @@
     -webkit-animation-delay: 1.8s;
     -moz-animation-delay: 1.8s;
     animation-delay: 1.8s;
-    background: #960018;
 }
 
 .square:nth-child(2) {
     -webkit-animation-delay: 2.1s;
     -moz-animation-delay: 2.1s;
     animation-delay: 2.1s;
-    background: #960018;
 }
 
 .square:nth-child(3) {
@@ -133,10 +117,11 @@
     -webkit-animation-delay: 1.5s;
     -moz-animation-delay: 1.5s;
     animation-delay: 1.5s;
+    background: #960018;
 }
 
 .square:nth-child(7) {
-    background: #fefefe;
+    background: #960018;
 }
 
 .square:nth-child(8) {

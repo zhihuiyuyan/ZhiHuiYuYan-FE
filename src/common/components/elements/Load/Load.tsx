@@ -1,6 +1,15 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes, useEffect } from 'react';
 import './index.css'
-const Load: React.FC<HTMLAttributes<HTMLDivElement>> = ({className, ...restProps}) => {
+
+interface LoadProps extends HTMLAttributes<HTMLDivElement> {
+  paused: boolean
+}
+const Load: React.FC<LoadProps> = ({className,paused, ...restProps}) => {
+  useEffect(() => {
+    paused
+      ? document.querySelectorAll('.square').forEach((item) => item.classList.add('stop'))
+      : document.querySelectorAll('.square').forEach((item) => item.classList.remove('stop'))
+  }, [paused]);
   return (
     <>
       <div className="loader">

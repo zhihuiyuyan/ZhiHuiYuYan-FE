@@ -10,7 +10,7 @@ import {
   usePersonInfo,
 } from '@/common/hooks/useInfo';
 import { usePaperOrScholarSelected } from '@/common/hooks/useIsPaperOrScholarSelected';
-import { getFilterList } from '@/app/api/loadData';
+import { getFilterList } from '../../../../../common/utils/loadData';
 
 interface LeftColumnProps {
   className: string;

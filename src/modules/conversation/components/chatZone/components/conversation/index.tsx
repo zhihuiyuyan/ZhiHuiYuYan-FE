@@ -12,9 +12,10 @@ const Conversation: React.FC = () => {
   return (
     <>
       <div className="mt-12 flex h-[70vh] w-full flex-col overflow-auto px-[15vw]">
-        {chatRecords.map((chat) => (
+        {chatRecords.map((chat,index) => (
           <ConversationBubble
             key={genKey.next().value as number}
+            last={index === chatRecords.length - 1}
             {...{ ...chat, ...bubbleConfig[chat.role as bubbleType] }}
           />
         ))}
