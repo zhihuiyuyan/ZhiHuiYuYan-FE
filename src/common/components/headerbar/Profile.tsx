@@ -1,6 +1,7 @@
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 
 import {
@@ -11,6 +12,7 @@ import {
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 import { useIsLogined } from '@/common/hooks/useIsLogined';
 import { useModal } from '@/common/hooks/useModalStore';
+import { useProfile } from '@/common/hooks/useProfileStore';
 
 import Drop from './Drop';
 
@@ -18,15 +20,47 @@ const Profile: React.FC = () => {
   const [isClickAuth, setIsClickAuth] = useState(false);
 
   const { onOpen } = useModal();
-  const { isLogined } = useIsLogined();
+  const token = localStorage.getItem('token');
+  const { isLogined, setIsLogined } = useIsLogined();
+  const { profile, setProfile } = useProfile();
 
   const handleAuthClick = () => {
     setIsClickAuth(!isClickAuth);
   };
+
+  const handleGetAvatar = async () => {
+    try {
+      const response = await axios.get(
+        'http://124.222.113.16:5000/user/profile',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        setProfile(response.data.data);
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('请求出错:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      handleGetAvatar();
+    }
+
+    setIsLogined(!!token);
+  }, [token]);
+
   return (
     <motion.div
       whileTap={{ scale: 0.9 }}
-      className="absolute right-[5%] top-0 flex h-[7vh] cursor-pointer items-center will-change-transform z-50"
+      className="absolute right-[5%] top-0 z-50 flex h-[7vh] cursor-pointer items-center will-change-transform"
       onClick={handleAuthClick}
     >
       <motion.div whileHover={{ scale: 1.1 }}>
@@ -42,17 +76,21 @@ const Profile: React.FC = () => {
               height={160}
               className={`${isLogined ? 'h-[31.5vh]' : 'h-[25vh]'} w-full`}
             />
-            <Avatar className="absolute left-[3vh] top-[3vh] h-[7vh] w-[7vh] rounded-full bg-gray-100">
-              <AvatarImage src="https://www.github.com/Wishforpeace.png" />
-              <AvatarFallback></AvatarFallback>
-            </Avatar>
+            {isLogined ? (
+              <Avatar className="absolute left-[3vh] top-[3vh] h-[7vh] w-[7vh] rounded-full bg-gray-100">
+                <AvatarImage src={profile.avatar} />
+                <AvatarFallback></AvatarFallback>
+              </Avatar>
+            ) : (
+              <IoPersonCircleOutline className="absolute left-[3vh] top-[3vh] h-[7vh] w-[7vh] text-gray-500" />
+            )}
             {isLogined ? (
               <div>
                 <p className="absolute left-[11vh] top-[3.5vh] text-[1.7vh] font-bold text-gray-700">
-                  名称：111
+                  名称：{profile.name}
                 </p>
                 <p className="absolute left-[11vh] top-[7vh] text-[1.7vh] font-bold text-gray-700">
-                  id：111
+                  id：{profile.id}
                 </p>
               </div>
             ) : (

@@ -62,7 +62,6 @@ const RecordColumn: React.FC = () => {
 
       if (response.status === 200) {
         setProfile(response.data.data);
-        console.log(response.data.data);
       }
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -82,7 +81,7 @@ const RecordColumn: React.FC = () => {
     <div className="hidden flex-1 lg:block">
       <div className="relative flex h-[17vh] w-full items-center gap-4">
         <div className="absolute left-[15%] flex gap-7">
-          {!isLogined ? (
+          {isLogined ? (
             <Avatar className="h-[9vh] w-[9vh] rounded-full bg-gray-100">
               <AvatarImage src={profile.avatar} />
               <AvatarFallback></AvatarFallback>
