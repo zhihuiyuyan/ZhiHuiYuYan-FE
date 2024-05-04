@@ -1,11 +1,12 @@
 import { HTMLAttributes } from 'react';
-import { mindMapConfig as graph } from './mindMap.config';
+import { mindMapConfig, largeMindConfi } from './mindMap.config';
 
 export type chartType = 'line' | 'river' | 'mind';
 
 export interface EchartComponentProps extends HTMLAttributes<HTMLDivElement> {
   data: { data: { [key: string]: number[] }; title: string; xNames: string[] };
   type: chartType;
+  complexity?: 'complex' | 'simple'
 }
 export const chartConfig = {
   line: {
@@ -175,7 +176,36 @@ export const chartConfig = {
       },
     ],
   },
-  mindMap: {
+
+};
+export const generateLineDataTemplate = (
+  props: EchartComponentProps['data']
+) => {
+  const { xNames, data, title } = props;
+  const newConfig = chartConfig.line;
+  newConfig.legend.data = Object.keys(data);
+  newConfig.xAxis.data = xNames;
+  const newSeries = Object.keys(data).map((item) => ({
+    name: item,
+    type: 'line',
+    stack: 'Total',
+    data: data[item],
+  }));
+  newConfig.series = newSeries;
+  return newConfig;
+};
+
+export const generateMindMap = (complexity?: 'complex' | 'simple') => {
+  let graph = (complexity === 'complex' ? largeMindConfi : mindMapConfig)
+  if(complexity === 'complex') {
+    graph.nodes.forEach(function (node) {
+      // @ts-ignore
+      node.label = {
+        show: node.symbolSize > 30
+      };
+    });
+  }
+  return {
     tooltip: {},
     legend: [
       {
@@ -211,24 +241,6 @@ export const chartConfig = {
         },
       },
     ],
-  },
-};
-export const generateLineDataTemplate = (
-  props: EchartComponentProps['data']
-) => {
-  const { xNames, data, title } = props;
-  const newConfig = chartConfig.line;
-  newConfig.legend.data = Object.keys(data);
-  newConfig.xAxis.data = xNames;
-  const newSeries = Object.keys(data).map((item) => ({
-    name: item,
-    type: 'line',
-    stack: 'Total',
-    data: data[item],
-  }));
-  newConfig.series = newSeries;
-  return newConfig;
-};
-
-export const generateMindMap = () => chartConfig.mindMap;
+  }
+}
 export const generateRiver = () => chartConfig.river;

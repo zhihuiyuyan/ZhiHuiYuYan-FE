@@ -4,7 +4,7 @@ import SearchBar from '@/common/components/elements/SearchBar';
 import { usePaperInfo, usePersonInfo } from '@/common/hooks/useInfo';
 import { usePaperOrScholarSelected } from '@/common/hooks/useIsPaperOrScholarSelected';
 
-const Search: React.FC = () => {
+const Search: React.FC<{ onSubmit?: () => void}> = ({onSubmit}) => {
   const { PaperOrScholarSelected } = usePaperOrScholarSelected();
   const store =
     PaperOrScholarSelected === '论文' ? usePaperInfo() : usePersonInfo();
@@ -19,6 +19,7 @@ const Search: React.FC = () => {
   } = store;
   const handleSubmit = (val: string) => {
     setSearch(val);
+    onSubmit && onSubmit()
     // @ts-ignore
     setFilteredList({
       filters,

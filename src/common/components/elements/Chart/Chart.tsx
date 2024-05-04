@@ -11,6 +11,7 @@ const EChartComponent: React.FC<EchartComponentProps> = ({
   data,
   id,
   type,
+  complexity,
   ...restProps
 }) => {
   const unique_id = `chart_${genKey.next().value}`;
@@ -22,7 +23,7 @@ const EChartComponent: React.FC<EchartComponentProps> = ({
         options = generateLineDataTemplate(data);
         break;
       case 'mind':
-        options = generateMindMap();
+        options = generateMindMap(complexity);
         break;
       case 'river':
         options = generateRiver();
