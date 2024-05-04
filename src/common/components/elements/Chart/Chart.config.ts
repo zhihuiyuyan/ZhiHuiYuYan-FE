@@ -1,46 +1,46 @@
 import { HTMLAttributes } from 'react';
+import { mindMapConfig as graph } from './mindMap.config';
 
-export type chartType = 'line' | 'river' | 'mind'
-import { mindMapConfig as graph } from './mindMap.config'
+export type chartType = 'line' | 'river' | 'mind';
 
-export interface EchartComponentProps extends HTMLAttributes<HTMLDivElement>{
-  data: {data: {[key: string]: number[]}, title: string, xNames: string[]},
-  type: chartType
+export interface EchartComponentProps extends HTMLAttributes<HTMLDivElement> {
+  data: { data: { [key: string]: number[] }; title: string; xNames: string[] };
+  type: chartType;
 }
 export const chartConfig = {
   line: {
     tooltip: {
-      trigger: 'axis'
+      trigger: 'axis',
     },
     legend: {
       itemWidth: 10,
       itemHeight: 10,
       orient: 'horizontal',
       itemGap: 2,
-      data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+      data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine'],
     },
     grid: {
       left: '3%',
       right: '4%',
       bottom: '3%',
-      containLabel: true
+      containLabel: true,
     },
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     },
     yAxis: {
-      type: 'value'
+      type: 'value',
     },
     series: [
       {
         name: 'Search Engine',
         type: 'line',
         stack: 'Total',
-        data: [820, 932, 901, 934, 1290, 1330, 1320]
-      }
-    ]
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+      },
+    ],
   },
   river: {
     tooltip: {
@@ -50,12 +50,12 @@ export const chartConfig = {
         lineStyle: {
           color: 'rgba(0,0,0,0.2)',
           width: 1,
-          type: 'solid'
-        }
-      }
+          type: 'solid',
+        },
+      },
     },
     legend: {
-      data: ['中英文学差异', '文化交流', '对比学习', '第二语言']
+      data: ['中英文学差异', '文化交流', '对比学习', '第二语言'],
     },
     singleAxis: {
       top: 50,
@@ -66,16 +66,16 @@ export const chartConfig = {
       axisPointer: {
         animation: true,
         label: {
-          show: true
-        }
+          show: true,
+        },
       },
       splitLine: {
         show: true,
         lineStyle: {
           type: 'dashed',
-          opacity: 0.2
-        }
-      }
+          opacity: 0.2,
+        },
+      },
     },
     series: [
       {
@@ -83,8 +83,8 @@ export const chartConfig = {
         emphasis: {
           itemStyle: {
             shadowBlur: 20,
-            shadowColor: 'rgba(0, 0, 0, 0.8)'
-          }
+            shadowColor: 'rgba(0, 0, 0, 0.8)',
+          },
         },
         data: [
           ['2013/06', 10, '中英文学差异'],
@@ -171,9 +171,9 @@ export const chartConfig = {
           ['2022/06', 16, '对比学习'],
           ['2022/12', 22, '对比学习'],
           ['2023/06', 10, '对比学习'],
-        ]
-      }
-    ]
+        ],
+      },
+    ],
   },
   mindMap: {
     tooltip: {},
@@ -181,8 +181,8 @@ export const chartConfig = {
       {
         data: graph.categories.map(function (a) {
           return a.name;
-        })
-      }
+        }),
+      },
     ],
     series: [
       {
@@ -196,37 +196,39 @@ export const chartConfig = {
         label: {
           show: true,
           position: 'right',
-          formatter: '{b}'
+          formatter: '{b}',
         },
         labelLayout: {
-          hideOverlap: true
+          hideOverlap: true,
         },
         scaleLimit: {
           min: 0.4,
-          max: 2
+          max: 2,
         },
         lineStyle: {
           color: 'source',
-          curveness: 0.3
-        }
-      }
-    ]
-  }
-}
-export const generateLineDataTemplate = (props: EchartComponentProps['data']) => {
-  const {xNames, data, title} = props
-  const newConfig = chartConfig.line
-  newConfig.legend.data = Object.keys(data)
-  newConfig.xAxis.data = xNames
-  const newSeries = Object.keys(data).map(item => ({
+          curveness: 0.3,
+        },
+      },
+    ],
+  },
+};
+export const generateLineDataTemplate = (
+  props: EchartComponentProps['data']
+) => {
+  const { xNames, data, title } = props;
+  const newConfig = chartConfig.line;
+  newConfig.legend.data = Object.keys(data);
+  newConfig.xAxis.data = xNames;
+  const newSeries = Object.keys(data).map((item) => ({
     name: item,
     type: 'line',
     stack: 'Total',
-    data: data[item]
-  }))
-  newConfig.series = newSeries
-  return newConfig
-}
+    data: data[item],
+  }));
+  newConfig.series = newSeries;
+  return newConfig;
+};
 
-export const generateMindMap = () => chartConfig.mindMap
-export const generateRiver = () => chartConfig.river
+export const generateMindMap = () => chartConfig.mindMap;
+export const generateRiver = () => chartConfig.river;

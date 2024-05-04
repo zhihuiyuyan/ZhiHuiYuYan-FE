@@ -67,10 +67,12 @@ export const useChat = create<ChatStore>((set) => ({
     },
     {
       role: 'user',
-      children: '侯晓舟教授在语料库语言学领域有哪些主要的研究成果？'
-    }, {
-    role: 'robot',
-      children: '### 侯晓舟教授在语料库语言学领域有多项研究成果，根据搜索得到的信息，以下是一些主要的成果：\n' +
+      children: '侯晓舟教授在语料库语言学领域有哪些主要的研究成果？',
+    },
+    {
+      role: 'robot',
+      children:
+        '### 侯晓舟教授在语料库语言学领域有多项研究成果，根据搜索得到的信息，以下是一些主要的成果：\n' +
         '\n' +
         '1. 主持并完成了多个与语料库语言学相关的科研项目，包括基于逐步多元回归的高校学生语言能力影响因素研究、专业英语（教育学）课程思政示范课程、基于语料库语用学的英语语用知识显性教学模式研究、基于ERP的汉英词汇语用信息加工处理研究等。\n' +
         '\n' +
@@ -82,15 +84,16 @@ export const useChat = create<ChatStore>((set) => ({
         '\n' +
         '5. 侯晓舟教授还积极参与学术团体工作，担任全国话语语言学研究会副秘书长、河北大学高等教育与区域发展研究中心研究员等职务。\n' +
         '\n' +
-        '侯晓舟教授的研究成果体现了他在语料库语言学领域的深入研究和专业贡献。'
+        '侯晓舟教授的研究成果体现了他在语料库语言学领域的深入研究和专业贡献。',
     },
     {
       role: 'user',
-      children: '说说这篇文章的主要内容'
+      children: '说说这篇文章的主要内容',
     },
     {
       role: 'robot',
-      children: '这篇文章的标题是《语料库语言学未来的发展路径研究——以“基于语料库”的研究范式为视角》，主要探讨了语料库语言学的发展历程、两种主要研究范式及其特点、分歧，并对未来的发展方向进行了展望。\n' +
+      children:
+        '这篇文章的标题是《语料库语言学未来的发展路径研究——以“基于语料库”的研究范式为视角》，主要探讨了语料库语言学的发展历程、两种主要研究范式及其特点、分歧，并对未来的发展方向进行了展望。\n' +
         '\n' +
         '## 1. 引言\n' +
         '文章从20世纪60年代世界上第一个语料库——布朗语料库的建立讲起，说明了语料库语言学的起源和它在80年代的普及。文章指出，语料库语言学的发展与两个对立的研究范式有关：基于语料库的研究范式和语料库驱动的研究范式。\n' +
@@ -114,8 +117,8 @@ export const useChat = create<ChatStore>((set) => ({
         '## 6. 结语\n' +
         '文章最后总结，语料库语言学虽然发展历史不长，但已成为跨学科领域的重要研究方法。文章预测，基于语料库的研究范式由于其开放性和包容性，可能会比语料库驱动的研究范式有更广阔的发展前景。\n' +
         '\n' +
-        '整体而言，这篇文章为读者提供了语料库语言学领域的深入分析，包括其历史、主要研究范式及其特点、面临的挑战和未来的发展方向。'
-    }
+        '整体而言，这篇文章为读者提供了语料库语言学领域的深入分析，包括其历史、主要研究范式及其特点、面临的挑战和未来的发展方向。',
+    },
   ],
   currentSelect: '1',
   replaceMessage: (role, text) =>
@@ -157,9 +160,13 @@ export const useChatInput = create<ChatInputStore>((set) => ({
     text: '',
     files: [],
   },
-  removeFiles: () => set((state) => ({inputs: {...state.inputs, files: state.inputs.files!.slice(1)}})),
+  removeFiles: () =>
+    set((state) => ({
+      inputs: { ...state.inputs, files: state.inputs.files!.slice(1) },
+    })),
   setText: (text) => set((state) => ({ inputs: { ...state.inputs, text } })),
-  setFiles: (texts) => set((state) => ({inputs: {...state.inputs, files: texts}})),
+  setFiles: (texts) =>
+    set((state) => ({ inputs: { ...state.inputs, files: texts } })),
   setPlugins: (name, res) =>
     set((state) => ({ inputs: { ...state.inputs, [name]: res } })),
 }));

@@ -1,18 +1,34 @@
-'use client'
+'use client';
 
 import SearchBar from '@/common/components/elements/SearchBar';
 import { usePaperInfo, usePersonInfo } from '@/common/hooks/useInfo';
 import { usePaperOrScholarSelected } from '@/common/hooks/useIsPaperOrScholarSelected';
 
 const Search: React.FC = () => {
-  const {PaperOrScholarSelected} = usePaperOrScholarSelected()
-  const store = PaperOrScholarSelected === '论文' ? usePaperInfo() : usePersonInfo()
-  const {setFilteredList, setSearch, search, filters, sort, pageSize, curPage, } = store
+  const { PaperOrScholarSelected } = usePaperOrScholarSelected();
+  const store =
+    PaperOrScholarSelected === '论文' ? usePaperInfo() : usePersonInfo();
+  const {
+    setFilteredList,
+    setSearch,
+    search,
+    filters,
+    sort,
+    pageSize,
+    curPage,
+  } = store;
   const handleSubmit = (val: string) => {
-    setSearch(val)
+    setSearch(val);
     // @ts-ignore
-    setFilteredList({filters, search: val, sort, pageSize, page: curPage, name: PaperOrScholarSelected === '论文' ? 'paper' : 'scholar'})
-  }
+    setFilteredList({
+      filters,
+      search: val,
+      sort,
+      pageSize,
+      page: curPage,
+      name: PaperOrScholarSelected === '论文' ? 'paper' : 'scholar',
+    });
+  };
 
   return (
     <>

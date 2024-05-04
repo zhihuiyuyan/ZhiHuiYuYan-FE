@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 
 import { PaperItem, usePaperInfo } from '@/common/hooks/useInfo';
 
-import { PaperItem as Item } from './columns/components/Paper';
 import EChartComponent from '@/common/components/elements/Chart/Chart';
+import { PaperItem as Item } from './columns/components/Paper';
 
 const PaperDetail: React.FC<{ paper_id: string }> = ({ paper_id }) => {
   const { filteredList } = usePaperInfo();
@@ -45,7 +45,11 @@ const PaperDetail: React.FC<{ paper_id: string }> = ({ paper_id }) => {
         </div>
         <div className="mt-8 h-[30vh] w-full rounded-2xl bg-white p-4 shadow">
           <h4 className="text-center text-blue-500">文章脑图</h4>
-          <EChartComponent className='w-[80%] h-[80%] mx-auto items-center' type={'mind'} data={{data: {'123': [456]}, title: '123', xNames: ['123']}}></EChartComponent>
+          <EChartComponent
+            className="mx-auto h-[80%] w-[80%] items-center"
+            type={'mind'}
+            data={{ data: { '123': [456] }, title: '123', xNames: ['123'] }}
+          ></EChartComponent>
         </div>
       </div>
       <div className="mt-8 h-[84vh] w-[20vw] overflow-scroll rounded-2xl bg-white p-4 shadow">
