@@ -8,7 +8,7 @@ import { MockArticle, splitWords } from '@/modules/articles/components/mock';
 import { ARTICLE_ITEMS, ArticleItem } from '@/modules/home/components/Article';
 const ArticlePage: React.FC<{ article: string }> = ({ article }) => {
   const data = ARTICLE_ITEMS.find((item) => item.id === Number(article)) as ArticleItem
-  const {content, readings, title, timestamp} = data
+  const {content, readings, author, title, timestamp} = data
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -24,15 +24,15 @@ const ArticlePage: React.FC<{ article: string }> = ({ article }) => {
             </header>
             <div className="mx-auto flex w-4/5 justify-between text-gray-400">
               <span></span>
-              <span>日期：XXXX</span>
-              <span>浏览次数：XXXX</span>
+              <span>时间：{timestamp}</span>
+              <span>阅读数：{readings}</span>
             </div>
             <Breakline className="mx-auto mb-12 w-11/12"></Breakline>
             {splitWords(MockArticle[article]).map((item) => (
-              // <div className="mx-auto mb-2 w-4/5 whitespace-pre-wrap break-words text-xl font-bold">
-              //
-              // </div>
-              <ReactMarkdown>{item}</ReactMarkdown>
+              <div className="mx-auto mb-2 w-4/5 whitespace-pre-wrap break-words text-xl font-bold">
+                {item}
+              </div>
+              // <ReactMarkdown className={'break-words whitespace-pre-wrap'}>{item}</ReactMarkdown>
             ))}
           </div>
         )}

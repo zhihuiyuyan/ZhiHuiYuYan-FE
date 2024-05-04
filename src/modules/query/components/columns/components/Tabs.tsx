@@ -36,9 +36,9 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, type }) => {
       type === 'paper' ? tabs[activeTab].paper_tag : tabs[activeTab].person_tag;
     // @ts-ignore
     setSort(name);
-    // @ts-ignore
     setFilteredList({
       name: type,
+      // @ts-ignore
       sort: name,
       search,
       filters,

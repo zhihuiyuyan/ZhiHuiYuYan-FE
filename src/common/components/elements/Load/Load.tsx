@@ -5,7 +5,7 @@ interface LoadProps extends HTMLAttributes<HTMLDivElement> {
   paused: boolean,
   unique_id: number
 }
-const Load: React.FC<LoadProps> = ({ className, paused, ...restProps }) => {
+const Load: React.FC<LoadProps> = ({ className, unique_id, paused, ...restProps }) => {
   useEffect(() => {
     paused
       ? document

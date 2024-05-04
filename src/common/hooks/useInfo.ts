@@ -67,6 +67,7 @@ const createStore = <T>() =>
           return {
             filters: {
               ...state.filters,
+              // @ts-ignore
               [name]: state.filters[name].concat(value),
             },
           };
@@ -80,6 +81,7 @@ const createStore = <T>() =>
           return {
             filters: {
               ...state.filters,
+              // @ts-ignore
               [name]: state.filters[name].filter((val) => val !== value),
             },
           };
