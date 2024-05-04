@@ -24,7 +24,7 @@ const Subject: React.FC<SubjectProps> = ({ className, columnStyle }) => {
   const [recommend, setRecommend] = useState<PaperItem[]>();
   useEffect(() => {
     setFilteredList({name: 'paper', search: '民族', page: 1, pageSize: 3})
-    setRecommend(filteredList)
+    // setRecommend(filteredList)
     setCurItem(
       filteredList.filter((item, index) => {
         let judge = item.article_id === Number(3354);
@@ -63,7 +63,7 @@ const Subject: React.FC<SubjectProps> = ({ className, columnStyle }) => {
           热门论文
         </p>
         <div className="flex h-[30vh] w-full items-center justify-center rounded-[1vh] bg-white shadow-sm">
-          {recommend && recommend.map((item) => <Item item={item} />)}
+          {filteredList && filteredList.map((item) => <Item item={item} />)}
         </div>
       </div>
       <div className={`${columnStyle} flex-[1.8] gap-[1vh] shadow-sm`}>
