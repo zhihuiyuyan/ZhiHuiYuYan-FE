@@ -23,6 +23,7 @@ const Search: React.FC = () => {
     setFilteredList({
       filters,
       search: val,
+      //@ts-ignore
       sort,
       pageSize,
       page: curPage,
