@@ -1,14 +1,15 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import ReactMarkdown from 'react-markdown';
 
 import Breakline from '@/common/components/elements/Breakline';
 import { MockArticle, splitWords } from '@/modules/articles/components/mock';
 import { ARTICLE_ITEMS, ArticleItem } from '@/modules/home/components/Article';
 const ArticlePage: React.FC<{ article: string }> = ({ article }) => {
-  const data = ARTICLE_ITEMS.find((item) => item.id === Number(article)) as ArticleItem
-  const {content, readings, author, title, timestamp} = data
+  const data = ARTICLE_ITEMS.find(
+    (item) => item.id === Number(article)
+  ) as ArticleItem;
+  const { content, readings, author, title, timestamp } = data;
   return (
     <AnimatePresence mode="wait">
       <motion.div
