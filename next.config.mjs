@@ -5,7 +5,9 @@ const nextConfig = {
     styledComponents: true,
   },
   swcMinify: true,
+  output: "standalone",
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',

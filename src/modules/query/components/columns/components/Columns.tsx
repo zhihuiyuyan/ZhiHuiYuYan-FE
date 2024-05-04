@@ -9,8 +9,9 @@ import LeftColumn from './LeftColumn';
 import MiddleColumn from './MiddleColumn';
 import RightColumn from './RightColumn';
 import Subject from './Subject';
+import EChartComponent from '@/common/components/elements/Chart/Chart';
 
-const Columns: React.FC = () => {
+const Columns: React.FC<{submit?: boolean}> = ({submit}) => {
   const { PaperOrScholarSelected } = usePaperOrScholarSelected();
   const { searchInput } = useSearchInput();
   const [isGraphClicked, setIsGraphClicked] = useState(false);
@@ -20,19 +21,19 @@ const Columns: React.FC = () => {
 
   return (
     <div className="relative flex h-auto w-full gap-[1%] bg-gray-50 px-[2%] pb-10 xl:px-[10%]">
-      {isGraphClicked ? (
+      {isGraphClicked && !submit ? (
         <Subject
           className={`${columnStyle} flex-[5] gap-[1vh] !bg-transparent pb-[2vh]`}
           columnStyle={columnStyle}
         />
-      ) : searchInput === '' ? (
+      ) : !submit ? (
         <div
-          className={`${columnStyle} flex-1`}
+          className={`${columnStyle} flex-1 relative`}
           onClick={() => {
             setIsGraphClicked(true);
           }}
         >
-          点线网图
+          <EChartComponent complexity='complex' className='w-[80vw] h-[60vh]' type='mind' data={{data: {'123': [123]}, title: '123', xNames: ['123']}}></EChartComponent>
         </div>
       ) : (
         <>
