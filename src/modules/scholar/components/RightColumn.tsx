@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react';
 import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
+import EChartComponent from '@/common/components/elements/Chart/Chart';
 import {
   PaperItem as PaperItemType,
   usePaperInfo,
 } from '@/common/hooks/useInfo';
 import { getPapers } from '../../../common/utils/loadData';
-import EChartComponent from '@/common/components/elements/Chart/Chart';
 
 export const PaperItem: React.FC<{ item: PaperItemType }> = ({ item }) => {
   const { filteredList } = usePaperInfo();
@@ -68,14 +68,29 @@ const Paper: React.FC<{ scholarID: string }> = ({ scholarID }) => {
 
 const RightColumn: React.FC<{ scholarID: string }> = ({ scholarID }) => {
   return (
-    <div className="border-2 border-gray-200 rounded-3xl relative top-[2vh] flex h-auto flex-[5] flex-col items-center gap-[2vh] bg-white px-[2%] py-[3vh]">
-      <div className="flex h-[23vh] w-full items-center justify-center bg-gray-200 rounded-lg">
+    <div className="relative top-[2vh] flex h-auto flex-[5] flex-col items-center gap-[2vh] rounded-3xl border-2 border-gray-200 bg-white px-[2%] py-[3vh]">
+      <div className="flex h-[23vh] w-full items-center justify-center rounded-lg bg-gray-200">
         研究方向趋势图
-        <EChartComponent type='river' data={{
-          data: {},
-          xNames: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
-          title: "研究趋势"
-        }} className='w-[80%] h-[90%]'></EChartComponent>
+        <EChartComponent
+          type="river"
+          data={{
+            data: {},
+            xNames: [
+              '2015',
+              '2016',
+              '2017',
+              '2018',
+              '2019',
+              '2020',
+              '2021',
+              '2022',
+              '2023',
+              '2024',
+            ],
+            title: '研究趋势',
+          }}
+          className="h-[90%] w-[80%]"
+        ></EChartComponent>
       </div>
 
       <div className="h-[59vh] w-full overflow-x-hidden overflow-y-scroll">

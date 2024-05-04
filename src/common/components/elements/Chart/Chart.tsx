@@ -1,13 +1,19 @@
-import React, { useEffect } from 'react';
-import * as echarts from 'echarts';
 import {
   EchartComponentProps,
   generateLineDataTemplate,
-  generateMindMap, generateRiver,
+  generateMindMap,
+  generateRiver,
 } from '@/common/components/elements/Chart/Chart.config';
 import { genKey } from '@/common/utils/keyGen';
-const EChartComponent: React.FC<EchartComponentProps> = ({data, id, type, ...restProps}) => {
-  const unique_id = `chart_${genKey.next().value}`
+import * as echarts from 'echarts';
+import React, { useEffect } from 'react';
+const EChartComponent: React.FC<EchartComponentProps> = ({
+  data,
+  id,
+  type,
+  ...restProps
+}) => {
+  const unique_id = `chart_${genKey.next().value}`;
   useEffect(() => {
     const chart = echarts.init(document.getElementById(unique_id));
     let options;

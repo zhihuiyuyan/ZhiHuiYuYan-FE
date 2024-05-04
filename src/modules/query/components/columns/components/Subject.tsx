@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import BreaklineDashed from '@/common/components/elements/BreaklineDashed';
 import { PaperItem, usePaperInfo } from '@/common/hooks/useInfo';
 
-import { PaperItem as Item } from './Paper';
 import EChartComponent from '@/common/components/elements/Chart/Chart';
+import { PaperItem as Item } from './Paper';
 
 interface SubjectProps {
   className: string;
@@ -42,17 +42,21 @@ const Subject: React.FC<SubjectProps> = ({ className, columnStyle }) => {
           民族语言保护
         </p>
         <div className="flex h-[30vh] w-full items-center justify-center rounded-[1vh] bg-white shadow-sm">
-          <div className="h-[80%] w-[95%] bg-gray-300 rounded-xl">
-            <EChartComponent className='h-full w-full' type='line' data={{
-              data:{
-                "现代语言": [35,27,31],
-                "古代汉语": [20,27,19],
-                "语言学": [8, 12, 15],
-                "比较文学": [13, 11, 12]
-              },
-              title: 'name',
-              xNames:['2022', '2023', '2024']
-            }} />
+          <div className="h-[80%] w-[95%] rounded-xl bg-gray-300">
+            <EChartComponent
+              className="h-full w-full"
+              type="line"
+              data={{
+                data: {
+                  现代语言: [35, 27, 31],
+                  古代汉语: [20, 27, 19],
+                  语言学: [8, 12, 15],
+                  比较文学: [13, 11, 12],
+                },
+                title: 'name',
+                xNames: ['2022', '2023', '2024'],
+              }}
+            />
           </div>
         </div>
         <p className="w-full pl-[2%] text-[2.5vh] font-bold text-blue-800">

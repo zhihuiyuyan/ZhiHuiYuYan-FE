@@ -57,18 +57,21 @@ const RightColumn: React.FC<RightColumnProps> = ({ className }) => {
       <div className={columnItemStyle}>
         <div className="flex h-[8vh] w-[80%] items-center justify-center">
           研究趋势图
-         </div>
-        <EChartComponent className='h-[40vh] w-[80%]' type='line' data={{
-          data:{
-            "现代语言": [35,27,31],
-            "古代汉语": [20,27,19],
-            "语言学": [8, 12, 15],
-            "比较文学": [13, 11, 12]
-          },
-          title: 'name',
-          xNames:['2022', '2023', '2024']
-        }} />
-
+        </div>
+        <EChartComponent
+          className="h-[40vh] w-[80%]"
+          type="line"
+          data={{
+            data: {
+              现代语言: [35, 27, 31],
+              古代汉语: [20, 27, 19],
+              语言学: [8, 12, 15],
+              比较文学: [13, 11, 12],
+            },
+            title: 'name',
+            xNames: ['2022', '2023', '2024'],
+          }}
+        />
       </div>
       <BreaklineDashed className="mb-0 w-[80%] border-b-2" />
       <div className={columnItemStyle}>
