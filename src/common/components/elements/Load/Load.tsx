@@ -9,10 +9,10 @@ const Load: React.FC<LoadProps> = ({ className, unique_id, paused, ...restProps 
   useEffect(() => {
     paused
       ? document
-          .querySelectorAll('.square')
+          .querySelectorAll(`.loader_${unique_id} .square`)
           .forEach((item) => item.classList.add('stop'))
       : document
-          .querySelectorAll('.square')
+          .querySelectorAll(`.loader_${unique_id} .square`)
           .forEach((item) => item.classList.remove('stop'));
   }, [paused]);
   return (

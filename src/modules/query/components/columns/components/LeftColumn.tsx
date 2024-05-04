@@ -111,7 +111,7 @@ const LeftColumn: React.FC<LeftColumnProps> = ({ className }) => {
       <BreaklineDashed className="mb-0 w-[80%] border-b-2" />
       <div className={`${columnItemStyle} `}>
         <p className="text-[1.8vh] font-semibold text-blue-800">机构</p>
-        <div className="grid max-h-40 w-[75%] grid-cols-2 grid-rows-1 overflow-scroll">
+        <div className="grid max-h-40 w-[75%] grid-cols-2 grid-rows-1 overflow-y-scroll overflow-x-hidden">
           {filterChoiceList[
             PaperOrScholarSelected === '论文'
               ? 'article_source'
