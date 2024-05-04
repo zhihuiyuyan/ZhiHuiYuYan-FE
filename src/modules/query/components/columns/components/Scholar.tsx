@@ -93,7 +93,7 @@ const Scholar = () => {
       search,
       page: 1,
       pageSize: pageSize,
-      sort: sort as keyof SchoInfoItem,
+      sort: sort || 'books',
       filters,
     });
   }, [filters, pageSize]);
