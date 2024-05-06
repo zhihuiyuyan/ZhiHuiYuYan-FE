@@ -38,6 +38,8 @@ const AuthModal: React.FC = () => {
   const [institution, setInstitution] = useState('');
   const [name, setName] = useState('');
 
+  const [preview, setPreview] = useState<string | null>(null);
+
   const [isLogin, setIsLogin] = useState(true);
   const [isSending, setIsSending] = useState(false);
   const [countdown, setCountdown] = useState(0);
@@ -161,6 +163,48 @@ const AuthModal: React.FC = () => {
     }
   };
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const file = e.target.files[0];
+      if (file && file.type.startsWith('image/')) {
+        handleUploadImage(file);
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          if (e.target?.result) {
+            setPreview(e.target.result as string);
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  };
+
+  const handleUploadImage = async (file: File) => {
+    try {
+      const response = await axios.post(
+        'https://picui.cn/api/v1/upload',
+        {
+          file: file,
+        },
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log(response.data);
+        setAvatar(response.data.data.links.url);
+      }
+
+      return response;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('请求出错:', error);
+    }
+  };
+
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
     if (countdown > 0) {
@@ -202,9 +246,16 @@ const AuthModal: React.FC = () => {
           )}
           {isRegistered && (
             <Avatar className="relative top-[5vh] h-[10vh] w-[10vh] rounded-full bg-gray-200">
-              <AvatarImage src="" />
+              {preview && <AvatarImage src={preview} />}
               <AvatarFallback>
                 <p className="text-[1.5vh] text-gray-600">设置头像</p>
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="absolute h-full w-full cursor-pointer text-[1.5vh] text-gray-600 opacity-0"
+                  placeholder="设置头像"
+                  onChange={handleImageChange}
+                />
               </AvatarFallback>
             </Avatar>
           )}

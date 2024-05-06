@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useEffect } from 'react';
+import { HTMLAttributes, useEffect } from 'react';
 import './index.scss';
 
 interface LoadProps extends HTMLAttributes<HTMLDivElement> {
