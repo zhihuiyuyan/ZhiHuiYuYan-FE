@@ -5,28 +5,70 @@ import { useEffect, useRef, useState } from 'react';
 import { useChat, useChatInput } from '@/common/hooks/useChatStore';
 import { genKey } from '@/common/utils/keyGen';
 
+import axios from 'axios';
 import { PluginProps } from './plugins/pluginTemplate';
 import RecommendPlugin from './plugins/recommend';
 import SummaryPlugin from './plugins/summary';
 import UploadFile, { ChatFiles } from './plugins/uploadFile';
 
-const ChatInput: React.FC = () => {
+interface ChatInputProps {
+  sessionId: string;
+}
+
+const ChatInput: React.FC<ChatInputProps> = ({ sessionId }) => {
   const { sendMessage, replaceMessage } = useChat();
   const { inputs, setText, setPlugins } = useChatInput();
   const [plugins, setLocalPlugins] = useState<React.FC<PluginProps<any>>[]>([
     UploadFile,
   ]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
     adjustHeight();
   }, [inputs.text]);
-  const handleSubmit = () => {
-    sendMessage('user', inputs['text']);
-    sendMessage('robot', '...');
-    setTimeout(() => {
-      replaceMessage('robot', '1232111111111111111');
-    }, 800);
-    setText('');
+  const handleSubmit = async () => {
+    try {
+      sendMessage('user', inputs['text']);
+      sendMessage('robot', '...');
+      const formData = new FormData();
+      formData.append('question', inputs['text']);
+      formData.append('session_id', sessionId);
+      if (Array.isArray(inputs['files']) && inputs['files'].length > 0) {
+        inputs['files'].forEach((file, index) => {
+          if (file instanceof Blob) {
+            // const pdf = new File([file], 'example.pdf', {
+            //   lastModified: new Date().getTime(),
+            //   type: file.type,
+            // });
+            formData.append('file', file, 'example.pdf');
+          } else {
+            const blob = new Blob([JSON.stringify(file)], {
+              type: 'application/pdf',
+            });
+            formData.append('file', blob);
+          }
+        });
+      }
+      const { data } = await axios.post(
+        'http://124.222.113.16:5000/llm/query',
+        formData,
+        {
+          headers: {
+            Authorization: 'Bearer ' + token,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      console.log(data);
+      setTimeout(() => {
+        replaceMessage('robot', data);
+      }, 800);
+      setText('');
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('请求出错:', error);
+    }
   };
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
