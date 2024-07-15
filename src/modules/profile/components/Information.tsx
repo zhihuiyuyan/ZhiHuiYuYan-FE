@@ -28,7 +28,7 @@ const Information = () => {
   const handleGetAvatar = async (token: string) => {
     try {
       const response = await axios.get(
-        'http://124.222.113.16:5000/user/profile',
+        'http://10.130.115.25:8888/user/profile',
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -59,7 +59,7 @@ const Information = () => {
     <div className="relative flex h-[14vh] w-full items-center">
       {isLogined ? (
         <Avatar className="relative left-[7.5%] top-[1vh] h-[9vh] w-[9vh] rounded-full bg-gray-100">
-          <AvatarImage src="https://www.github.com/Wishforpeace.png" />
+          <AvatarImage src={profile.avatar} />
           <AvatarFallback></AvatarFallback>
         </Avatar>
       ) : (
@@ -69,7 +69,7 @@ const Information = () => {
         {profile.name}
       </p>
       <div className="absolute left-[30%] top-[8vh] flex items-center gap-[2vh] text-[1.5vh] text-blue-800 md:left-[25%] lg:left-[22%] xl:left-[18.5%]">
-        <p>性别：{profile.gender}</p>
+        <p>性别：{profile.gender === 'Male' ? '男' : '女'}</p>
         <BreaklineDashed className="h-[2vh] border-r-2 border-gray-300" />
         <p>机构：{profile.institution}</p>
       </div>

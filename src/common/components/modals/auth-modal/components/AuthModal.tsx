@@ -47,7 +47,7 @@ const AuthModal: React.FC = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        'http://124.222.113.16:5000/auth/login',
+        'http://10.130.115.25:8888/auth/login',
         {
           email,
           password,
@@ -75,7 +75,7 @@ const AuthModal: React.FC = () => {
   const handleRegister = async () => {
     try {
       const response = await axios.post(
-        'http://124.222.113.16:5000/auth/register',
+        'http://10.130.115.25:8888/auth/register',
         {
           email: email,
           password: password,
@@ -113,7 +113,7 @@ const AuthModal: React.FC = () => {
       }, 60000);
 
       const response = await axios.post(
-        'http://124.222.113.16:5000/auth/verification',
+        'http://10.130.115.25:8888/auth/verification',
         { email: email },
         {
           headers: {
@@ -137,7 +137,7 @@ const AuthModal: React.FC = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://124.222.113.16:5000/user/update',
+        'http://10.130.115.25:8888/user/update',
         {
           avatar: avatar,
           gender: gender,
