@@ -2,12 +2,16 @@ import Conversation from '@/modules/conversation/components/chatZone/components/
 
 import Input from './components/input';
 
-const ChatZone: React.FC = () => {
+interface ChatZoneProps{
+  sessionId: string;
+}
+
+const ChatZone: React.FC<ChatZoneProps> = ({ sessionId }) => {
   return (
     <>
       <div className="flex w-[80vw] flex-col items-center">
-        <Conversation />
-        <Input />
+        <Conversation sessionId={sessionId}/>
+        <Input sessionId={sessionId}/>
       </div>
     </>
   );

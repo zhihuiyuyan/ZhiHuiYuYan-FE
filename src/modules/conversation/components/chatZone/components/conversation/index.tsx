@@ -1,13 +1,40 @@
 'use client';
 
+import { useEffect } from 'react';
+
 import { bubbleType, useChat } from '@/common/hooks/useChatStore';
 import { genKey } from '@/common/utils/keyGen';
 
 import { bubbleConfig } from './bubble.config';
 import ConversationBubble from './conversationBubble';
+import axios from 'axios';
 
-const Conversation: React.FC = () => {
+interface ConversationProps {
+  sessionId: string;
+}
+
+const Conversation: React.FC<ConversationProps> = ({ sessionId }) => {
   const { chatRecords } = useChat();
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {(async () => {
+    try {
+      const { data } = await axios.get(
+        `http://124.222.113.16:5000/llm/chats/${sessionId}`,
+        {
+          headers: {
+            Authorization: 'Bearer ' + token,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      console.log(data);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('请求出错:', error);
+    }
+  })();
+}, []);
 
   return (
     <>

@@ -50,7 +50,7 @@ const RecordColumn: React.FC = () => {
   const handleGetAvatar = async (token: string) => {
     try {
       const response = await axios.get(
-        'http://10.130.115.25:8888/user/profile',
+        'http://124.222.113.16:5000/user/profile',
         {
           headers: {
             Authorization: `Bearer ${token}`,
