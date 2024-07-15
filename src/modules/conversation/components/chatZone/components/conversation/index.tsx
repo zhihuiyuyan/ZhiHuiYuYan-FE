@@ -5,9 +5,9 @@ import { useEffect } from 'react';
 import { bubbleType, useChat } from '@/common/hooks/useChatStore';
 import { genKey } from '@/common/utils/keyGen';
 
+import axios from 'axios';
 import { bubbleConfig } from './bubble.config';
 import ConversationBubble from './conversationBubble';
-import axios from 'axios';
 
 interface ConversationProps {
   sessionId: string;
@@ -15,26 +15,27 @@ interface ConversationProps {
 
 const Conversation: React.FC<ConversationProps> = ({ sessionId }) => {
   const { chatRecords } = useChat();
-  const token = localStorage.getItem('token');
 
-  useEffect(() => {(async () => {
-    try {
-      const { data } = await axios.get(
-        `http://124.222.113.16:5000/llm/chats/${sessionId}`,
-        {
-          headers: {
-            Authorization: 'Bearer ' + token,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      console.log(data);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('请求出错:', error);
-    }
-  })();
-}, []);
+  useEffect(() => {
+    (async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const { data } = await axios.get(
+          `http://124.222.113.16:5000/llm/chats/${sessionId}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + token,
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        console.log(data);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('请求出错:', error);
+      }
+    })();
+  }, []);
 
   return (
     <>

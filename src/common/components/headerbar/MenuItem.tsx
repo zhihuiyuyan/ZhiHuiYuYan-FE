@@ -10,10 +10,10 @@ interface MenuItemProps {
 
 const MenuItem: React.FC<MenuItemProps> = ({ href, value }) => {
   const [link, setLint] = useState('');
-  if (href === '/conversation') {
-    const token = localStorage.getItem('token');
 
+  if (href === '/conversation') {
     useEffect(() => {
+      const token = localStorage.getItem('token');
       (async () => {
         try {
           console.log(`Bearer ${token}`);

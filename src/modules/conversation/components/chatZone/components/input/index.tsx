@@ -22,13 +22,13 @@ const ChatInput: React.FC<ChatInputProps> = ({ sessionId }) => {
     UploadFile,
   ]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const token = localStorage.getItem('token');
 
   useEffect(() => {
     adjustHeight();
   }, [inputs.text]);
   const handleSubmit = async () => {
     try {
+      const token = localStorage.getItem('token');
       sendMessage('user', inputs['text']);
       sendMessage('robot', '...');
       const formData = new FormData();
@@ -51,6 +51,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ sessionId }) => {
           }
         });
       }
+      setText('');
       const { data } = await axios.post(
         'http://124.222.113.16:5000/llm/query',
         formData,
@@ -65,7 +66,6 @@ const ChatInput: React.FC<ChatInputProps> = ({ sessionId }) => {
       setTimeout(() => {
         replaceMessage('robot', data);
       }, 800);
-      setText('');
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error('请求出错:', error);
