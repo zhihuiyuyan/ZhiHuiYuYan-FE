@@ -46,7 +46,7 @@ interface ChatStore {
 interface ChatInputStore {
   inputs: inputType;
   setText: (text: string) => void;
-  setFiles: (texts: any[]) => void;
+  setFiles: (files: any[]) => void;
   setPlugins: (name: string, res: string) => void;
   removeFiles: () => void;
 }
@@ -165,8 +165,8 @@ export const useChatInput = create<ChatInputStore>((set) => ({
       inputs: { ...state.inputs, files: state.inputs.files!.slice(1) },
     })),
   setText: (text) => set((state) => ({ inputs: { ...state.inputs, text } })),
-  setFiles: (texts) =>
-    set((state) => ({ inputs: { ...state.inputs, files: texts } })),
+  setFiles: (files) =>
+    set((state) => ({ inputs: { ...state.inputs, files: files } })),
   setPlugins: (name, res) =>
     set((state) => ({ inputs: { ...state.inputs, [name]: res } })),
 }));

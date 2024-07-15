@@ -12,23 +12,28 @@ const UploadFilePlugin: React.FC<Partial<PluginProps<string>>> = (props) => {
   const fileRef = useRef<HTMLInputElement>(null);
   const { setFiles, inputs } = useChatInput();
   const handleTrigger = () => {
-    fileRef.current!.click();
+    if (fileRef.current) {
+      fileRef.current.click();
+    }
     return Promise.resolve('123');
   };
   const handleChange = (e: any) => {
-    if (e.target.files) {
-      setFiles([e.target.files[0]]);
-      console.log(e.target.files);
-    }
+    console.log('change');
+    // if (e.target.files && e.target.files.length > 0) {
+    setFiles([e.target.files[0]]);
+    console.log(e.target.files[0]);
+    // }
   };
-  const handleFail = () => {};
+  const handleFail = () => {
+    console.error('File upload failed');
+  };
 
   return (
     <>
       <input
         type="file"
         ref={fileRef}
-        onClick={handleChange}
+        onChange={handleChange}
         style={{ display: 'none' }}
       />
       <PluginTemplate<string>
