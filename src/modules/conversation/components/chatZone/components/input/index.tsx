@@ -41,6 +41,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ sessionId }) => {
             //   lastModified: new Date().getTime(),
             //   type: file.type,
             // });
+            console.log(file);
             formData.append('file', file, 'example.pdf');
           } else {
             const blob = new Blob([JSON.stringify(file)], {
