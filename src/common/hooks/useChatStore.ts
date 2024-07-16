@@ -38,7 +38,11 @@ interface ChatStore {
   chatRecords: ChatRecordProps[];
   currentSelect: string;
   addNewHistory: (title: string) => void;
-  sendMessage: (role: bubbleType, text: string) => void;
+  sendMessage: (
+    role: bubbleType,
+    text: string,
+    additionalElem?: React.ReactNode
+  ) => void;
   replaceMessage: (role: bubbleType, text: string) => void;
   refreshChatRecords: (id?: string) => void;
   setCurrentSelect: (id: string) => void;
@@ -146,13 +150,23 @@ export const useChat = create<ChatStore>((set) => ({
         chatHistories: [{ id, date, title }].concat(state.chatHistories),
       };
     }),
-  sendMessage: (role, text) =>
-    set((state) => ({
-      chatRecords: state.chatRecords.concat({
-        children: text,
-        role: role,
-      }),
-    })),
+  sendMessage: (role, text, additionalElem) =>
+    set((state) =>
+      additionalElem
+        ? {
+            chatRecords: state.chatRecords.concat({
+              children: text,
+              role: role,
+              additionalElem: additionalElem,
+            }),
+          }
+        : {
+            chatRecords: state.chatRecords.concat({
+              children: text,
+              role: role,
+            }),
+          }
+    ),
 }));
 
 export const useChatInput = create<ChatInputStore>((set) => ({

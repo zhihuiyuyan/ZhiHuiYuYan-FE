@@ -29,8 +29,6 @@ const ChatInput: React.FC<ChatInputProps> = ({ sessionId }) => {
   const handleSubmit = async () => {
     try {
       const token = localStorage.getItem('token');
-      sendMessage('user', inputs['text']);
-      sendMessage('robot', '...');
       const formData = new FormData();
       formData.append('question', inputs['text']);
       formData.append('session_id', sessionId);
@@ -45,7 +43,22 @@ const ChatInput: React.FC<ChatInputProps> = ({ sessionId }) => {
             formData.append('file', blob);
           }
         });
+        sendMessage(
+          'user',
+          inputs['text'],
+          <div className="flex items-center justify-center rounded-lg bg-lightBlue p-4 text-red-500 shadow">
+            <img
+              className="h-10 w-10"
+              src="https://s2.loli.net/2024/05/03/drN7A8pg4jRuwGS.png"
+              alt={`PDF 文件`}
+            />
+            {' PDF 文件'}
+          </div>
+        );
+      } else {
+        sendMessage('user', inputs['text']);
       }
+      sendMessage('robot', '...');
       setText('');
       setFiles([]);
       const { data } = await axios.post(
@@ -59,9 +72,9 @@ const ChatInput: React.FC<ChatInputProps> = ({ sessionId }) => {
         }
       );
       console.log(data);
-      setTimeout(() => {
-        replaceMessage('robot', data);
-      }, 800);
+      // setTimeout(() => {
+      replaceMessage('robot', data);
+      // }, 800);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error('请求出错:', error);
