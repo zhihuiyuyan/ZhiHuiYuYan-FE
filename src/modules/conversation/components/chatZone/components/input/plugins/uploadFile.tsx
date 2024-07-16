@@ -18,11 +18,9 @@ const UploadFilePlugin: React.FC<Partial<PluginProps<string>>> = (props) => {
     return Promise.resolve('123');
   };
   const handleChange = (e: any) => {
-    console.log('change');
-    // if (e.target.files && e.target.files.length > 0) {
-    setFiles([e.target.files[0]]);
-    console.log(e.target.files[0]);
-    // }
+    if (e.target.files && e.target.files.length > 0) {
+      setFiles([e.target.files[0]]);
+    }
   };
   const handleFail = () => {
     console.error('File upload failed');
@@ -34,7 +32,14 @@ const UploadFilePlugin: React.FC<Partial<PluginProps<string>>> = (props) => {
         type="file"
         ref={fileRef}
         onChange={handleChange}
-        style={{ display: 'none' }}
+        style={{
+          opacity: 0,
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+        }}
       />
       <PluginTemplate<string>
         {...props}

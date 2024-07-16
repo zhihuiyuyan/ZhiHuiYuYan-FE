@@ -17,7 +17,7 @@ interface ChatInputProps {
 
 const ChatInput: React.FC<ChatInputProps> = ({ sessionId }) => {
   const { sendMessage, replaceMessage } = useChat();
-  const { inputs, setText, setPlugins } = useChatInput();
+  const { inputs, setText, setPlugins, setFiles } = useChatInput();
   const [plugins, setLocalPlugins] = useState<React.FC<PluginProps<any>>[]>([
     UploadFile,
   ]);
@@ -37,11 +37,6 @@ const ChatInput: React.FC<ChatInputProps> = ({ sessionId }) => {
       if (Array.isArray(inputs['files']) && inputs['files'].length > 0) {
         inputs['files'].forEach((file, index) => {
           if (file instanceof Blob) {
-            // const pdf = new File([file], 'example.pdf', {
-            //   lastModified: new Date().getTime(),
-            //   type: file.type,
-            // });
-            console.log(file);
             formData.append('file', file, 'example.pdf');
           } else {
             const blob = new Blob([JSON.stringify(file)], {
@@ -52,6 +47,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ sessionId }) => {
         });
       }
       setText('');
+      setFiles([]);
       const { data } = await axios.post(
         'http://124.222.113.16:5000/llm/query',
         formData,
