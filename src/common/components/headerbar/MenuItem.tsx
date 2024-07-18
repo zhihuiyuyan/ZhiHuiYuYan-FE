@@ -1,15 +1,15 @@
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface MenuItemProps {
   href: string;
   value: string;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({ href, value }) => {
-  const [link, setLint] = useState('');
+const MenuItem: React.FC<MenuItemProps> = React.memo(({ href, value }) => {
+  const [link, setLink] = useState('');
 
   if (href === '/conversation') {
     useEffect(() => {
@@ -27,7 +27,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ href, value }) => {
               },
             }
           );
-          setLint(`/conversation/${data.data.session_id}`);
+          setLink(`/conversation/${data.data.session_id}`);
         } catch (error) {
           // eslint-disable-next-line no-console
           console.error('请求出错:', error);
@@ -39,7 +39,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ href, value }) => {
   return (
     <motion.li whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>
       <Link
-        href={link}
+        href={href === '/conversation' ? link : href}
         passHref
         className="h-[3vh] w-full select-none font-zheng text-[1.8vh] text-white"
       >
@@ -47,6 +47,6 @@ const MenuItem: React.FC<MenuItemProps> = ({ href, value }) => {
       </Link>
     </motion.li>
   );
-};
+});
 
 export default MenuItem;
